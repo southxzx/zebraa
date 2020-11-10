@@ -31,10 +31,13 @@ if (process.env.NODE_ENV === 'development') {
 
 
 // Load all routes
-const userRouter = require('./routes/user.route');
+const allUserRouter = require('./routes/user.route');
+const allColorRouter = require('./routes/color.route');
 
-// Use routes
-app.use('/api/user',userRouter);
+// User routes
+app.use('/api/user',allUserRouter);
+// Color routes
+app.use('/api/color',allColorRouter);
 
 
 app.use((req, res) => {

@@ -23,9 +23,9 @@ module.exports.addUserController = (req,res) =>{
       // save vào mongodb thì sẽ thêm 1 collection có tên là :(tên Schema + s), như User thì -> users ; và sẽ thêm trg _id cho collection đó 
       user.save((err, user) => {
         if (err) {
-          console.log('Save error', errorHandler(err));
+          // console.log('Save error', errorHandler(err));
           return res.status(401).json({
-            errors: errorHandler(err)
+            success: false, err
           });
         } else {
           return res.json({
