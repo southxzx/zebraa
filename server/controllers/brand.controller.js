@@ -31,3 +31,14 @@ module.exports.updateBrand = (req, res) => {
         res.status(200).send(data);
     })
 }
+
+// Delete brand 
+module.exports.deleteBrand = (req, res) => {
+    Brand.findByIdAndRemove(
+        {_id : req.query.id},
+        (err,data)=>{
+            if (err) return res.send(err);
+            res.status(200).send(data);
+        }
+    )
+}

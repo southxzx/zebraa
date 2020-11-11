@@ -20,3 +20,26 @@ module.exports.getAllColors = (req, res) => {
         res.status(200).send(colors);
     })
 }
+
+// Update color
+module.exports.updateColor = (req, res) => {
+    Color.findByIdAndUpdate(
+        {_id : req.query.id},
+        { $set : req.body},
+        (err,data) => {
+            if (err) return res.send(err);
+            res.status(200).send(data);
+        }
+    )
+}
+
+// Delete color
+module.exports.deleteColor = (req, res) => {
+    Color.findByIdAndRemove(
+        {_id : req.query.id},
+        (err,data) =>{
+            if (err) return res.send(err);
+            res.status(200).send(data);
+        }
+    )
+}
