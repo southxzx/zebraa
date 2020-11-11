@@ -1,5 +1,6 @@
 const Color = require("../models/color.model");
 
+// Add new color
 module.exports.addColor = (req,res) => {
     const color = new Color(req.body);
 
@@ -9,5 +10,13 @@ module.exports.addColor = (req,res) => {
             success: true,
             color: doc
         })
+    })
+}
+
+// Get all color -- find(query, projection)
+module.exports.getAllColors = (req, res) => {
+    Color.find({},(err,colors) => {
+        if (err) return res.send(err);
+        res.status(200).send(colors);
     })
 }
