@@ -35,8 +35,9 @@ module.exports.updateColor = (req, res) => {
 
 // Delete color
 module.exports.deleteColor = (req, res) => {
-    Color.findByIdAndRemove(
+    Color.findByIdAndUpdate(
         {_id : req.query.id},
+        {active : false},
         (err,data) =>{
             if (err) return res.send(err);
             res.status(200).send(data);

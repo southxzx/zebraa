@@ -34,8 +34,9 @@ module.exports.updateBrand = (req, res) => {
 
 // Delete brand 
 module.exports.deleteBrand = (req, res) => {
-    Brand.findByIdAndRemove(
+    Brand.findByIdAndUpdate(
         {_id : req.query.id},
+        {active : false},
         (err,data)=>{
             if (err) return res.send(err);
             res.status(200).send(data);
