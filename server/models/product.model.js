@@ -30,12 +30,12 @@ const productShema = new mongoose.Schema(
         },
         category:{
             type: Schema.Types.ObjectId,
-            ref: 'Type',
+            ref: 'Category',
             required: true
         },
-        available:{
+        quantity:{
             required: true,
-            type: Boolean
+            type: Number
         },
         color:{
             type: Schema.Types.ObjectId,
@@ -46,6 +46,15 @@ const productShema = new mongoose.Schema(
             type: Schema.Types.ObjectId,
             ref: 'Size',
             required: true
+        },
+        review:{
+            type: Array,
+            default:[]
+        },
+        active:{
+            required: true,
+            type:Boolean
         }
-    }
-)
+    },{timestamps:true});
+
+module.exports = mongoose.model('Product', productShema);
