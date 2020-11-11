@@ -2,9 +2,9 @@ const Size = require("../models/size.model");
 
 // Add new size
 module.exports.addSize = (req,res) => {
-    const color = new Size(req.body);
+    const size = new Size(req.body);
 
-    color.save((err,doc) => {
+    size.save((err,doc) => {
         if (err) return res.json({success: false, err});
         res.status(200).json({
             success: true,
