@@ -20,3 +20,14 @@ module.exports.getAllBrands = (req, res) => {
         res.status(200).send(brands);
     })
 }
+
+// Update brand -- findbyidandupdate(id, brand)
+module.exports.updateBrand = (req, res) => {
+    Brand.findByIdAndUpdate(
+        {_id : req.query.id},
+        { $set: req.body},
+        (err,data)=>{
+        if (err) return res.send(err);
+        res.status(200).send(data);
+    })
+}

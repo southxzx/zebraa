@@ -7,6 +7,9 @@ const brandController = require('../controllers/brand.controller');
 router.post('/add',brandController.addBrand);
 
 // Get all brand
-router.get('/get',brandController.getAllBrands)
+router.get('/get',brandController.getAllBrands);
+
+//Update brand
+router.put('/update/',brandController.updateBrand);
 
 module.exports = router;
