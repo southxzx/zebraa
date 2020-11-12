@@ -7,12 +7,15 @@ const productController = require('../controllers/product.controller');
 router.post('/add',productController.addProduct);
 
 // // Get 1 product
-router.get('/get',productController.getSingleProduct)
+router.get('/get',productController.getSingleProduct);
 
-// //Update color by ID
-// router.put('/update',colorController.updateColor);
+// Get all products by Arrival
+router.get('/getAll',productController.getAllProductsByArrival);
 
-// // Delete color by ID
-// router.delete('/delete',colorController.deleteColor);
+// Update products by ID
+router.put('/update',productController.updateProduct);
+
+// Delete products by ID
+router.put('/delete',productController.deleteProduct);
 
 module.exports = router;

@@ -30,3 +30,50 @@ module.exports.getSingleProduct = (req, res) => {
     });
     
 }
+
+// Get all products by ARRIVAL
+// api/product/get/?sortBy=createdAt&order=desc&limit=8
+module.exports.getAllProductsByArrival = (req, res) => {
+
+    let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
+    let order = req.query.order ? req.query.order : 'asc';
+    let limit = req.query.limit ? parseInt(req.query.limit) : 100
+
+    Product.
+    find().
+    populate('brand').
+    populate('category').
+    populate('color').
+    populate('size').
+    sort({sortBy: order}).
+    limit(limit).
+    exec((err, results)=>{
+        if (err) return res.send(err);
+        res.status(200).send({results});
+    })
+}
+
+// Update product by ID
+module.exports.updateProduct = (req, res) => {
+
+    Product.findByIdAndUpdate(
+        {_id : req.query.id},
+        { $set : req.body},
+        (err, data)=>{
+            if (err) return res.send(err);
+            res.status(200).send(data);
+        }
+    )
+}
+
+// Delete product by ID
+module.exports.deleteProduct = (req, res) =>{
+    Product.findByIdAndUpdate(
+        {_id : req.query.id},
+        { active : false},
+        (err, data)=>{
+            if (err) return res.send(err);
+            res.status(200).send(data);
+        }
+    )
+}
