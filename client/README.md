@@ -6,6 +6,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+### `npm start`
+=======
+### `yarn start`
+>>>>>>> 207c253aaf9816963c0642fe1dc6835b1e0bf449
+>>>>>>> master
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -13,10 +21,26 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+### `npm test`
+=======
+### `yarn test`
+>>>>>>> 207c253aaf9816963c0642fe1dc6835b1e0bf449
+>>>>>>> master
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+### `npm run build`
+=======
+### `yarn build`
+>>>>>>> 207c253aaf9816963c0642fe1dc6835b1e0bf449
+>>>>>>> master
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -26,6 +50,14 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+### `npm run eject`
+=======
+### `yarn eject`
+>>>>>>> 207c253aaf9816963c0642fe1dc6835b1e0bf449
+>>>>>>> master
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
@@ -61,5 +93,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/a
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
+<<<<<<< HEAD
+=======
+### `yarn build` fails to minify
+>>>>>>> master
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

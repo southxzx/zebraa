@@ -21,7 +21,11 @@ module.exports.registerController = (req,res) =>{
 
     const errors = validationResult(req);
 
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+>>>>>>> master
     // Validation to req.body we will create custom validation
     if (!errors.isEmpty()) {
       const firstError = errors.array().map(error => error.msg)[0];
@@ -36,7 +40,18 @@ module.exports.registerController = (req,res) =>{
         if (user) {
           return res.status(400).json({     // return lỗi
             errors: 'Email is taken'
+<<<<<<< HEAD
 
+=======
+=======
+      // save vào mongodb thì sẽ thêm 1 collection có tên là :(tên Schema + s), như User thì -> users ; và sẽ thêm trg _id cho collection đó 
+      user.save((err, user) => {
+        if (err) {
+          // console.log('Save error', errorHandler(err));
+          return res.status(401).json({
+            success: false, err
+>>>>>>> 207c253aaf9816963c0642fe1dc6835b1e0bf449
+>>>>>>> master
           });
         }
       });
