@@ -21,6 +21,7 @@ module.exports.registerController = (req,res) =>{
 
     const errors = validationResult(req);
 
+
     // Validation to req.body we will create custom validation
     if (!errors.isEmpty()) {
       const firstError = errors.array().map(error => error.msg)[0];
@@ -35,6 +36,7 @@ module.exports.registerController = (req,res) =>{
         if (user) {
           return res.status(400).json({     // return lỗi
             errors: 'Email is taken'
+
           });
         }
       });
