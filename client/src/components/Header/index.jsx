@@ -1,11 +1,31 @@
-import React from 'react';
-import './Header.css'
+import React, { useEffect, useRef, useState } from 'react';
+import './header.css'
 import { Container, Row, Col,Button } from 'reactstrap';
-
-
+import Banner from '../Banner';
 function Header(props) {
+
+    const [showHeader, setShowHeader] = useState(false);
+
+    const handleShowHeader = () => {
+    // Nếu kéo qua vị trí 0 thì hiển thị header
+        if(window.scrollY > 0){
+            setShowHeader(true);
+       } else {
+           setShowHeader(false);
+       }
+       console.log(showHeader);
+    }
+
+    useEffect(() => {
+        // Hiển thị header khi scroll 
+        window.addEventListener("scroll",handleShowHeader,{ passive: true });
+        return () => {
+            window.removeEventListener("scroll", handleShowHeader);
+          };
+      },[showHeader]);
+
     return (
-        <header>
+        <header className={showHeader ? "dark-bg" : "transparent-bg"}>
             <Container>
                 <Row>
                     <Col lg="5">
@@ -21,17 +41,19 @@ function Header(props) {
                             
                                 <li className="itemMenu">
                                     <a className="layer1" href="/" title="Home">
-                                        category
+                                        Categories
+                                        <i className="fa fa-chevron-down dropdown" aria-hidden="true"></i>
                                     </a>
+                                
                                 </li>
                         
 
                         
                                 <li className="itemMenu">
                                     <a className="layer1" href="/" title="Home">
-                                        Home
+                                        Blog
                                     </a>
-                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                    
                                 </li>
 
                           
@@ -39,7 +61,7 @@ function Header(props) {
                            
                                 <li className="itemMenu">
                                     <a className="layer1" href="/" title="Home">
-                                        Home
+                                        Contact
                                     </a>
                                 </li>
                            
