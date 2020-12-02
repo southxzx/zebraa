@@ -4,8 +4,9 @@ const router = express.Router()
 const controller = require('../controllers/user.controller');
 const colorController = require('../controllers/color.controller');
 
-// Load controller
-router.post('/add',controller.addUserController);
+// Load controllerr
+router.post('/register',controller.registerController);
+router.post('/activation',controller.activationController);
 
 
 module.exports = router;
