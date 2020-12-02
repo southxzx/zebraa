@@ -1,6 +1,6 @@
 import React from 'react';
-import './Header.css'
-import { Container, Row, Col,Button } from 'reactstrap';
+import './header.css'
+import { Container, Row, Col } from 'reactstrap';
 
 
 function Header(props) {
@@ -31,7 +31,7 @@ function Header(props) {
                                     <a className="layer1" href="/" title="Home">
                                         Home
                                     </a>
-                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                    <i className="fa fa-chevron-down" aria-hidden="true"></i>
                                 </li>
 
                           
