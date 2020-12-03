@@ -18,17 +18,50 @@ function Footer() {
                                 Subcribe
                             </a>
                         </form>
-                        <div class="warning"> Error : Please enter valid email address.</div>
+                        <div className="warning"> Error : Please enter valid email address.</div>
                     </div>
                 </div>
-                <div class="follow">
-                    <ul class="link-follow">
-                        <li><a><i class="fa fa-twitter"></i></a></li>
-                        <li><a><i class="fa fa-google-plus"></i></a></li>
-                        <li><a><i class="fa fa-facebook"></i></a></li>
-                        <li><a><i class="fa fa-youtube"></i></a></li>
-                        <li><a><i class="fa fa-instagram"></i></a></li>
+                <div className="follow">
+                    <ul className="link-follow">
+                        <li><a><i className="fa fa-twitter"></i></a></li>
+                        <li><a><i className="fa fa-google-plus"></i></a></li>
+                        <li><a><i className="fa fa-facebook"></i></a></li>
+                        <li><a><i className="fa fa-youtube"></i></a></li>
+                        <li><a><i className="fa fa-instagram"></i></a></li>
                     </ul>
+                </div>
+                <div className="corporate-about">
+                    <div className="inner">
+                    <Row>
+                        <Col>
+                            <div class="wrapper">
+                                <img src="Assets/images/bg_icon1.png" alt="Icon"/>
+                                <div class="text">
+                                    <h3>Free Delivery</h3>
+                                    <p>am liber tempor cum soluta nobis eleifend option congue.</p>
+                                </div>
+                            </div>
+                        </Col>
+                        <Col>
+                            <div class="wrapper">
+                                <img src="Assets/images/bg_icon1.png" alt="Icon"/>
+                                <div class="text">
+                                    <h3>Free Delivery</h3>
+                                    <p>am liber tempor cum soluta nobis eleifend option congue.</p>
+                                </div>
+                            </div>
+                        </Col>
+                        <Col>
+                            <div class="wrapper">
+                                <img src="Assets/images/bg_icon1.png" alt="Icon"/>
+                                <div class="text">
+                                    <h3>Free Delivery</h3>
+                                    <p>am liber tempor cum soluta nobis eleifend option congue.</p>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                    </div>
                 </div>
             </Container>
         </footer>
