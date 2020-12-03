@@ -1,3 +1,30 @@
 .header-wrapper{
     position: relative;
 }
+
+.btn-default{
+    cursor: pointer;
+    color: #2c2c2c;
+    font-weight: 500;
+    display: inline-block;
+    vertical-align: top;
+    text-transform: uppercase;
+    padding: 0 30px;
+    line-height: 39px;
+    margin-bottom: 8px;
+    border: 2px solid #e1e1e1;
+    font-family: 'Oswald', sans-serif;
+    border-radius: 20px;
+    transition: all 0.25s ease-in-out;
+}
+.btn-default:hover{
+    background-color: rgb(255, 94, 0);
+    color: #fff;
+    text-decoration: none;
+}
+.btn-add-to-cart{
+    background-color:#fff;
+    border: 1px solid #e1e1e1!important;
+}
+
+
