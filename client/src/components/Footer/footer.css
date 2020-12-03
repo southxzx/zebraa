@@ -1,0 +1,79 @@
+footer{
+    background-color: #f6f5f1;
+}
+
+/*-------------- New letter -------------*/
+
+
+.newletter{
+    padding-top: 50px;
+    padding-bottom: 15px;
+}
+.newletter .newletter-title{
+    text-align: center;
+    margin-bottom: 40px;
+}
+.newletter .newletter-title h3{
+    text-transform: uppercase;
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 15px;
+}
+
+.newletter .newletter-content{
+    text-align: center;
+}
+.newletter .newletter-content .frm-subscribe{
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+#subscribe-input{
+    display: inline-block;
+    padding: 15px 25px;
+    padding-right: 135px;
+    border-radius: 25px;
+    border: 1px solid #e1e1e1;
+    box-shadow: 0 1px 0 0 #fff;
+    color: #bebebe;
+    font-size: 12px;
+    background: #e9e8e2;
+    width: 100%;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+}
+.newletter .newletter-content .frm-subscribe .btn-subscribe{
+    position: absolute;
+    border-radius: 25px;
+    right: 0;
+    z-index: 1;
+    line-height: 50px;
+}
+.newletter .newletter-content .warning{
+    color: red;
+    margin-top: 15px;
+}
+
+/*-------------- Follow -------------*/
+.follow {
+    text-align: center;
+}
+.follow .link-follow{
+    display: inline-block;
+    list-style: none;
+}
+
+.follow .link-follow li{
+    font-size: 18px;
+    float: left;
+    margin: 0 11px;
+    border-radius: 50%;
+    color: #b6b6b6;
+    line-height: 41px;
+    border: 1px solid #e1e1e1;
+    box-shadow: 0 1px 0 0 #fff;
+    width: 46px;
+    width: 42px;
+    height: 42px;
+}

@@ -1,8 +1,10 @@
 import React from 'react';
 import Banner from '../../components/Banner';
+import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import Countdown from './Countdown';
 import './home.css';
+
 
 function Home() {
     return (
@@ -12,6 +14,7 @@ function Home() {
                 <Banner/>
             </div>
             <Countdown/>
+            <Footer/>
         </div>
     )
 }

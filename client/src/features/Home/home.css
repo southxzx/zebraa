@@ -2,6 +2,14 @@
     position: relative;
 }
 
+/*-------------- Banner -------------*/
+
+.carousel-item img{
+    width: 100%;
+}
+
+/*-------------- Button -------------*/
+
 .btn-default{
     cursor: pointer;
     color: #2c2c2c;
@@ -12,7 +20,6 @@
     padding: 0 30px;
     line-height: 39px;
     margin-bottom: 8px;
-    border: 2px solid #e1e1e1;
     font-family: 'Oswald', sans-serif;
     border-radius: 20px;
     transition: all 0.25s ease-in-out;
@@ -23,8 +30,13 @@
     text-decoration: none;
 }
 .btn-add-to-cart{
+    border: 2px solid #e1e1e1;
     background-color:#fff;
     border: 1px solid #e1e1e1!important;
+}
+.btn-subscribe{
+    background-color: rgb(255, 94, 0);
+    color: #fff;
 }
 
 

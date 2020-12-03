@@ -13,7 +13,7 @@
     z-index: 1;
     left: 0;
     right: 0;
-    padding: 20px 0;
+    padding: 8px 0;
 }
 
 header nav.desk-menu{
@@ -35,8 +35,8 @@ header nav.desk-menu li.itemMenu{
 
     position: relative;
     display: inline-block;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 700;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
     font-size: 15px;
     line-height: 1.4;
     padding: 0;
@@ -63,7 +63,7 @@ header nav.desk-menu li.itemMenu .layer1 i  {
 }
 
 
-
+/*-------------- Logo -------------*/
 
 header .logo-menu{
     width: 100%;
@@ -75,6 +75,9 @@ header .logo-menu{
 header .logo-menu img{
     width: 30%;
 }
+
+
+/*-------------- ICON -------------*/
 
 header nav.icon{
     width: 100%;

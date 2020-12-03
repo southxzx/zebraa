@@ -1,5 +1,6 @@
 .countdown{
     background-color: #f6f5f1;
+    padding-bottom: 70px;
 }
 .countdown .countdown-title{
     position: relative;

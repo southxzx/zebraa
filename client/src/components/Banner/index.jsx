@@ -2,8 +2,7 @@ import React, {useState} from 'react';
 import {
     Carousel,
     CarouselItem,
-    CarouselControl,
-    CarouselIndicators
+    CarouselControl
   } from 'reactstrap';
 
 const items = [
@@ -60,7 +59,6 @@ function Banner() {
             next={next}
             previous={previous}
         >
-            <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
             {slides}
             <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
             <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
