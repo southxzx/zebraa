@@ -1,10 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './header.css'
-import { Container, Row, Col,Button } from 'reactstrap';
-import Banner from '../Banner';
+import { Container, Row, Col } from 'reactstrap';
+
+
 function Header(props) {
 
     const [showHeader, setShowHeader] = useState(false);
+    const [modal, setModal] = useState(false);
+
+    // Bật form LOGIN
+    const toggle = () => {
+        setModal(!modal);
+        props.toggleLoginForm();
+    }
 
     const handleShowHeader = () => {
     // Nếu kéo qua vị trí 0 thì hiển thị header
@@ -13,7 +21,6 @@ function Header(props) {
        } else {
            setShowHeader(false);
        }
-       console.log(showHeader);
     }
 
     useEffect(() => {
@@ -36,38 +43,22 @@ function Header(props) {
                                         Home
                                     </a>
                                 </li>
-                            
-
-                            
                                 <li className="itemMenu">
                                     <a className="layer1" href="/" title="Home">
                                         Categories
                                         <i className="fa fa-chevron-down dropdown" aria-hidden="true"></i>
-                                    </a>
-                                
+                                    </a> 
                                 </li>
-                        
-
-                        
                                 <li className="itemMenu">
                                     <a className="layer1" href="/" title="Home">
                                         Blog
-                                    </a>
-                                    
+                                    </a>  
                                 </li>
-
-                          
-
-                           
                                 <li className="itemMenu">
                                     <a className="layer1" href="/" title="Home">
                                         Contact
                                     </a>
                                 </li>
-                           
-
-                            
-                            
                             </ul>
                         </nav>
                     </Col>
@@ -92,7 +83,7 @@ function Header(props) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://www.youtube.com/">
+                                    <a onClick={toggle}>
                                         <img src="/Assets/images/enter.png">
                                         </img>
                                     </a>

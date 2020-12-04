@@ -129,7 +129,7 @@ footer{
     list-style: none;
 }
 .footer-top h5{
-    padding: 15px 0;
+    padding: 18px 0;
 }
 .footer-top .information li{
     padding-bottom: 10px;
@@ -141,4 +141,17 @@ footer{
 .footer-top .information li a:hover{
     color: rgb(255, 94, 0);
     margin-left: 15px;
+}
+
+/*-------------- Footer Bottom  -------------*/
+
+.footer-bottom{
+    padding-top: 70px;
+}
+.footer-bottom  .copyright{
+    display: inline-block;
+}
+.footer-bottom .payment{
+    display: inline-block;
+    float: right;
 }

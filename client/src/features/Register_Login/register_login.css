@@ -1,0 +1,112 @@
+.row-login{
+    display: flex;
+}
+.row-login .col:last-child{
+    background-color:#f2f4f4;
+}
+.modal-content{
+    border: none!important;
+}
+.login-modal .content{
+    padding: 20px;
+}
+.login-modal .content .title {
+    text-align: center;
+}
+.login-modal .content .title .logo {
+    max-width: 70px;
+    margin: 10px;
+}
+.login-modal .content .title h5{
+    text-transform: uppercase;
+    padding-bottom: 20px;
+}
+.login-modal .content .login-frm{
+}
+.login-modal .content .login-frm .frm-input{
+    width: 100%;
+    padding: 15px 20px 15px 20px;
+    font-size: 12px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    color: #666666!important;
+}
+.login-modal .content .login-frm .frm-input:focus{
+    outline: none;
+}
+.login-modal .content .login-frm div{
+    text-align: center;
+}
+.login-modal .content .login-frm .error-message{
+    text-align: center;
+    color: red;
+    font-size: 10px;
+}
+.login-modal .content .login-with{
+    width: 100%;
+    text-align: center;
+}
+.login-modal .content .login-with .or{
+    position: relative;
+    margin-top: 1rem;
+}
+.login-modal .content .login-with .or::before{
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: #ccc;
+    height: 1px;
+    width: 46%;
+    top: 50%;
+}
+.login-modal .content .login-with .or::after{
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: #ccc;
+    height: 1px;
+    width: 46%;
+    top: 50%;
+    right: 0;
+}
+.login-modal .content .row-forgot{
+    display: flex;
+    font-weight: 500;
+    margin: 10px 0 0 0;
+}
+.login-modal .content .row-forgot .remember label{
+    margin-left: 5px;
+}
+.login-modal .content .row-forgot p{
+    margin-left: auto;
+}
+.login-modal .content .else{
+    text-align: center;
+}
+.login-modal .content .else a{
+    margin-left: 5px;
+    color: rgb(255, 94, 0);
+    font-weight: 500;
+}
+
+
+.login-artwork{
+    text-align: center;
+    padding: 111px 0;
+}
+.login-artwork img{
+    width: 90%;
+    height: 100%;
+}
+.row-login .btn-cancel{
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    right: -8px;
+    top: -8px;
+    background: rgb(255, 94, 0);
+    padding: 6px 13px;
+    border-radius: 2px;
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3), inset 0 0 0 1px #ffffff;
+    z-index:100;
+}

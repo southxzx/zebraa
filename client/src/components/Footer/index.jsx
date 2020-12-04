@@ -1,6 +1,6 @@
 import React from 'react';
 import './footer.css';
-import { Container, Row, Col,Button } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 
 function Footer() {
     return (
@@ -112,6 +112,14 @@ function Footer() {
                             </ul>
                         </Col>
                     </Row>
+                </div>
+                <div className="footer-bottom">
+                    <div className="copyright">
+                        <p>Copyright © 2018 PlazaThemes. All Right Reserved.</p>
+                    </div>
+                    <div className="payment">
+                        <img src="Assets/images/payment.png" alt="Payment"/>
+                    </div>
                 </div>
             </Container>
         </footer>
