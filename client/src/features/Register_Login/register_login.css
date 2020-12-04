@@ -1,3 +1,5 @@
+/* --------------------------- LOGIN -------------------------- */
+
 .row-login{
     display: flex;
 }
@@ -20,8 +22,6 @@
 .login-modal .content .title h5{
     text-transform: uppercase;
     padding-bottom: 20px;
-}
-.login-modal .content .login-frm{
 }
 .login-modal .content .login-frm .frm-input{
     width: 100%;
@@ -109,4 +109,21 @@
     border-radius: 2px;
     box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3), inset 0 0 0 1px #ffffff;
     z-index:100;
+}
+
+
+/* --------------------------- REGISTER -------------------------- */
+
+.login-modal .content .login-frm .name{
+    max-width: 100%;
+}
+.login-modal .content .login-frm .name .first-name{
+    display: inline-block;
+    width: 47%;
+    float: left;
+}
+.login-modal .content .login-frm .name .last-name{
+    display: inline-block;
+    width: 47%;
+    float: right;
 }

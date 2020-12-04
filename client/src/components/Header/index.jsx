@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import './header.css'
 import { Container, Row, Col } from 'reactstrap';
-
+import MiniCart from '../MiniCart';
 
 function Header(props) {
 
     const [showHeader, setShowHeader] = useState(false);
     const [modal, setModal] = useState(false);
+    const [popoverCart, setPopoverCart] = useState(false);
 
     // Bật form LOGIN
     const toggle = () => {
         setModal(!modal);
         props.toggleLoginForm();
+    }
+
+    // Bật popover CART
+    const toggleCart = (e) => {
+        // console.log(e.target.parentElement.id);
+        setPopoverCart(!popoverCart);
     }
 
     const handleShowHeader = () => {
@@ -96,12 +103,13 @@ function Header(props) {
                                     <span className="count">0</span>
                                 </li>
                                 <li>
-                                    <a href="https://www.youtube.com/">
+                                    <a  id="cart-icon" onClick={(e)=>toggleCart(e)}>
                                         <img src="/Assets/images/shopping-cart.png">
-                                        </img>
-
-                                        
+                                        </img> 
                                     </a>
+                                    <MiniCart 
+                                        isOpen={popoverCart ? true : null}                                    
+                                    />
                                     <span className="count">0</span>
                                 </li>
                             </ul>

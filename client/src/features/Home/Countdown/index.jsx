@@ -9,9 +9,8 @@ function Countdown() {
     const [isHovered2, setIsHovered2] = useState(false);
     const [isHovered3, setIsHovered3] = useState(false);
 
-    const handleHover1 = (e) => {
+    const handleHover1 = () => {
         setIsHovered1(!isHovered1);
-        console.log(e);
     }
     const handleHover2 = () => {
         setIsHovered2(!isHovered2);
