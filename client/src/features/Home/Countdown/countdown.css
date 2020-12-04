@@ -115,7 +115,7 @@
 }
 .countdown-container .countdown-item .item-inner .caption .price-box .new{
     display: inline-block;
-    color: #78a206;
+    color: rgb(255, 94, 0);
     font-size: 22px;
 }
 .countdown-container .countdown-item .item-inner .caption .price-box .old{

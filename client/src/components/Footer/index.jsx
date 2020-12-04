@@ -44,24 +44,74 @@ function Footer() {
                         </Col>
                         <Col>
                             <div class="wrapper">
-                                <img src="Assets/images/bg_icon1.png" alt="Icon"/>
+                                <img src="Assets/images/bg_icon2.png" alt="Icon"/>
                                 <div class="text">
-                                    <h3>Free Delivery</h3>
+                                    <h3>Money Guarantee</h3>
                                     <p>am liber tempor cum soluta nobis eleifend option congue.</p>
                                 </div>
                             </div>
                         </Col>
                         <Col>
                             <div class="wrapper">
-                                <img src="Assets/images/bg_icon1.png" alt="Icon"/>
+                                <img src="Assets/images/bg_icon3.png" alt="Icon"/>
                                 <div class="text">
-                                    <h3>Free Delivery</h3>
+                                    <h3>Online Support</h3>
                                     <p>am liber tempor cum soluta nobis eleifend option congue.</p>
                                 </div>
                             </div>
                         </Col>
                     </Row>
                     </div>
+                </div>
+                <div className="footer-top">
+                    <Row>
+                        <Col lg="5">
+                            <a className="logo"><img src="Assets/images/nike-logo.png" alt="Logo"/></a>
+                            <p className="des">We are a team of designers and developers that create high quality Magento, Prestashop, Opencart.</p>
+                            <ul className="contact">
+                                <li className="address">
+                                    <i className="fa fa-map-marker"></i>
+                                    <p>Address : No 40 Baria Sreet 133/2, NewYork, USA.</p>
+                                </li>
+                                <li className="phone">
+                                    <i className="fa fa-phone"></i>
+                                    <p>Phone: +(1234) 567 890</p>
+                                </li>
+                                <li className="mail">
+                                    <i className="fa fa-envelope-o"></i>
+                                    <p>danieldang@gmail.com</p>
+                                </li>
+                            </ul>
+                        </Col>
+                        <Col lg="2">
+                            <h5>Information</h5>
+                            <ul className="information">
+                                <li><a>About Us</a></li>
+                                <li><a>Delivery Information</a></li>
+                                <li><a>Privacy Policy</a></li>
+                                <li><a>Term, Conditions</a></li>
+                                <li><a>Brands</a></li>
+                                <li><a>Gift Certificate</a></li>
+                            </ul>
+                        </Col>
+                        <Col lg="2">
+                            <h5>Customer Service</h5>
+                            <ul className="information">
+                                <li><a>Contact Us</a></li>
+                                <li><a>Returns</a></li>
+                                <li><a>Site Map</a></li>
+                                <li><a>Affiliate</a></li>
+                                <li><a>Specials</a></li>
+                                <li><a>Newletters</a></li>
+                            </ul>
+                        </Col>
+                        <Col lg="3">
+                            <h5>Instagram</h5>
+                            <ul className="information">
+                                <li>Server not found</li>
+                            </ul>
+                        </Col>
+                    </Row>
                 </div>
             </Container>
         </footer>

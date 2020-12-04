@@ -24,19 +24,26 @@
     border-radius: 20px;
     transition: all 0.25s ease-in-out;
 }
-.btn-default:hover{
+.btn-add-to-cart:hover{
     background-color: rgb(255, 94, 0);
     color: #fff;
     text-decoration: none;
 }
 .btn-add-to-cart{
-    border: 2px solid #e1e1e1;
     background-color:#fff;
     border: 1px solid #e1e1e1!important;
 }
 .btn-subscribe{
     background-color: rgb(255, 94, 0);
     color: #fff;
+    border: 1px solid rgb(255, 94, 0);
+    transition: all 0.3s;
+}
+.btn-subscribe:hover{
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    color: rgb(255, 94, 0);
+    text-decoration: none;
 }
 
 
