@@ -83,13 +83,29 @@
     text-align: center;
     color: white;
     font-size: 18px;
-    background-color: #fd7e14;
-    border: 1px solid #fd7e14;
+    background-color: rgb(255, 94, 0);;
+    border: 1px solid rgb(255, 94, 0);;
     line-height: 50px;
     border-radius: 30px;
     transition: all 0.3s;
 }
 .btn-sign-in:hover{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: rgb(255, 94, 0);
+}
+.btn-edit, .btn-checkout{
+    width: 48%!important;
+    color: #fff;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid #fff;
+    transition: background-color 0.9s;
+}
+.btn-checkout{
+    float: right;
+}
+.btn-edit:hover, .btn-checkout:hover{
     background-color: #fff;
     border: 1px solid #ccc;
     color: rgb(255, 94, 0);

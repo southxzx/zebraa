@@ -1,7 +1,7 @@
 .transparent-bg{
     background-color: transparent;
     position: absolute;
-    z-index: 1;
+    z-index: 10;
     left: 0;
     right: 0;
     padding: 40px 0;
@@ -56,6 +56,9 @@ header nav.desk-menu li.itemMenu .layer1{
 }
 header nav.desk-menu li.itemMenu .layer1:hover{
     color: rgba(255, 186, 0, 0.9);
+}
+header nav.desk-menu li.itemMenu .menu-cate:hover .popup-cate{
+    display: block!important;
 }
 
 header nav.desk-menu li.itemMenu .layer1 i  {
@@ -117,4 +120,55 @@ span.count {
     background-color: red;
     padding: 1px 6px;
     border-radius: 50%;
+}
+
+/*-------------- POPUP CATE -------------*/
+
+
+.desk-menu .menu-cate{
+    position: relative;
+}
+.desk-menu .menu-cate .popup-cate{
+    transition: all 0.5s;
+    display: none; 
+    position: absolute;
+    padding: 20px;
+    top: 25px;
+    left: -100px;
+    background-color: transparent;
+    transition: display 0.5s;
+}
+.desk-menu .menu-cate .popup-cate .block{
+    display: flex;
+    width: 700px;
+    background-color:#fff;
+    padding: 30px 30px 40px;
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3), inset 0 0 0 1px #ffffff;
+}
+.desk-menu .menu-cate .popup-cate .col{
+    display: inline-block;
+}
+.desk-menu .menu-cate .popup-cate .cate-name{
+    margin-bottom: 25px;
+}
+.desk-menu .menu-cate .popup-cate .cate-item{
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    flex-direction: column;
+}
+.desk-menu .menu-cate .popup-cate .cate-item a{
+    padding: 5px 0;
+    transition: margin 0.5s;
+    margin-left:0;
+}
+.desk-menu .menu-cate .popup-cate .cate-item a:hover{
+    padding: 5px 0;
+    color: rgb(255, 94, 0);
+    margin-left: 10px;
+}
+
+/*-------------- CART -------------*/
+.cart{
+    position: relative;
 }

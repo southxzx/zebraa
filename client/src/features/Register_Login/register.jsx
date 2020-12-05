@@ -9,8 +9,7 @@ function Register(props) {
         props.toggleRegisterForm();     
     }
     
-    const toggleRegisterForm = () => {
-        props.toggleLoginForm();  
+    const toggleRegisterForm = () => { 
         props.toggleRegisterForm();       
     }
 
