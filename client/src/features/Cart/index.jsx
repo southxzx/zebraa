@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import Breadcrumbs from '../../components/Breadscrumbs';
+
 import { 
     Container, Row, Col, Table, InputGroup, InputGroupAddon, Input, Collapse,
     Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Button
 } from 'reactstrap';
 import './cart.css';
+
+
 
 function Cart() {
 
@@ -18,6 +22,12 @@ function Cart() {
     return (
         <div>
             <Header/>
+
+            <Breadcrumbs
+                title="Shopping Cart"
+                linkBack="Home"
+                active="Shopping Cart"
+            />
 
             <Container>
                 <Row>

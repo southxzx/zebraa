@@ -1,0 +1,30 @@
+.breadcrumb-section{
+    position: relative;
+    text-align: center;
+}
+.breadcrumb-section .breadcrumb-inner{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    color: #fff;
+}
+.breadcrumb-section .breadcrumb-inner .breadcrumb{
+    background-color: transparent;
+}
+.breadcrumb-section .breadcrumb-inner .breadcrumb .breadcrumb-item.active {
+    color: #000;
+    font-weight: 500;
+}
+.breadcrumb-section .breadcrumb-inner .breadcrumb .breadcrumb-item a{
+    color: #fff;
+    transition: color 0.3s;
+}
+.breadcrumb-section .breadcrumb-inner .breadcrumb .breadcrumb-item a:hover{
+    color: #000;
+    font-weight: 500; 
+    text-decoration: none;
+}
+.breadcrumb-item+.breadcrumb-item::before{
+    color: #fff!important;
+}
