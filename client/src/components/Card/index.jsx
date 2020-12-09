@@ -37,7 +37,7 @@ function Card(props) {
         <div className={props.active ? "item-inner active" : "item-inner" }>
             <div className="image">
                 <a>
-                    <img src="Assets/images/product1.png" />
+                    <img src="/Assets/images/product1.png" />
                 </a>                
                 <div className={props.active ? "time active-time" : "time"}>
                     <div className="day">
@@ -60,7 +60,7 @@ function Card(props) {
             </div>
             <div className="caption">
                 <div className="rating-box">
-                    <img src="Assets/images/rating5.png" />
+                    <img src="/Assets/images/rating5.png" />
                 </div>
                 <a className="product-name" href="#">Nike Air 4 (Limited)</a>
                 {props.hover ?

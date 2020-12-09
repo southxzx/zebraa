@@ -34,7 +34,7 @@ function BackToTop() {
             <div className="back-to-top-section">
                 <div className={showBackToTop ? "back-to-top-show" : "back-to-top-hide"}>
                     <a onClick={scrollTop}>
-                        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                        <i className="fa fa-arrow-up" aria-hidden="true"></i>
                     </a>
                 </div>
             </div>

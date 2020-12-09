@@ -14,7 +14,7 @@ function Footer() {
                     <div className="newletter-content">
                         <form className="frm-subscribe">
                             <input type="text" placeholder="Enter you email address here..." id="subscribe-input"></input>
-                            <a className="btn-default btn-subscribe">
+                            <a className="btn-default btn-subscribe" >
                                 Subcribe
                             </a>
                         </form>
@@ -34,27 +34,27 @@ function Footer() {
                     <div className="inner">
                     <Row>
                         <Col>
-                            <div class="wrapper">
+                            <div className="wrapper">
                                 <img src="Assets/images/bg_icon1.png" alt="Icon"/>
-                                <div class="text">
+                                <div className="text">
                                     <h3>Free Delivery</h3>
                                     <p>am liber tempor cum soluta nobis eleifend option congue.</p>
                                 </div>
                             </div>
                         </Col>
                         <Col>
-                            <div class="wrapper">
+                            <div className="wrapper">
                                 <img src="Assets/images/bg_icon2.png" alt="Icon"/>
-                                <div class="text">
+                                <div className="text">
                                     <h3>Money Guarantee</h3>
                                     <p>am liber tempor cum soluta nobis eleifend option congue.</p>
                                 </div>
                             </div>
                         </Col>
                         <Col>
-                            <div class="wrapper">
+                            <div className="wrapper">
                                 <img src="Assets/images/bg_icon3.png" alt="Icon"/>
-                                <div class="text">
+                                <div className="text">
                                     <h3>Online Support</h3>
                                     <p>am liber tempor cum soluta nobis eleifend option congue.</p>
                                 </div>
