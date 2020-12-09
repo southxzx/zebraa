@@ -9,7 +9,7 @@ function Breadcrumbs(props) {
             <div className="breadcrumb-inner">
             <h2>{props.title}</h2>
                 <Breadcrumb>
-                    <BreadcrumbItem><a href="#">{props.linkBack}</a></BreadcrumbItem>
+                    <BreadcrumbItem><a href="/">{props.linkBack}</a></BreadcrumbItem>
                     <BreadcrumbItem active>{props.active}</BreadcrumbItem>
                 </Breadcrumb>
             </div>

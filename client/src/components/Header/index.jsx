@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import './header.css'
 import { Container, Row, Col } from 'reactstrap';
 import MiniCart from '../MiniCart';
+import Login from '../../features/Register_Login/login';
+import Register from '../../features/Register_Login/register';
 
 function Header(props) {
 
@@ -12,17 +14,30 @@ function Header(props) {
     const [showHeader, setShowHeader] = useState(false);
     const [modal, setModal] = useState(false);
     const [popoverCart, setPopoverCart] = useState(false);
+    const [popoverUser, setPopoverUser] = useState(false);
 
-    // Bật form LOGIN
-    const toggle = () => {
-        setModal(!modal);
-        props.toggleLoginForm();
+    // Bật form LOGIN/REGISTER
+    const [modalLogin, setModalLogin] = useState(false);
+    const [modalRegister, setModalRegister] = useState(false);
+
+    const toggleLoginForm = () => {
+        setModalLogin(!modalLogin);
+        console.log("Login",modalLogin);
+    }
+    const toggleRegisterForm = () => {
+        setModalRegister(!modalRegister);
+        console.log("Register",modalRegister);
     }
 
     // Bật popover CART
     const toggleCart = (e) => {
         // console.log(e.target.parentElement.id);
         setPopoverCart(!popoverCart);
+    }
+
+    // Bật popover USER
+    const toggleUser = (e) => {
+        setPopoverUser(!popoverUser);
     }
 
     function useOutsideAlerter(ref) {
@@ -33,6 +48,7 @@ function Header(props) {
             function handleClickOutside(event) {
                 if (ref.current && !ref.current.contains(event.target)) {
                     setPopoverCart(false);
+                    setPopoverUser(false);
                 }
             }
     
@@ -157,10 +173,20 @@ function Header(props) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a onClick={toggle}>
+                                    <a onClick={toggleLoginForm}>
                                         <img src="/Assets/images/enter.png">
                                         </img>
                                     </a>
+                                    <Login
+                                        isOpen={modalLogin}
+                                        toggleLoginForm={toggleLoginForm}
+                                        toggleRegisterForm={toggleRegisterForm}
+                                    />
+                                    <Register
+                                        isOpen={modalRegister}
+                                        toggleLoginForm={toggleLoginForm}
+                                        toggleRegisterForm={toggleRegisterForm}
+                                    />
                                 </li>
                                 <li>
                                     <a href="https://www.youtube.com/">
@@ -182,6 +208,25 @@ function Header(props) {
                                         : null}
                                     </div>
                                     <span className="count">0</span>
+                                </li>
+                                <li>
+                                    <div className="user">
+                                        <a  id="user-icon" onClick={toggleUser}>
+                                            <img className="user-image" src="/Assets/images/user.jpg">
+                                            </img> 
+                                        </a>
+                                        {popoverUser ? 
+                                        <div ref={wrapperRef} className="popover-user">
+                                            <div className="content">
+                                                <h6>My account</h6>
+                                                <div className="link">
+                                                    <a>Change password</a>
+                                                    <a>Logout</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        : null}
+                                    </div>
                                 </li>
                             </ul>
                         </nav>

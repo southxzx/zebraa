@@ -90,7 +90,7 @@ function MiniCart(props) {
                 </div>
             </div>
             <div className="bottom-content">
-                <a className="btn-default btn-edit">
+                <a href="/cart" className="btn-default btn-edit">
                     Edit Cart
                 </a>
                 <a className="btn-default btn-checkout">
