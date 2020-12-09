@@ -7,6 +7,7 @@ import Register from '../../features/Register_Login/register';
 
 function Header(props) {
 
+
     // Ref CLICK OUTSIDE
     const wrapperRef = useRef(null);
     useOutsideAlerter(wrapperRef);
@@ -15,6 +16,7 @@ function Header(props) {
     const [modal, setModal] = useState(false);
     const [popoverCart, setPopoverCart] = useState(false);
     const [popoverUser, setPopoverUser] = useState(false);
+    const [login, setLogin] = useState(false);
 
     // Bật form LOGIN/REGISTER
     const [modalLogin, setModalLogin] = useState(false);
@@ -167,11 +169,15 @@ function Header(props) {
                         <nav className="icon">
                             <ul>
                                 <li>
-                                    <a href="https://www.youtube.com/">
-                                        <img src="/Assets/images/search.png">
-                                        </img>
-                                    </a>
+                                    <form className="search-form">
+                                        <input type="search" placeholder="Search"/>
+                                        <a className="search-icon" href="/search">
+                                            <img src="/Assets/images/search.png">
+                                            </img>
+                                        </a>
+                                    </form>
                                 </li>
+                                {login ? 
                                 <li>
                                     <a onClick={toggleLoginForm}>
                                         <img src="/Assets/images/enter.png">
@@ -187,7 +193,7 @@ function Header(props) {
                                         toggleLoginForm={toggleLoginForm}
                                         toggleRegisterForm={toggleRegisterForm}
                                     />
-                                </li>
+                                </li> : null}
                                 <li>
                                     <a href="https://www.youtube.com/">
                                         <img src="/Assets/images/heart.png">
