@@ -1,0 +1,48 @@
+.product-detail-review{
+    width: 100%;
+    margin-top: 6rem;
+}
+
+.title-review{
+    width: 100%;
+    display: flex;
+}
+.title-review h2{
+    font-size: 35px;
+    margin-right: 3rem;
+}
+
+/* .title-review span.total-star{
+    margin-left: 3rem;
+    display: flex;
+    align-items: center;
+    width: 10%;
+}
+.title-review span.star{
+    width: 16px;
+    height: 16px;
+    position: relative;
+    margin-right: 5px;
+}
+.title-review span.star .be{
+    position: absolute;
+    display: inline-block;
+}
+.title-review span.star span.star-up{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+span.star-up .up{
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    
+} */
+
+.number-star{
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}

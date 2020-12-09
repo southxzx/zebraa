@@ -1,0 +1,35 @@
+.main-star{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-star span.total-star{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.main-star span.star{
+    width: 16px;
+    height: 16px;
+    position: relative;
+    margin-right: 5px;
+}
+.main-star span.star .be{
+    position: absolute;
+    display: inline-block;
+    margin-left: 4%;
+    width: 100%;
+    height: 100%;
+}
+.main-star span.star span.star-up{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+span.star-up .up{
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    
+}

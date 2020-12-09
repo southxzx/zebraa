@@ -1,0 +1,100 @@
+.cate-full{
+    width: 100%;
+    background-color: #fff;
+}
+
+.cate-feature{
+    width: 100%;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.cate-feature .cate-main-image{
+    width: 15%;
+    margin: auto;
+}
+.cate-feature a{
+
+}
+.cate-feature img{
+    width: 100%;
+    height: 100%;
+}
+.cate-feature .cate-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cate-feature .cate-title::after{
+    content: "";
+    width: 10%;
+    height: 1px;
+    background-color: black;
+    margin-left: 10px;
+}
+.cate-feature .cate-title::before{
+    content: "";
+    width: 10%;
+    height: 1px;
+    background-color: black;
+    margin-right: 10px;
+}
+.cate-feature span.cate-description{
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+
+.cate-feature span.cate-description p{
+    max-width: 720px;
+    font-size: 13px;
+    margin: auto;
+}
+
+.cate-full .card-full{
+    border: 1px solid #f0f0f0;
+    border-radius: 20px;
+    transition: all 300ms ease-in-out;
+    background-color: white;
+}
+
+.cate-card{
+    width: 100%;
+    text-align: center;
+    padding: 30px 40px;
+}
+.cate-card .cate-card-image{
+    width: 100%;
+    margin-bottom: 30%;
+}
+.cate-card .cate-card-image a{
+    width: 80%;
+    display: inline-block;
+}
+.cate-card .cate-card-image a img{
+    width: 100%;
+    height: 100%;
+}
+
+.cate-card .card-line{
+    width: 60%;
+    height: 1px;
+    margin: auto;
+    background-color: #bebebb;
+}
+
+.cate-card .item-title{
+    width: 100%;
+    margin-top: 30%;
+}
+.cate-card .item-title h4{}
+.cate-card .item-title p{}
+
+
+
+.cate-full .card-full:hover{
+    background-color: #f6f5f1;
+    border-color: #fff;
+    box-shadow: 6px 8px 30px 0px rgba(0, 0, 0, 0.1), inset 0 0 0 1px #ffffff;
+}

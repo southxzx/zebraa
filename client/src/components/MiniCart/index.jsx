@@ -23,7 +23,7 @@ function MiniCart(props) {
                 <div className="inner">
                     <div className="item">
                         <div className="image">
-                            <img src="Assets/images/product1.png" alt="Product"></img>
+                            <img src="/Assets/images/product1.png" alt="Product"></img>
                         </div>
                         <div className="info">
                             <p className="name">Vans Oldskool</p>
@@ -34,7 +34,7 @@ function MiniCart(props) {
                     </div>
                     <div className="item">
                         <div className="image">
-                            <img src="Assets/images/product1.png" alt="Product"></img>
+                            <img src="/Assets/images/product1.png" alt="Product"></img>
                         </div>
                         <div className="info">
                             <p className="name">Vans Oldskool</p>
@@ -45,7 +45,7 @@ function MiniCart(props) {
                     </div>
                     <div className="item">
                         <div className="image">
-                            <img src="Assets/images/product1.png" alt="Product"></img>
+                            <img src="/Assets/images/product1.png" alt="Product"></img>
                         </div>
                         <div className="info">
                             <p className="name">Vans Oldskool</p>
@@ -56,7 +56,7 @@ function MiniCart(props) {
                     </div>
                     <div className="item">
                         <div className="image">
-                            <img src="Assets/images/product1.png" alt="Product"></img>
+                            <img src="/Assets/images/product1.png" alt="Product"></img>
                         </div>
                         <div className="info">
                             <p className="name">Vans Oldskool</p>
@@ -67,7 +67,7 @@ function MiniCart(props) {
                     </div>               
                     <div className="item">
                         <div className="image">
-                            <img src="Assets/images/product1.png" alt="Product"></img>
+                            <img src="/Assets/images/product1.png" alt="Product"></img>
                         </div>
                         <div className="info">
                             <p className="name">Vans Oldskool</p>
@@ -78,7 +78,7 @@ function MiniCart(props) {
                     </div>
                     <div className="item">
                         <div className="image">
-                            <img src="Assets/images/product1.png" alt="Product"></img>
+                            <img src="/Assets/images/product1.png" alt="Product"></img>
                         </div>
                         <div className="info">
                             <p className="name">Vans Oldskool</p>
