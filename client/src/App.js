@@ -3,6 +3,7 @@ import './App.css';
 // npm i --save axios js-cookie jsonwebtoken react-facebook-login react-google-login react-router-dom react-toastify
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import Home from './features/Home';
+import Product from './features/Product';
 
 
 function App() {
@@ -10,9 +11,10 @@ function App() {
     <BrowserRouter>
     <Switch>
       
-      <Route path='/' exact component={Home} />
+      <Route exact path='/' component={Home} />
+      <Route path='/product' component={Product} />
       
-      <Redirect to='/' />
+      
     </Switch>
   </BrowserRouter>
   );
