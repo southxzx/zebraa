@@ -1,11 +1,85 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './header.css'
 import { Container, Row, Col } from 'reactstrap';
-
+import MiniCart from '../MiniCart';
+import Login from '../../features/Register_Login/login';
+import Register from '../../features/Register_Login/register';
 
 function Header(props) {
+
+    // Ref CLICK OUTSIDE
+    const wrapperRef = useRef(null);
+    useOutsideAlerter(wrapperRef);
+
+    const [showHeader, setShowHeader] = useState(false);
+    const [modal, setModal] = useState(false);
+    const [popoverCart, setPopoverCart] = useState(false);
+    const [popoverUser, setPopoverUser] = useState(false);
+
+    // Bật form LOGIN/REGISTER
+    const [modalLogin, setModalLogin] = useState(false);
+    const [modalRegister, setModalRegister] = useState(false);
+
+    const toggleLoginForm = () => {
+        setModalLogin(!modalLogin);
+        console.log("Login",modalLogin);
+    }
+    const toggleRegisterForm = () => {
+        setModalRegister(!modalRegister);
+        console.log("Register",modalRegister);
+    }
+
+    // Bật popover CART
+    const toggleCart = (e) => {
+        // console.log(e.target.parentElement.id);
+        setPopoverCart(!popoverCart);
+    }
+
+    // Bật popover USER
+    const toggleUser = (e) => {
+        setPopoverUser(!popoverUser);
+    }
+
+    function useOutsideAlerter(ref) {
+        useEffect(() => {
+            /**
+             * Alert if clicked on outside of element
+             */
+            function handleClickOutside(event) {
+                if (ref.current && !ref.current.contains(event.target)) {
+                    setPopoverCart(false);
+                    setPopoverUser(false);
+                }
+            }
+    
+            // Bind the event listener
+            document.addEventListener("mousedown", handleClickOutside);
+            return () => {
+                // Unbind the event listener on clean up
+                document.removeEventListener("mousedown", handleClickOutside);
+            };
+        }, [ref]);
+    }
+
+    const handleShowHeader = () => {
+    // Nếu kéo qua vị trí 0 thì hiển thị header
+        if(window.scrollY > 0){
+            setShowHeader(true);
+       } else {
+           setShowHeader(false);
+       }
+    }
+
+    useEffect(() => {
+        // Hiển thị header khi scroll 
+        window.addEventListener("scroll",handleShowHeader,{ passive: true });
+        return () => {
+            window.removeEventListener("scroll", handleShowHeader);
+          };
+      },[showHeader]);
+
     return (
-        <header>
+        <header className={showHeader ? "dark-bg" : "transparent-bg"}>
             <Container>
                 <Row>
                     <Col lg="5">
@@ -16,36 +90,65 @@ function Header(props) {
                                         Home
                                     </a>
                                 </li>
-                            
-
-                            
+                                <li className="itemMenu">
+                                    <div className="menu-cate">
+                                        <a className="layer1" href="/" title="Home">
+                                            Categories
+                                            <i className="fa fa-chevron-down dropdown" aria-hidden="true"></i>
+                                        </a>
+                                        <div className="popup-cate">
+                                            <div className="block">
+                                                <Col>
+                                                    <div className="cate-name">
+                                                        <a><h4>Nike</h4></a>
+                                                    </div>
+                                                    <div className="cate-item">
+                                                        <a>Newest sneakers</a>
+                                                        <a>Running</a>
+                                                        <a>Basketball</a>
+                                                        <a>Jordan</a>
+                                                        <a>Running</a>
+                                                    </div>
+                                                </Col>
+                                                <Col>
+                                                    <div className="cate-name">
+                                                        <a><h4>Adidas</h4></a>
+                                                    </div>
+                                                    <div className="cate-item">
+                                                        <a>Basic</a>
+                                                        <a>Ultraboost</a>
+                                                        <a>Superstar</a>
+                                                        <a>Stan Smith</a>
+                                                        <a>Pharell Williams</a>
+                                                        <a>TX8</a>
+                                                    </div>
+                                                </Col>
+                                                <Col>
+                                                    <div className="cate-name">
+                                                        <a><h4>Baleciaga</h4></a>
+                                                    </div>
+                                                    <div className="cate-item">
+                                                        <a>Tyrex Sneaker</a>
+                                                        <a>Track Sneaker</a>
+                                                        <a>Sandal</a>
+                                                        <a>Boot</a>
+                                                        <a>Speed Sneaker</a>
+                                                    </div>
+                                                </Col>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </li>
                                 <li className="itemMenu">
                                     <a className="layer1" href="/" title="Home">
-                                        category
-                                    </a>
+                                        Blog
+                                    </a>  
                                 </li>
-                        
-
-                        
                                 <li className="itemMenu">
                                     <a className="layer1" href="/" title="Home">
-                                        Home
-                                    </a>
-                                    <i className="fa fa-chevron-down" aria-hidden="true"></i>
-                                </li>
-
-                          
-
-                           
-                                <li className="itemMenu">
-                                    <a className="layer1" href="/" title="Home">
-                                        Home
+                                        Contact
                                     </a>
                                 </li>
-                           
-
-                            
-                            
                             </ul>
                         </nav>
                     </Col>
@@ -70,10 +173,20 @@ function Header(props) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://www.youtube.com/">
+                                    <a onClick={toggleLoginForm}>
                                         <img src="/Assets/images/enter.png">
                                         </img>
                                     </a>
+                                    <Login
+                                        isOpen={modalLogin}
+                                        toggleLoginForm={toggleLoginForm}
+                                        toggleRegisterForm={toggleRegisterForm}
+                                    />
+                                    <Register
+                                        isOpen={modalRegister}
+                                        toggleLoginForm={toggleLoginForm}
+                                        toggleRegisterForm={toggleRegisterForm}
+                                    />
                                 </li>
                                 <li>
                                     <a href="https://www.youtube.com/">
@@ -83,13 +196,37 @@ function Header(props) {
                                     <span className="count">0</span>
                                 </li>
                                 <li>
-                                    <a href="https://www.youtube.com/">
-                                        <img src="/Assets/images/shopping-cart.png">
-                                        </img>
-
-                                        
-                                    </a>
+                                    <div className="cart">
+                                        <a  id="cart-icon" onClick={(e)=>toggleCart(e)}>
+                                            <img src="/Assets/images/shopping-cart.png">
+                                            </img> 
+                                        </a>
+                                        {popoverCart ? 
+                                        <MiniCart
+                                            wrapperRef = {wrapperRef}
+                                        /> 
+                                        : null}
+                                    </div>
                                     <span className="count">0</span>
+                                </li>
+                                <li>
+                                    <div className="user">
+                                        <a  id="user-icon" onClick={toggleUser}>
+                                            <img className="user-image" src="/Assets/images/user.jpg">
+                                            </img> 
+                                        </a>
+                                        {popoverUser ? 
+                                        <div ref={wrapperRef} className="popover-user">
+                                            <div className="content">
+                                                <h6>My account</h6>
+                                                <div className="link">
+                                                    <a>Change password</a>
+                                                    <a>Logout</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        : null}
+                                    </div>
                                 </li>
                             </ul>
                         </nav>

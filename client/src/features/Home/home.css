@@ -1,0 +1,114 @@
+.header-wrapper{
+    position: relative;
+}
+
+/*-------------- Banner -------------*/
+
+.carousel-item img{
+    width: 100%;
+}
+
+/*-------------- Button -------------*/
+
+.btn-default{
+    cursor: pointer;
+    color: #2c2c2c;
+    font-weight: 500;
+    display: inline-block;
+    vertical-align: top;
+    text-transform: uppercase;
+    padding: 0 30px;
+    line-height: 39px;
+    margin-bottom: 8px;
+    font-family: 'Oswald', sans-serif;
+    border-radius: 20px;
+    transition: all 0.25s ease-in-out;
+}
+.btn-default:hover{
+    text-decoration: none;
+}
+.btn-add-to-cart:hover{
+    background-color: rgb(255, 94, 0);
+    color: #fff;
+}
+.btn-add-to-cart{
+    background-color:#fff;
+    border: 1px solid #e1e1e1!important;
+}
+.btn-subscribe{
+    background-color: rgb(255, 94, 0);
+    color: #fff;
+    border: 1px solid rgb(255, 94, 0);
+    transition: all 0.3s;
+}
+.btn-subscribe:hover{
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    color: rgb(255, 94, 0);
+}
+.btn-login{
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+    margin: 0 5px;
+    width: 30%;
+}
+.btn-google{
+    background-color: #DD4B39;
+    transition: all 0.3s;
+}
+.btn-facebook{
+    background-color: #3B5998;
+    transition: all 0.3s;
+}
+.btn-twitter{
+    background-color:#55acee;
+    transition: all 0.3s;
+}
+.btn-google:hover{
+    background-color: #c02915;
+    color: #fff;
+}
+.btn-facebook:hover{
+    background-color: #133275;
+    color: #fff;
+}
+.btn-twitter:hover{
+    background-color:#1073be;
+    color: #fff;
+}
+
+.btn-sign-in{
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    background-color: rgb(255, 94, 0);;
+    border: 1px solid rgb(255, 94, 0);;
+    line-height: 50px;
+    border-radius: 30px;
+    transition: all 0.3s;
+}
+.btn-sign-in:hover{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: rgb(255, 94, 0);
+}
+.btn-edit, .btn-checkout{
+    width: 48%!important;
+    color: #fff;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid #fff;
+    transition: background-color 0.9s;
+}
+.btn-checkout{
+    float: right;
+}
+.btn-edit:hover, .btn-checkout:hover{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: rgb(255, 94, 0);
+}
+
+

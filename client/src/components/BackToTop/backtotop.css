@@ -1,0 +1,22 @@
+.back-to-top-show{
+    z-index: 15;
+    transition: all 0.2s ease;
+    position: fixed;
+    background-color: #ff6500;
+    padding: 12px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2), inset 0 0 0 1px #ffffff;
+}
+.back-to-top-show:hover{
+    background-color: #ffff;
+    color: #ff6500;
+}
+.back-to-top-hide{
+    opacity: 0;
+}
+.back-to-top-section{
+    position: absolute;
+    bottom: 100px;
+    right: 100px;
+    color: white;
+}

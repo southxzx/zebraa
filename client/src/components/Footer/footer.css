@@ -1,0 +1,157 @@
+footer{
+    background-color: #f6f5f1;
+}
+
+/*-------------- New letter -------------*/
+
+
+.newletter{
+    padding-top: 50px;
+    padding-bottom: 15px;
+}
+.newletter .newletter-title{
+    text-align: center;
+    margin-bottom: 40px;
+}
+.newletter .newletter-title h3{
+    text-transform: uppercase;
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 15px;
+}
+
+.newletter .newletter-content{
+    text-align: center;
+}
+.newletter .newletter-content .frm-subscribe{
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+#subscribe-input{
+    display: inline-block;
+    padding: 15px 25px;
+    padding-right: 135px;
+    border-radius: 25px;
+    border: 1px solid #e1e1e1;
+    box-shadow: 0 1px 0 0 #fff;
+    color: #bebebe;
+    font-size: 12px;
+    background: #e9e8e2;
+    width: 100%;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+}
+.newletter .newletter-content .frm-subscribe .btn-subscribe{
+    position: absolute;
+    border-radius: 25px;
+    right: 0;
+    z-index: 1;
+    line-height: 50px;
+}
+.newletter .newletter-content .warning{
+    color: red;
+    margin-top: 15px;
+}
+
+/*-------------- Follow -------------*/
+.follow {
+    text-align: center;
+    padding-bottom: 30px;
+}
+.follow .link-follow{
+    display: inline-block;
+    list-style: none;
+}
+
+.follow .link-follow li{
+    font-size: 18px;
+    float: left;
+    margin: 0 11px;
+    border-radius: 50%;
+    color: #b6b6b6;
+    line-height: 41px;
+    border: 1px solid #e1e1e1;
+    box-shadow: 0 1px 0 0 #fff;
+    width: 46px;
+    width: 42px;
+    height: 42px;
+    transition: all 0.3s;
+}
+.follow .link-follow li:hover{
+    
+    border-color: #fff;
+    color: #000;
+    box-shadow: 6px 8px 30px 0px rgba(0, 0, 0, 0.1), inset 0 0 0 1px #ffffff;
+}
+
+/*-------------- Corporate About -------------*/
+
+.corporate-about{
+    border-top: 1px solid #e1e1e1;
+    border-bottom: 1px solid #fff;
+}
+.corporate-about .inner{
+    padding: 30px 0;
+    border-bottom: 1px solid #e1e1e1;
+    border-top: 1px solid #fff;
+}
+.corporate-about .wrapper::after{
+    
+}
+.corporate-about .wrapper img{
+    display: inline-block;
+    vertical-align: baseline;
+    margin-right: 10px;
+}
+.corporate-about .wrapper .text{
+    display: inline-block;
+    max-width: 70%;
+}
+
+/*-------------- Footer Top  -------------*/
+.footer-top .logo img{
+    max-width: 100px;
+    padding: 15px 0;
+}
+.footer-top .contact{
+    list-style: none;
+}
+.footer-top .contact li p{
+    display: inline-block;
+    margin-left: 15px;
+}
+.footer-top .contact li i{
+    color: rgb(255, 94, 0);
+}
+.footer-top .information{
+    list-style: none;
+}
+.footer-top h5{
+    padding: 18px 0;
+}
+.footer-top .information li{
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+.footer-top .information li a{
+    transition: all 0.5s;
+}
+.footer-top .information li a:hover{
+    color: rgb(255, 94, 0);
+    margin-left: 15px;
+}
+
+/*-------------- Footer Bottom  -------------*/
+
+.footer-bottom{
+    padding-top: 70px;
+}
+.footer-bottom  .copyright{
+    display: inline-block;
+}
+.footer-bottom .payment{
+    display: inline-block;
+    float: right;
+}

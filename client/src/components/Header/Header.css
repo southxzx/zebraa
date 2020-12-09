@@ -1,5 +1,19 @@
-header{
-    background-color: aqua;
+.transparent-bg{
+    background-color: transparent;
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    right: 0;
+    padding: 40px 0;
+}
+
+.dark-bg{
+    background-color: rgb(255, 94, 0);
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    right: 0;
+    padding: 8px 0;
 }
 
 header nav.desk-menu{
@@ -21,7 +35,8 @@ header nav.desk-menu li.itemMenu{
 
     position: relative;
     display: inline-block;
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
     font-size: 15px;
     line-height: 1.4;
     padding: 0;
@@ -31,14 +46,27 @@ header nav.desk-menu li.itemMenu{
 
 header nav.desk-menu li.itemMenu .layer1{
     display: inline-block;
-    color: black;
+    color: #fff;
     text-decoration: none;
     height: 100%;
     padding-top: 15px;
     text-transform: uppercase;
+    transition: color 0.3s;
 
 }
+header nav.desk-menu li.itemMenu .layer1:hover{
+    color: rgba(255, 186, 0, 0.9);
+}
+header nav.desk-menu li.itemMenu .menu-cate:hover .popup-cate{
+    display: block!important;
+}
 
+header nav.desk-menu li.itemMenu .layer1 i  {
+    margin-left: 5px;
+}
+
+
+/*-------------- Logo -------------*/
 
 header .logo-menu{
     width: 100%;
@@ -50,6 +78,9 @@ header .logo-menu{
 header .logo-menu img{
     width: 30%;
 }
+
+
+/*-------------- ICON -------------*/
 
 header nav.icon{
     width: 100%;
@@ -73,6 +104,7 @@ header nav.icon ul li a{
     display: inline-block;
     width: 25px;
     height: 100%;
+    transition: color 0.3s;
 }
 header nav.icon ul li a img{
     width: 100%;
@@ -85,7 +117,98 @@ span.count {
     left: 20px;
     font-size: 11px;
     position: absolute;
-    background-color: green;
+    background-color: red;
     padding: 1px 6px;
     border-radius: 50%;
+}
+
+header nav.icon .user .user-image{
+    border-radius: 50%;
+    width: 125%;
+    border: 2px solid #fff;
+}
+
+/*-------------- POPUP CATE -------------*/
+
+
+.desk-menu .menu-cate{
+    position: relative;
+}
+.desk-menu .menu-cate .popup-cate{
+    transition: all 0.5s;
+    display: none; 
+    position: absolute;
+    padding: 20px;
+    top: 25px;
+    left: -100px;
+    background-color: transparent;
+    transition: display 0.5s;
+}
+.desk-menu .menu-cate .popup-cate .block{
+    display: flex;
+    width: 700px;
+    background-color:#fff;
+    padding: 30px 30px 40px;
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3), inset 0 0 0 1px #ffffff;
+}
+.desk-menu .menu-cate .popup-cate .col{
+    display: inline-block;
+}
+.desk-menu .menu-cate .popup-cate .cate-name{
+    margin-bottom: 25px;
+}
+.desk-menu .menu-cate .popup-cate .cate-item{
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    flex-direction: column;
+}
+.desk-menu .menu-cate .popup-cate .cate-item a{
+    padding: 5px 0;
+    transition: margin 0.5s;
+    margin-left:0;
+}
+.desk-menu .menu-cate .popup-cate .cate-item a:hover{
+    padding: 5px 0;
+    color: rgb(255, 94, 0);
+    margin-left: 10px;
+}
+
+/*-------------- POPUPOVER USER -------------*/
+.icon .user{
+    position: relative;
+}
+.icon .user .popover-user{
+    width: 250px;
+    right: -39px;
+    top: 42px;
+    background-color: #fff;
+    position: absolute;
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2), inset 0 0 0 1px #ffffff;
+}
+
+.icon .user .popover-user .content{
+    padding: 30px;
+    
+}
+.icon .user .popover-user .content h6{
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.icon .user .popover-user .content .link{
+    margin-left: 30px;
+    font-size: 90%;
+}
+.icon .user .popover-user .content .link a{
+    padding: 5px 0;
+    width: 100%;
+}
+.icon .user .popover-user .content .link a:hover{
+    color: rgb(255, 94, 0);
+}
+
+/*-------------- CART -------------*/
+.cart{
+    position: relative;
 }
