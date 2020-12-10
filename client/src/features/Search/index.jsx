@@ -24,10 +24,24 @@ function Search() {
                                     <input className="search-input" type="search" placeholder="Search"/>                                            
                                 </form>
                             </div>
-                            <nav className="sreach-nav">
-
-                            </nav>
+                            <div className="right-side">
+                                <div className="vertical-divider"></div>
+                                <select class="custom-select" id="inputGroupSelect01">
+                                    <option selected>Sneaker</option>
+                                    <option value="1">Shoes</option>
+                                    <option value="2">Sandal</option>
+                                    <option value="3">Socks</option>
+                                </select>
+                                <div className="vertical-divider"></div>
+                                <select class="custom-select" id="inputGroupSelect01">
+                                    <option selected>Adidas</option>
+                                    <option value="1">Nikes</option>
+                                    <option value="2">Balenciaga</option>
+                                    <option value="3">Vans</option>
+                                </select>
+                            </div>
                         </div>
+                        <h4>Result of "Air jordan"</h4>
                     </div>
                 </Container>
             </div>
