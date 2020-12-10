@@ -3,6 +3,9 @@ import './product.css';
 import { Container, Row, Col } from 'reactstrap';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
+import CardV2 from '../../../../components/Card';
+
+
 
 function Product(props) {
 
@@ -189,7 +192,40 @@ function Product(props) {
                 </Col>
 
                 <Col sm="12" md="9">
+                    <div className="main-content-product">
+                        <div className="toolbar">
+                            <div className="modes">
+                                <i className="fa fa-th" aria-hidden="true"></i>
+                                <i className="fa fa-th-list" aria-hidden="true"></i>
+                            </div>
 
+                            <div className="toolbar-amount">
+                                Total 100 products
+                            </div>
+
+                            <div className="sort">
+                                <span>Sort By:</span>
+                                <div className="dropdown drop-product">
+                                    <button className="btn btn-sm dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Dropdown
+                                    </button>
+                                    <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                        <button className="dropdown-item" type="button">Action</button>
+                                        <button className="dropdown-item" type="button">Another action</button>
+                                        <button className="dropdown-item" type="button">Something else here</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="product-list">
+                            <Row>
+                                <Col md="4">
+                                    
+                                </Col>
+                            </Row>
+                        </div>
+                    </div>
                 </Col>
             </Row>
         </Container>
