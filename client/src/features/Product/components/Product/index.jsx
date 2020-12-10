@@ -2,6 +2,7 @@ import React,{useEffect, useState} from 'react';
 import './product.css';
 import { Container, Row, Col } from 'reactstrap';
 import InputRange from 'react-input-range';
+import 'react-input-range/lib/css/index.css';
 
 function Product(props) {
 
@@ -11,6 +12,8 @@ function Product(props) {
     //category
     const cate = [`Shoe (${0})`,`Sandal (${0})`,`Tut (${0})`];
 
+    //price
+    const [price, setPrice] = useState({min:2,max:100});
     //color
     const color = [
         "white","blue","green","orange","black","green","orange", 
@@ -126,33 +129,19 @@ function Product(props) {
 
                                     <div className="filter-price">
                                         <h4>
-                                            Price
+                                            Price $
                                         </h4>
 
                                         <div className="list-item">
-                                            <div className="filter">
-                                                <span className="item" href="https://www.youtube.com/">
-                                                    $0.00 - $99.99 (2)
-                                                </span>
-                                            </div>
-
-                                            <div className="filter">
-                                                <span className="item" href="https://www.youtube.com/">
-                                                    $100.00 - $149.00 (2)
-                                                </span>
-                                            </div>
-
-                                            <div className="filter">
-                                                <span className="item" href="https://www.youtube.com/">
-                                                    $150.00 - $199.00 (2)
-                                                </span>
-                                            </div>
+                                            <form className="form">
+                                            <InputRange
+                                                maxValue={500}
+                                                minValue={0}
+                                                value={price}
+                                                onChange={value => setPrice(value)}
+                                                onChangeComplete={value => console.log(value)} />
+                                            </form>
                                             
-                                            <div className="filter">
-                                                <span className="item" href="https://www.youtube.com/">
-                                                    $200.00 and above (2)
-                                                </span>
-                                            </div>
                                         </div>
                                     </div>
 
