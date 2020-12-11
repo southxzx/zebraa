@@ -226,3 +226,9 @@
     box-shadow: none !important;
     outline: none !important; 
 }
+
+.product-list .loading{
+    margin: auto;
+    width: 100px;
+    height: 100px;
+}

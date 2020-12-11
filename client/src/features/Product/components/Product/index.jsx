@@ -7,32 +7,33 @@ import CardV2 from '../../../../components/CardV2';
 import Pagination from 'reactjs-hooks-pagination';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Spinner } from 'reactstrap';
 
-// const initialState = {  
-//     product: [],  
-//     loading: true,  
-//     error: ''  
-// }  
+const initialState = {  
+    product: [],  
+    loading: true,  
+    error: ''  
+}  
    
-// const Reducer = (state, action) => {  
-//     switch (action.type) {  
-//         case 'OnSuccess':  
-//             return {  
-//                 loading: false,  
-//                 product: action.payload,  
-//                 error: ''  
-//             }  
-//         case 'OnFailure':  
-//             return {  
-//                 loading: false,  
-//                 product: {},  
-//                 error: 'Something went wrong'  
-//             }  
+const Reducer = (state, action) => {  
+    switch (action.type) {  
+        case 'OnSuccess':  
+            return {  
+                loading: false,  
+                product: action.payload,  
+                error: ''  
+            }  
+        case 'OnFailure':  
+            return {  
+                loading: false,  
+                product: {},  
+                error: 'Something went wrong'  
+            }  
    
-//         default:  
-//             return state  
-//     }  
-//   }
+        default:  
+            return state  
+    }  
+  }
 
 function Product(props) {
 
@@ -103,28 +104,28 @@ function Product(props) {
 
 
     ///Pagination
-    const [product, setProduct] = useState([]);
-    //const [state, dispatch] = useReducer(Reducer, initialState);
+    //const [product, setProduct] = useState([]);
+    const [state, dispatch] = useReducer(Reducer, initialState);
     const [totalRecords, setTotalRecords] = useState(100);
     const [currentPage,setCurrentPage] = useState(1);
+
+    const {loading,product,error}  = state;
     const pageLimit = 9;
 
     useEffect( () => {
         axios.get('https://5fd2d5ad8cee610016adfb08.mockapi.io/api/v1/product?page='+currentPage+'&limit='+pageLimit)  
         .then(response => {  
-            //dispatch({ type: 'OnSuccess', payload: response.data })
+            dispatch({ type: 'OnSuccess', payload: response.data })
             console.log(response.data);  
-            setProduct(response.data);
+            //setProduct(response.data);
             // console.log("hehe" + product);
         })  
         .catch(error => {  
-            //dispatch({ type: 'OnFailure' })
+            dispatch({ type: 'OnFailure' })
             console.log(error);  
         })  
      
       }, [currentPage]);
-
-    //const {loading,product,error}  =state;
     
     return (
         <Container>
@@ -272,7 +273,7 @@ function Product(props) {
                         <div className="product-list">
                             <Row>
                                 {
-                                    product.map(data =>(
+                                   loading ? ( <Spinner className="loading" color="primary" /> ) :( product.map(data =>(
                                         <Col md="4">
                                             <CardV2
                                                 productName = {data.productName}
@@ -281,7 +282,7 @@ function Product(props) {
                                                 numberStar={data.numberStar/2/10}
                                             />
                                         </Col>
-                                    ))
+                                    )))
                                 }
 
                             </Row>
