@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import Home from './features/Home';
 import Product from './features/Product';
 import Cart from './features/Cart';
+import Search from './features/Search';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route exact path='/' component={Home} />
       <Route path='/product' component={Product} />
       <Route path='/cart' exact component={Cart} />
+      <Route path='/search' exact component={Search} />
       
     </Switch>
   </BrowserRouter>
