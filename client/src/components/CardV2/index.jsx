@@ -1,46 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './cardV2.css'
+import Star from '../Star';
 
 
 function CardV2(props) {
+
+    const {productName,productImage,productPrice,numberStar} = props;
+
+    const [isHovered, setIsHovered1] = useState(false);
+    const handleHover = () => {
+        setIsHovered1(!isHovered);
+    }
     return (
-        <div className={props.active ? "item-inner active" : "item-inner" }>
+        <div onMouseEnter={handleHover} onMouseLeave={handleHover} className={isHovered ? "item-inner item-inner-active" : "item-inner" }>
             <div className="image">
                 <a>
-                    <img src="/Assets/images/product1.png" />
+                    <img src={productImage} />
                 </a>                
-                <div className={props.active ? "time active-time" : "time"}>
-                    <div className="day">
-                        <h2>{days}</h2>
-                        <span>days</span>
-                    </div>
-                    <div className="hour">
-                        <h2>{hours}</h2>
-                        <span>hours</span>
-                    </div>
-                    <div className="min">
-                        <h2>{minutes}</h2>
-                        <span>mins</span>
-                    </div>
-                    <div className="second">
-                        <h2>{seconds}</h2>
-                        <span>secs</span>
-                    </div>
-                </div>
             </div>
             <div className="caption">
                 <div className="rating-box">
-                    <img src="/Assets/images/rating5.png" />
+                    <Star numberStar={numberStar}/>
                 </div>
-                <a className="product-name" href="#">Nike Air 4 (Limited)</a>
-                {props.hover ?
+                <a className="product-name" href="#">{productName}</a>
+                {isHovered ?
                 <div className="btn-cart">
                     <a className="btn-default btn-add-to-cart">
                         Add to cart
                     </a>
                 </div> : 
                 <div className="price-box">
-                    <p className="new">$75.00</p>
+                    <p className="new">${productPrice}</p>
                     <p className="old">$45.00</p>
                 </div>}
             </div>

@@ -1,11 +1,38 @@
-import React,{useEffect, useState} from 'react';
+import React,{useEffect, useState,useReducer } from 'react';
 import './product.css';
 import { Container, Row, Col } from 'reactstrap';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
-import CardV2 from '../../../../components/Card';
+import CardV2 from '../../../../components/CardV2';
+import Pagination from 'reactjs-hooks-pagination';
+import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-
+// const initialState = {  
+//     product: [],  
+//     loading: true,  
+//     error: ''  
+// }  
+   
+// const Reducer = (state, action) => {  
+//     switch (action.type) {  
+//         case 'OnSuccess':  
+//             return {  
+//                 loading: false,  
+//                 product: action.payload,  
+//                 error: ''  
+//             }  
+//         case 'OnFailure':  
+//             return {  
+//                 loading: false,  
+//                 product: {},  
+//                 error: 'Something went wrong'  
+//             }  
+   
+//         default:  
+//             return state  
+//     }  
+//   }
 
 function Product(props) {
 
@@ -75,6 +102,30 @@ function Product(props) {
     console.log(attribute);
 
 
+    ///Pagination
+    const [product, setProduct] = useState([]);
+    //const [state, dispatch] = useReducer(Reducer, initialState);
+    const [totalRecords, setTotalRecords] = useState(100);
+    const [currentPage,setCurrentPage] = useState(1);
+    const pageLimit = 9;
+
+    useEffect( () => {
+        axios.get('https://5fd2d5ad8cee610016adfb08.mockapi.io/api/v1/product?page='+currentPage+'&limit='+pageLimit)  
+        .then(response => {  
+            //dispatch({ type: 'OnSuccess', payload: response.data })
+            console.log(response.data);  
+            setProduct(response.data);
+            // console.log("hehe" + product);
+        })  
+        .catch(error => {  
+            //dispatch({ type: 'OnFailure' })
+            console.log(error);  
+        })  
+     
+      }, [currentPage]);
+
+    //const {loading,product,error}  =state;
+    
     return (
         <Container>
             <Row>
@@ -220,10 +271,31 @@ function Product(props) {
 
                         <div className="product-list">
                             <Row>
-                                <Col md="4">
-                                    
-                                </Col>
+                                {
+                                    product.map(data =>(
+                                        <Col md="4">
+                                            <CardV2
+                                                productName = {data.productName}
+                                                productImage = {data.productImage}
+                                                productPrice = {data.productPrice}
+                                                numberStar={data.numberStar/2/10}
+                                            />
+                                        </Col>
+                                    ))
+                                }
+
                             </Row>
+
+
+                        </div>
+
+                        <div className="d-flex flex-row py-4 justify-content-end">
+                            <Pagination
+                                totalRecords={totalRecords}
+                                pageLimit={pageLimit}
+                                pageRangeDisplayed={1}
+                                onChangePage={setCurrentPage}
+                            />
                         </div>
                     </div>
                 </Col>
