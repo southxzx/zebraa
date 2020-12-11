@@ -206,6 +206,9 @@ header nav.icon .user .user-image{
 .icon .user .popover-user .content .link a:hover{
     color: rgb(255, 94, 0);
 }
+.icon .user .popover-user .content .link a i{
+    margin-right: 10px;
+}
 
 /*-------------- CART -------------*/
 .cart{

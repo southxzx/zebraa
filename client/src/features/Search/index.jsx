@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import Breadcrumbs from '../../components/Breadscrumbs';
+import Breadscrumbs from '../../components/Breadscrumbs';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import './search.css';
@@ -9,7 +9,7 @@ function Search() {
     return (
         <div>
             <Header/>
-            <Breadcrumbs
+            <Breadscrumbs
                 title="Search - Adidas Basic"
                 linkBack="Home"
                 active="Search"

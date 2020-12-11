@@ -12,6 +12,7 @@
 
 .btn-default{
     cursor: pointer;
+    text-align: center;
     color: #2c2c2c;
     font-weight: 500;
     display: inline-block;

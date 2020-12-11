@@ -226,8 +226,9 @@ function Header(props) {
                                             <div className="content">
                                                 <h6>My account</h6>
                                                 <div className="link">
-                                                    <a>Change password</a>
-                                                    <a>Logout</a>
+                                                    <a href="/profile"><i className="fa fa-cog"></i>Profile</a>
+                                                    <a><i class="fa fa-lock"></i>Change password</a>
+                                                    <a><i class="fa fa-sign-out"></i>Logout</a>
                                                 </div>
                                             </div>
                                         </div>
