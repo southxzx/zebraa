@@ -11,6 +11,7 @@
 }
 .breadcrumb-section .breadcrumb-inner .breadcrumb{
     background-color: transparent;
+    justify-content: center;
 }
 .breadcrumb-section .breadcrumb-inner .breadcrumb .breadcrumb-item.active {
     color: #000;
