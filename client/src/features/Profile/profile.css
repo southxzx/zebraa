@@ -1,5 +1,9 @@
 .profile-section{
     padding: 50px 0;
+    background-color: #F2F4F4;
+}
+.profile-section .profile-container{
+    width: 75%;
 }
 .profile-section .profile-menu .nav-link i{
     margin-right: 10px;
@@ -64,4 +68,40 @@
 .btn-upload:hover, .btn-reset:hover{
     background-color:rgb(255, 94, 0);
     color: #fff;
+}
+
+/* ----------------------- HISTORY --------------- */
+.time-line{
+    position: relative;
+    margin: 0 auto;
+}
+.time-line::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    background-color: rgb(255, 94, 0);
+    top: 0;
+    bottom: 0;
+    left: 28px;
+    margin-left: -3px;
+}
+.profile-section .card .card-content .block{
+    padding: 10px 60px;
+    position: relative;
+}
+.profile-section .card .card-content .block .history-content{
+    padding-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+}
+.profile-section .card .card-content .block::before{
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    left: 15px;
+    background-color: white;
+    border: 4px solid rgb(255, 94, 0);
+    border-radius: 50%;
+    z-index: 1;
 }
