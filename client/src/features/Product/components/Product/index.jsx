@@ -7,6 +7,7 @@ import CardV2 from '../../../../components/CardV2';
 import Pagination from 'reactjs-hooks-pagination';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { Spinner } from 'reactstrap';
 
 const initialState = {  
