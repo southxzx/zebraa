@@ -25,6 +25,7 @@
     "reactjs-hooks-pagination": "^1.0.17",
     "reactstrap": "^8.7.1",
     "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

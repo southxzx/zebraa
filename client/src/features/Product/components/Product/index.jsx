@@ -1,40 +1,16 @@
-import React,{useEffect, useState,useReducer } from 'react';
+import React,{useEffect, useState } from 'react';
 import './product.css';
 import { Container, Row, Col } from 'reactstrap';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 import CardV2 from '../../../../components/CardV2';
 import Pagination from 'reactjs-hooks-pagination';
-import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useDispatch, useSelector } from 'react-redux';
+import productApi from '../../../../api/productApi';
 
 import { Spinner } from 'reactstrap';
 
-const initialState = {  
-    product: [],  
-    loading: true,  
-    error: ''  
-}  
-   
-const Reducer = (state, action) => {  
-    switch (action.type) {  
-        case 'OnSuccess':  
-            return {  
-                loading: false,  
-                product: action.payload,  
-                error: ''  
-            }  
-        case 'OnFailure':  
-            return {  
-                loading: false,  
-                product: {},  
-                error: 'Something went wrong'  
-            }  
-   
-        default:  
-            return state  
-    }  
-  }
 
 function Product(props) {
 
@@ -93,7 +69,7 @@ function Product(props) {
     }
     function clearAtt(item){
         var filtered = attribute.filter(function(value, index, arr){
-            return value != item;
+            return value !== item;
         });
         setAttribute(filtered);
     }
@@ -105,28 +81,36 @@ function Product(props) {
 
 
     ///Pagination
-    //const [product, setProduct] = useState([]);
-    const [state, dispatch] = useReducer(Reducer, initialState);
+    
+    const productList = useSelector(state => state.product.productList);
+    const loading = useSelector(state => state.product.loading);
+
     const [totalRecords, setTotalRecords] = useState(100);
     const [currentPage,setCurrentPage] = useState(1);
-
-    const {loading,product,error}  = state;
     const pageLimit = 9;
 
-    useEffect( () => {
-        axios.get('https://5fd2d5ad8cee610016adfb08.mockapi.io/api/v1/product?page='+currentPage+'&limit='+pageLimit)  
-        .then(response => {  
-            dispatch({ type: 'OnSuccess', payload: response.data })
-            console.log(response.data);  
-            //setProduct(response.data);
-            // console.log("hehe" + product);
-        })  
-        .catch(error => {  
-            dispatch({ type: 'OnFailure' })
-            console.log(error);  
-        })  
-     
-      }, [currentPage]);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const fetchProductList = async () =>{
+            try {
+                const params = {
+                    page: currentPage,
+                    limit: pageLimit
+                };
+    
+                const response = await productApi.getAll(params);
+                await dispatch({ type: 'OnSuccess', payload: response.data })
+                console.log(response);
+
+            } catch (error) {
+                console.log('Failed to fetch product list: ', error);
+            }
+
+        }
+
+        fetchProductList();
+    }, [currentPage]);
     
     return (
         <Container>
@@ -274,8 +258,8 @@ function Product(props) {
                         <div className="product-list">
                             <Row>
                                 {
-                                   loading ? ( <Spinner className="loading" color="primary" /> ) :( product.map(data =>(
-                                        <Col md="4">
+                                   loading ? ( <Spinner className="loading" color="primary" /> ) :( productList.map((data,key) =>(
+                                        <Col key={key} md="4">
                                             <CardV2
                                                 productName = {data.productName}
                                                 productImage = {data.productImage}

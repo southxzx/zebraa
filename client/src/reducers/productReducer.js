@@ -6,15 +6,13 @@ const InitialState = {
     error: '' 
 }
 
-const productReducer = (state = InitialState, action) => {
+const productReducer =  (state = InitialState, action) => {
     switch (action.type) {
         case 'OnSuccess':  
-            const newProductList = [...state.productList];
-            newProductList.push(action.payload);
             return {  
                 ...state,
                 loading: false,  
-                productList: newProductList,  
+                productList: action.payload,  
                 error: ''  
             } 
         case 'OnFailure':  
