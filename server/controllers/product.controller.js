@@ -35,9 +35,10 @@ module.exports.getSingleProduct = (req, res) => {
 // api/product/get/?sortBy=createdAt&order=desc&limit=8
 module.exports.getAllProductsByArrival = (req, res) => {
 
-    let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
-    let order = req.query.order ? req.query.order : 'asc';
+    // let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
+    // let order = req.query.order ? req.query.order : 'asc';
     let limit = req.query.limit ? parseInt(req.query.limit) : 100
+    let skip = parseInt(req.query.skip);
 
     Product.
     find().
@@ -45,8 +46,9 @@ module.exports.getAllProductsByArrival = (req, res) => {
     populate('category').
     populate('color').
     populate('size').
-    sort({sortBy: order}).
+    // sort({sortBy: order}).
     limit(limit).
+    skip(skip).
     exec((err, results)=>{
         if (err) return res.send(err);
         res.status(200).send({results});
