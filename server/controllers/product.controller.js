@@ -1,7 +1,17 @@
 const Product = require("../models/product.model");
+const cloudinary = require("../utils/cloudinary");
 
 // Add new product
-module.exports.addProduct = (req, res) => {
+module.exports.addProduct = async (req, res) => {
+
+    try {
+        // upload image to cloudinary
+        const result = await cloudinary.uploader.upload(req.file.path);
+
+    } catch (error) {
+        
+    }
+
     const product = new Product(req.body);
 
     product.save((err,doc) => {
