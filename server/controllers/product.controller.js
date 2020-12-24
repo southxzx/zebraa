@@ -49,9 +49,9 @@ module.exports.getAllProductsByArrival = (req, res) => {
     // sort({sortBy: order}).
     limit(limit).
     skip(skip).
-    exec((err, results)=>{
+    exec((err, data)=>{
         if (err) return res.send(err);
-        res.status(200).send({results});
+        res.status(200).send({data});
     })
 }
 

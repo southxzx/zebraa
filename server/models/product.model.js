@@ -33,11 +33,6 @@ const productShema = new mongoose.Schema(
             ref: 'Category',
             required: true
         },
-        available:{
-            required: true,
-            type: Boolean,
-            required: true
-        },
         quantity:{
             required: true,
             type: Number
