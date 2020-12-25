@@ -1,25 +1,9 @@
 const Product = require("../models/product.model");
-const cloudinary = require("../utils/cloudinary");
 
 // Add new product
 module.exports.addProduct = async (req, res) => {
 
     try {
-        // upload image to cloudinary
-        // const result = await cloudinary.uploader.upload(req.file.path);
-
-        // req.body.images = result.secure_url;
-
-        const urls = [];
-        const files = req.files;
-        
-        for(const file of files){
-            const {path} = file;
-            const result = await cloudinary.uploader.upload(path);
-            urls.push(result.secure_url);
-        }
-        req.body.images = urls;
-
         // Create new product
         const product = new Product(req.body);
         // Save
@@ -68,10 +52,20 @@ module.exports.getAllProductsByArrival = (req, res) => {
 
     Product.
     find().
-    populate('brand').
     populate('category').
-    populate('color').
-    populate('size').
+    populate('colorProducts').
+    populate({ 
+        path: 'colorProducts',
+        populate: {
+          path: 'color'
+        } 
+    }).
+    populate({ 
+        path: 'review',
+        populate: {
+          path: 'user'
+        } 
+    }).
     // sort({sortBy: order}).
     limit(limit).
     skip(skip).

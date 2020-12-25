@@ -12,49 +12,29 @@ const productShema = new mongoose.Schema(
         description:{
             required: true,
             type: String,
-            maxlength:100000
-        },
-        price:{
-            required: true,
-            type: Number,
-            maxlength: 255
-        },
-        brand:{
-            type: Schema.Types.ObjectId,
-            ref: 'Brand',
-            required: true
-        },
-        images:{
-            type: Array,
-            default:[]
+            maxlength:10000
         },
         category:{
             type: Schema.Types.ObjectId,
             ref: 'Category',
             required: true
         },
-        quantity:{
-            required: true,
-            type: Number
-        },
-        color:{
-            type: Schema.Types.ObjectId,
-            ref: 'Color',
-            required: true
-        },
-        size:{
-            type: Schema.Types.ObjectId,
-            ref: 'Size',
-            required: true
-        },
-        review:{
-            type: Array,
-            default:[]
-        },
+        review:[
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Review'
+            }
+        ],
         active:{
             required: true,
             type:Boolean
-        }
+        },
+        colorProducts:[
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'ColorProduct'
+            }
+        ]
     },{timestamps:true});
 
 module.exports = mongoose.model('Product', productShema);
