@@ -40,14 +40,14 @@ module.exports.registerController = (req,res) =>{
           });
         }
         // save vào mongodb thì sẽ thêm 1 collection có tên là :(tên Schema + s), như User thì -> users ; và sẽ thêm trg _id cho collection đó
-        user.save((err, user) => {
-          if (err) {
-            // console.log('Save error', errorHandler(err));
-            return res.status(401).json({
-              success: false, err
-            });
-          }
-        });
+        // user.save((err, user) => {
+        //   if (err) {
+        //     // console.log('Save error', errorHandler(err));
+        //     return res.status(401).json({
+        //       success: false, err
+        //     });
+        //   }
+        // });
       });
 
       // Generate token for register
@@ -89,64 +89,62 @@ module.exports.registerController = (req,res) =>{
               emailKey: process.env.MAIL_KEY
           });
       });
-
-      
-//   }
-
-// }
-
-// module.exports.activationController = (req,res) => {
-//   const { token } = req.body;     //client gửi qua axios post
-
-//   if(token){
-//     // Verify the token is valid or not , or expired
-//     jwt.verify(token, process.env.JWT_ACCOUNT_ACTIVATION, (err, decoded) => {
-      
-//       if (err) {
-//         console.log('Activation error');
-//         return res.status(401).json({
-//           errors: 'Expired link. Signup again'
-//         });
-//       }
-      
-//       else {
-//         // If valid save to database
-//         // Get name, email, password from token
-
-//         const { name, email, password } = jwt.decode(token);
-
-//         console.log(email);
-//         const user = new User({
-//           name,
-//           email,
-//           password
-//         });
-
-//         // save vào mongodb thì sẽ thêm 1 collection có tên là :(tên Schema + s), như User thì -> users ; và sẽ thêm trg _id cho collection đó 
-//         user.save((err, user) => {
-//           if (err) {
-            
-//             return res.status(401).json({
-//               errors: err
-//             });
-//           } else {
-//             return res.json({
-//               success: true,
-//               message: 'Signup success',
-//               user
-//             });
-//           }
-//         });
-//       }
-
-//     });
-//   }
-
-//   else {
-//     return res.json({
-//       message: 'error happening please try again'
-//     });
-//   }
     }
+}
+      
+
+module.exports.activationController = (req,res) => {
+  const { token } = req.body;     //client gửi qua axios post
+
+  if(token){
+    // Verify the token is valid or not , or expired
+    jwt.verify(token, process.env.JWT_ACCOUNT_ACTIVATION, (err, decoded) => {
+      
+      if (err) {
+        console.log('Activation error');
+        return res.status(401).json({
+          errors: 'Expired link. Signup again'
+        });
+      }
+      
+      else {
+        // If valid save to database
+        // Get name, email, password from token
+
+        const { name, email, password } = jwt.decode(token);
+
+        console.log(email);
+        const user = new User({
+          name,
+          email,
+          password
+        });
+
+        // save vào mongodb thì sẽ thêm 1 collection có tên là :(tên Schema + s), như User thì -> users ; và sẽ thêm trg _id cho collection đó 
+        user.save((err, user) => {
+          if (err) {
+            
+            return res.status(401).json({
+              errors: err
+            });
+          } else {
+            return res.json({
+              success: true,
+              message: 'Signup success',
+              user
+            });
+          }
+        });
+      }
+
+    });
+  }
+
+  else {
+    return res.json({
+      message: 'error happening please try again'
+    });
+  }
 };
+
 

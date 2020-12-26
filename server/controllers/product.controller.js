@@ -30,13 +30,33 @@ module.exports.getSingleProduct = (req, res) => {
     Product.find(
         {_id : req.query.id}
     ).
-    populate('brand').
     populate('category').
-    populate('color').
-    populate('size').
-    exec((err, result) => {
+    populate('colorProducts').
+    populate({ 
+        path: 'colorProducts',
+        populate: {
+          path: 'color'
+        } 
+    }).
+    populate({ 
+        path: 'review',
+        populate: {
+            path: 'user',
+            select: {'name':1}
+          }
+    }).
+    populate({ 
+        path: 'colorProducts',
+        populate: {
+          path: 'sizeProducts',
+          populate:{
+              path: 'size'
+          }
+        } 
+    }).
+    exec((err, data)=>{
         if (err) return res.send(err);
-        res.status(200).send(result)
+        res.status(200).send({data});
     });
     
 }
@@ -48,7 +68,7 @@ module.exports.getAllProductsByArrival = (req, res) => {
     // let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
     // let order = req.query.order ? req.query.order : 'asc';
     let limit = req.query.limit ? parseInt(req.query.limit) : 100
-    let skip = parseInt(req.query.skip);
+    let skip = parseInt(req.query.skip) - 1;    // vì xài pagination của hook nên mặc định currentPage = 1 nên phải trừ xuống cho skip = 0
 
     Product.
     find().
@@ -63,7 +83,8 @@ module.exports.getAllProductsByArrival = (req, res) => {
     populate({ 
         path: 'review',
         populate: {
-          path: 'user'
+          path: 'user',
+          select: {'name':1}
         } 
     }).
     populate({ 

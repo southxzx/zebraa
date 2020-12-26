@@ -82,7 +82,7 @@ function Product(props) {
 
     ///Pagination
     
-    const productList = useSelector(state => state.product.productList);
+    const productList = useSelector(state => state.product.productList.data);
     const loading = useSelector(state => state.product.loading);
 
     const [totalRecords, setTotalRecords] = useState(100);
@@ -95,13 +95,15 @@ function Product(props) {
         const fetchProductList = async () =>{
             try {
                 const params = {
-                    page: currentPage,
-                    limit: pageLimit
+                    limit: pageLimit,
+                    skip: currentPage
+
                 };
     
                 const response = await productApi.getAll(params);
                 await dispatch({ type: 'OnSuccess', payload: response.data })
-                console.log(response);
+                //console.log(response.data);
+                
 
             } catch (error) {
                 console.log('Failed to fetch product list: ', error);
@@ -111,10 +113,17 @@ function Product(props) {
 
         fetchProductList();
     }, [currentPage]);
-    
+    //console.log(currentPage);
+    //console.log(loading);
+    //productList ? console.log(productList[0].colorProducts[0].images[0]) : console.log('caccas');;
+
+
+    //productList ? productList.map(x => console.log( (typeof(x.colorProducts[0]) != 'undefined' ) ? x.colorProducts[0].images[0] : 'kk')) : console.log('nu');
+
     return (
         <Container>
             <Row>
+
                 <Col sm="12" md="3">
                     <div className="layer-navigation">
                         <div className="panel">
@@ -261,14 +270,34 @@ function Product(props) {
                                    loading ? ( <Spinner className="loading" color="primary" /> ) :( productList.map((data,key) =>(
                                         <Col key={key} md="4">
                                             <CardV2
-                                                productName = {data.productName}
-                                                productImage = {data.productImage}
-                                                productPrice = {data.productPrice}
-                                                numberStar={data.numberStar/2/10}
+                                                productName = {data.name}
+                                                productImage = {(typeof(data.colorProducts[0]) != 'undefined' ) ? 
+                                                (
+                                                    data.colorProducts[( data.colorProducts.map(item => item.avatar).indexOf(true) ) == -1 ? 0 : data.colorProducts.map(item => item.avatar).indexOf(true)].images[0]
+                                                ) 
+                                                : null}
+
+                                                productPrice = {(typeof(data.colorProducts[0]) != 'undefined' ) ? 
+                                                (
+                                                    data.colorProducts[( data.colorProducts.map(item => item.avatar).indexOf(true) ) == -1 ? 0 : data.colorProducts.map(item => item.avatar).indexOf(true)].price
+                                                ) 
+                                                : null}
+
+                                                numberStar={(typeof(data.review[0]) != 'undefined' ) ? 
+                                                (
+
+                                                    data.review.reduce((accumulator, currentValue, currentIndex,array) =>
+                                                        accumulator + currentValue.rating/array.length
+                                                    ,0)
+                                                    
+                                                ) 
+                                                : 0}
+                                                
                                             />
                                         </Col>
                                     )))
                                 }
+
 
                             </Row>
 
