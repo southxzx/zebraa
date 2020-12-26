@@ -1,17 +1,18 @@
-const { Mongoose } = require("mongoose");
+const mongoose = require("mongoose");
 
+const Schema = mongoose.Schema;
 const sizeProductSchema = new mongoose.Schema({
     quantity:{
         type: Number,
         required: true
     },
-    colorProduct:{
-        type: Schema.Types.ObjectId,
-        ref: 'ColorProduct'
-    },
     size:{
         type: Schema.Types.ObjectId,
         ref: 'Size'
+    },
+    colorProduct:{
+        type: Schema.Types.ObjectId,
+        ref: 'ColorProduct'
     }
 });
 

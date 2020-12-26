@@ -34,11 +34,11 @@ if (process.env.NODE_ENV === 'development') {
 const allUserRouter = require('./routes/user.route');
 const allColorRouter = require('./routes/color.route');
 const allSizeRouter = require('./routes/size.route');
-const allBrandRouter = require('./routes/brand.route');
 const allCategoryRouter = require('./routes/category.route');
 const allProductRouter = require('./routes/product.route');
 const allColorProductRouter = require('./routes/color_product');
 const allReviewRouter = require('./routes/review.route');
+const allSizeProductRouter = require('./routes/size_product');
 
 // User routes
 app.use('/api/user',allUserRouter);
@@ -46,8 +46,6 @@ app.use('/api/user',allUserRouter);
 app.use('/api/color',allColorRouter);
 // Size routes
 app.use('/api/size',allSizeRouter);
-// Brand routes
-app.use('/api/brand',allBrandRouter);
 // Category routes
 app.use('/api/category',allCategoryRouter);
 // Product routes
@@ -56,6 +54,8 @@ app.use('/api/product',allProductRouter);
 app.use('/api/colorProduct',allColorProductRouter);
 // Review routes
 app.use('/api/review',allReviewRouter);
+// Size_product routes
+app.use('/api/sizeProduct',allSizeProductRouter);
 
 
 app.use((req, res) => {

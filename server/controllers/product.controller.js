@@ -66,6 +66,15 @@ module.exports.getAllProductsByArrival = (req, res) => {
           path: 'user'
         } 
     }).
+    populate({ 
+        path: 'colorProducts',
+        populate: {
+          path: 'sizeProducts',
+          populate:{
+              path: 'size'
+          }
+        } 
+    }).
     // sort({sortBy: order}).
     limit(limit).
     skip(skip).

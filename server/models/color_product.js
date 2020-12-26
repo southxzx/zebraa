@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+sizeProductSchema = require("../models/size_product").schema;
 
 const Schema = mongoose.Schema;
 const colorProductSchema = new mongoose.Schema({
@@ -10,12 +11,7 @@ const colorProductSchema = new mongoose.Schema({
         type: Array,
         default:[]
     },
-    sizeProducts:[
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'SizeProduct'
-        }
-    ],
+    sizeProducts:[sizeProductSchema],
     price: {
         type: Number,
         required: true
