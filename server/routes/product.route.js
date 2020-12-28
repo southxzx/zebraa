@@ -11,7 +11,7 @@ router.post('/add',upload.array('image'),productController.addProduct);
 router.get('/get',productController.getSingleProduct);
 
 // Get all products by Arrival
-router.get('/getAll',productController.getAllProductsByArrival);
+router.post('/getAll',productController.getAllProductsByArrival);
 
 // Update products by ID
 router.put('/update',productController.updateProduct);
