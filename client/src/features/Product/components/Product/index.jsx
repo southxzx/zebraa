@@ -9,9 +9,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import productApi from '../../../../api/productApi';
 import categoryApi from '../../../../api/categoryApi';
-
+import colorApi from '../../../../api/colorApi';
 
 import { Spinner } from 'reactstrap';
+
 
 
 function Product(props) {
@@ -25,33 +26,10 @@ function Product(props) {
     //price
     const [price, setPrice] = useState({min:2,max:100});
     //color
-    const color = [
-        "white","blue","green","orange","black","green","orange", 
-    ];
-    var color1 = [],color2 = [];
-    function divideColor(){
-        if(color.length >= 4 ){
-            for(let i = 0 ; i < 4 ; i++){
-                color1[i] = color[i];
-            }
-            for(let j = 4 ; j < color.length ; j++){
-                color2[j] = color[j];
-            }
-        }
-        else{
-            for(let i = 0 ; i < color.length ; i++){
-                color1[i] = color[i];
-            }
-        }
-
-    }
-    divideColor();
+    const [color,setColor] = useState([]);
 
     //Manufacturer
     //`Nike (${0})`,`Adidas (${0})`,`Jordan (${0})`,`Balenciaga (${0})`
-    const manuf = [
-        `Nike (${0})`,`Adidas (${0})`,`Jordan (${0})`,`Balenciaga (${0})`
-    ];
 
     //Attribute
     function addAtt(item){       
@@ -113,33 +91,33 @@ function Product(props) {
 
         }
 
-        const fetchCategory = async () => {
-            try {
-                const response = await categoryApi.getAll();
-                console.log(response.data);
-                response.data.map(item => setCate(oldArray => [...oldArray, item.name]))
-            } catch (error) {
-                console.log('Failed to fetch category list: ', error);
-            }
-        }
-
         fetchProductList();
-        //fetchCategory();
     }, [currentPage]);
 
     useEffect(() => {
         const fetchCategory = async () => {
             try {
                 const response = await categoryApi.getAll();
-                console.log(response.data);
+                //console.log(response.data);
                 response.data.map(item => setCate(oldArray => [...oldArray, item.name]))
             } catch (error) {
                 console.log('Failed to fetch category list: ', error);
             }
         }
 
+        const fetchColor = async () => {
+            try {
+                const response = await colorApi.getAll();
+                console.log(response.data);
+                response.data.map(item => setColor(oldArray => [...oldArray, item.name]))
+            } catch (error) {
+                console.log('Failed to fetch color list: ', error);
+            }
+        }
+
         fetchCategory();
-    },1)
+        fetchColor();
+    },[])
     //console.log(currentPage);
     //console.log(loading);
     //productList ? console.log(productList[0].colorProducts[0].images[0]) : console.log('caccas');;
@@ -228,36 +206,14 @@ function Product(props) {
 
                                         <div className="item-colors">
                                                 {
-                                                    color1.map((item,key) => (
+                                                    color.map((item,key) => (
                                                         <span onClick={()=> addAtt(item)} className="color" color={item} key={key}></span>
                                                     ))
                                                 }
                                         </div>
-                                        <div className="item-colors">
-                                                {
-                                                    color2.map((item,key) => (
-                                                        <span onClick={()=> addAtt(item)} className="color" color={item} key={key}></span>
-                                                    ))
-                                                }
-                                        </div>
+
                                     </div>
 
-                                    <div className="filter-manufacture">
-                                        <h4>
-                                            Manufacturer
-                                        </h4>
-                                        <div className="list-item">
-                                            {
-                                                manuf.map((item,key)=>(
-                                                    <div onClick={()=> addAtt(item)} className="filter" key={key}>
-                                                        <span className="item" href="https://www.youtube.com/">
-                                                            {item}
-                                                        </span>
-                                                    </div>
-                                                ))
-                                            }
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -273,7 +229,7 @@ function Product(props) {
                             </div>
 
                             <div className="toolbar-amount">
-                                Total 100 products
+                                Total {productList? productList.length : null} products
                             </div>
 
                             <div className="sort">

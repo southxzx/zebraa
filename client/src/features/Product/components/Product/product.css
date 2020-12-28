@@ -84,11 +84,13 @@
 .filter-color .item-colors{
     padding: 8px 0;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
 }
 .filter-color span.color{
     width: 25px;
     height: 25px;
+    margin-bottom: 15px;
     border-radius: 50%;
     margin-right: 25px;
     border: 5px solid;
@@ -123,6 +125,22 @@
     background-color: #444;
     border-color: #444;
 }
+
+.item-colors span.color[color="yellow"]{
+    background-color: #fbc531;
+    border-color: #fbc531;
+}
+
+.item-colors span.color[color="pink"]{
+    background-color: #ff9ff3;
+    border-color: #ff9ff3;
+}
+
+.item-colors span.color[color="gray"]{
+    background-color: #576574;
+    border-color: #576574;
+}
+
 .list-groups .filter-manufacture{
     padding-bottom: 15px;
     padding-top: 15px;
