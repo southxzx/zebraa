@@ -8,7 +8,6 @@ import Pagination from 'reactjs-hooks-pagination';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import productApi from '../../../../api/productApi';
-
 import { Spinner } from 'reactstrap';
 
 
@@ -77,7 +76,6 @@ function Product(props) {
         setAttribute([]);
     }
 
-    console.log(attribute);
 
 
     ///Pagination
@@ -258,13 +256,13 @@ function Product(props) {
                         <div className="product-list">
                             <Row>
                                 {
-                                   loading ? ( <Spinner className="loading" color="primary" /> ) :( productList.map((data,key) =>(
+                                   loading ? ( <Spinner className="loading" color="primary" /> ) :( productList.data.map((data,key) =>(
                                         <Col key={key} md="4">
                                             <CardV2
-                                                productName = {data.productName}
-                                                productImage = {data.productImage}
-                                                productPrice = {data.productPrice}
-                                                numberStar={data.numberStar/2/10}
+                                                productName = {data.name}
+                                                productImage = {data.images[0]}
+                                                productPrice = {data.price}
+                                                numberStar={10}
                                             />
                                         </Col>
                                     )))
