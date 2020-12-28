@@ -9,10 +9,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import productApi from '../../../../api/productApi';
 import categoryApi from '../../../../api/categoryApi';
-import colorApi from '../../../../api/colorApi';
+
 
 import { Spinner } from 'reactstrap';
-
 
 
 function Product(props) {
@@ -26,27 +25,44 @@ function Product(props) {
     //price
     const [price, setPrice] = useState({min:2,max:100});
     //color
-    const [color,setColor] = useState([]);
+    const color = [
+        "white","blue","green","orange","black","green","orange", 
+    ];
 
     //Manufacturer
     //`Nike (${0})`,`Adidas (${0})`,`Jordan (${0})`,`Balenciaga (${0})`
 
     //Attribute
-    function addAtt(item){       
+    function addAtt(item,type){       
+
+        // THÊM TÊN VÀO MẢNG Attribute
         // cate.splice(cate.indexOf(item),1);
-        var i = item.indexOf(' ');
+        var i = item.name.indexOf(' ');
         if(i > 0){
-            if(attribute.indexOf(item.substr(0,i)) >= 0)
+            if(attribute.indexOf(item.name.substr(0,i)) >= 0)
             return;
-            setAttribute(oldArray => [...oldArray, item.substr(0,i)]);
+            setAttribute(oldArray => [...oldArray, item.name.substr(0,i)]);
         }
         else{
-            if(attribute.indexOf(item) >= 0)
+            if(attribute.indexOf(item.name) >= 0)
             return;
-            setAttribute(oldArray => [...oldArray, item]);
+            setAttribute(oldArray => [...oldArray, item.name]);
         }
-        
+
+        // THÊM VÀO STATE FILTERS
+        // vd: category: ['_id1', '_id2']
+        const newFilters = {...params['filters']};
+        newFilters[type].push(item._id);
+
+        setParams({
+            ...params,
+            filters: newFilters
+        });
+
+        console.log(params);
+
     }
+
     function clearAtt(item){
         var filtered = attribute.filter(function(value, index, arr){
             return value !== item;
@@ -57,7 +73,6 @@ function Product(props) {
         setAttribute([]);
     }
 
-    console.log(attribute);
 
 
     ///Pagination
@@ -69,58 +84,48 @@ function Product(props) {
     const [currentPage,setCurrentPage] = useState(1);
     const pageLimit = 9;
 
+    const [params,setParams] = useState({
+        limit: pageLimit,
+        skip: currentPage,
+        filters:{
+            category: [],
+            color: [],
+            price: []
+        }
+    });
+
     const dispatch = useDispatch();
 
     useEffect(() => {
         const fetchProductList = async () =>{
             try {
-                const params = {
-                    limit: pageLimit,
-                    skip: currentPage
-
-                };
-    
                 const response = await productApi.getAll(params);
                 await dispatch({ type: 'OnSuccess', payload: response.data })
                 //console.log(response.data);
-                
-
             } catch (error) {
                 console.log('Failed to fetch product list: ', error);
             }
-
         }
 
         fetchProductList();
-    }, [currentPage]);
+    }, [currentPage,params]);
 
     useEffect(() => {
         const fetchCategory = async () => {
             try {
                 const response = await categoryApi.getAll();
-                //console.log(response.data);
-                response.data.map(item => setCate(oldArray => [...oldArray, item.name]))
+                // Lưu response cate vào state 
+                response.data.map(item => setCate(oldArray => [...oldArray, item]))
             } catch (error) {
                 console.log('Failed to fetch category list: ', error);
             }
         }
 
-        const fetchColor = async () => {
-            try {
-                const response = await colorApi.getAll();
-                console.log(response.data);
-                response.data.map(item => setColor(oldArray => [...oldArray, item.name]))
-            } catch (error) {
-                console.log('Failed to fetch color list: ', error);
-            }
-        }
-
         fetchCategory();
-        fetchColor();
-    },[])
+    },[1]);
     //console.log(currentPage);
-    //console.log(loading);
-    //productList ? console.log(productList[0].colorProducts[0].images[0]) : console.log('caccas');;
+    // console.log(loading);
+    // productList ? console.log(productList[0]) : console.log('caccas');;
 
 
     //productList ? productList.map(x => console.log( (typeof(x.colorProducts[0]) != 'undefined' ) ? x.colorProducts[0].images[0] : 'kk')) : console.log('nu');
@@ -171,9 +176,9 @@ function Product(props) {
                                 
                                             {
                                                 cate.map((item,key)=>(
-                                                    <div onClick={()=> addAtt(item)} className="filter" key={key}>
+                                                    <div onClick={()=> addAtt(item,'category')} className="filter" key={key}>
                                                         <span className="item" href="https://www.youtube.com/">
-                                                            {item}
+                                                            {item.name}
                                                         </span>
                                                     </div>
                                                 ))
@@ -207,13 +212,13 @@ function Product(props) {
                                         <div className="item-colors">
                                                 {
                                                     color.map((item,key) => (
-                                                        <span onClick={()=> addAtt(item)} className="color" color={item} key={key}></span>
+                                                        <span onClick={()=> addAtt(item,'color')} className="color" color={item} key={key}></span>
                                                     ))
                                                 }
                                         </div>
-
                                     </div>
 
+                                    
                                 </div>
                             </div>
                         </div>
@@ -229,7 +234,7 @@ function Product(props) {
                             </div>
 
                             <div className="toolbar-amount">
-                                Total {productList? productList.length : null} products
+                                Total {productList ? productList.length : null} products
                             </div>
 
                             <div className="sort">
