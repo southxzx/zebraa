@@ -8,6 +8,8 @@ import Pagination from 'reactjs-hooks-pagination';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import productApi from '../../../../api/productApi';
+import categoryApi from '../../../../api/categoryApi';
+
 
 import { Spinner } from 'reactstrap';
 
@@ -18,7 +20,7 @@ function Product(props) {
     const [attribute,setAttribute] = useState([]);
 
     //category
-    const cate = [`Shoe (${0})`,`Sandal (${0})`,`Tut (${0})`];
+    const [cate,setCate] = useState([]);
 
     //price
     const [price, setPrice] = useState({min:2,max:100});
@@ -111,8 +113,33 @@ function Product(props) {
 
         }
 
+        const fetchCategory = async () => {
+            try {
+                const response = await categoryApi.getAll();
+                console.log(response.data);
+                response.data.map(item => setCate(oldArray => [...oldArray, item.name]))
+            } catch (error) {
+                console.log('Failed to fetch category list: ', error);
+            }
+        }
+
         fetchProductList();
+        //fetchCategory();
     }, [currentPage]);
+
+    useEffect(() => {
+        const fetchCategory = async () => {
+            try {
+                const response = await categoryApi.getAll();
+                console.log(response.data);
+                response.data.map(item => setCate(oldArray => [...oldArray, item.name]))
+            } catch (error) {
+                console.log('Failed to fetch category list: ', error);
+            }
+        }
+
+        fetchCategory();
+    },1)
     //console.log(currentPage);
     //console.log(loading);
     //productList ? console.log(productList[0].colorProducts[0].images[0]) : console.log('caccas');;
