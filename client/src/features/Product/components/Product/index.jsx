@@ -109,7 +109,7 @@ function Product(props) {
         limit: pageLimit,
         skip: currentPage,
         filters:{
-            category: ['5fe69f0663ee8241940d08c9'],
+            category: [],
             color: [],
             price: []
         }
@@ -243,7 +243,7 @@ function Product(props) {
                                         <div className="item-colors">
                                                 {
                                                     color1.map((item,key) => (
-                                                        <span onClick={()=> addAtt(item)} className="color" color={item} key={key}></span>
+                                                        <span onClick={()=> addAtt(item,'color')} className="color" color={item} key={key}></span>
                                                     ))
                                                 }
                                         </div>
