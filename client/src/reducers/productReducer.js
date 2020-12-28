@@ -9,10 +9,12 @@ const InitialState = {
 const productReducer =  (state = InitialState, action) => {
     switch (action.type) {
         case 'OnSuccess':  
+            // const newList = [];
+            // newList.push(action.payload);
             return {  
                 ...state,
+                productList: action.payload, 
                 loading: false,  
-                productList: action.payload,  
                 error: ''  
             } 
         case 'OnFailure':  
