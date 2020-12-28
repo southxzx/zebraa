@@ -8,6 +8,9 @@ import Pagination from 'reactjs-hooks-pagination';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import productApi from '../../../../api/productApi';
+import categoryApi from '../../../../api/categoryApi';
+
+
 import { Spinner } from 'reactstrap';
 
 
@@ -17,7 +20,7 @@ function Product(props) {
     const [attribute,setAttribute] = useState([]);
 
     //category
-    const cate = [`Shoe (${0})`,`Sandal (${0})`,`Tut (${0})`];
+    const [cate,setCate] = useState([]);
 
     //price
     const [price, setPrice] = useState({min:2,max:100});
@@ -51,21 +54,36 @@ function Product(props) {
     ];
 
     //Attribute
-    function addAtt(item){       
+    function addAtt(item,type){       
+
+        // THÊM TÊN VÀO MẢNG Attribute
         // cate.splice(cate.indexOf(item),1);
-        var i = item.indexOf(' ');
+        var i = item.name.indexOf(' ');
         if(i > 0){
-            if(attribute.indexOf(item.substr(0,i)) >= 0)
+            if(attribute.indexOf(item.name.substr(0,i)) >= 0)
             return;
-            setAttribute(oldArray => [...oldArray, item.substr(0,i)]);
+            setAttribute(oldArray => [...oldArray, item.name.substr(0,i)]);
         }
         else{
-            if(attribute.indexOf(item) >= 0)
+            if(attribute.indexOf(item.name) >= 0)
             return;
-            setAttribute(oldArray => [...oldArray, item]);
+            setAttribute(oldArray => [...oldArray, item.name]);
         }
-        
+
+        // THÊM VÀO STATE FILTERS
+        // vd: category: ['_id1', '_id2']
+        const newFilters = {...params['filters']};
+        newFilters[type].push(item._id);
+
+        setParams({
+            ...params,
+            filters: newFilters
+        });
+
+        console.log(params);
+
     }
+
     function clearAtt(item){
         var filtered = attribute.filter(function(value, index, arr){
             return value !== item;
@@ -80,39 +98,73 @@ function Product(props) {
 
     ///Pagination
     
-    const productList = useSelector(state => state.product.productList);
+    const productList = useSelector(state => state.product.productList.data);
     const loading = useSelector(state => state.product.loading);
 
     const [totalRecords, setTotalRecords] = useState(100);
     const [currentPage,setCurrentPage] = useState(1);
     const pageLimit = 9;
 
+    const [params,setParams] = useState({
+        limit: pageLimit,
+        skip: currentPage,
+        filters:{
+            category: ['5fe69f0663ee8241940d08c9'],
+            color: [],
+            price: []
+        }
+    });
+
     const dispatch = useDispatch();
 
     useEffect(() => {
         const fetchProductList = async () =>{
             try {
-                const params = {
-                    page: currentPage,
-                    limit: pageLimit
-                };
-    
                 const response = await productApi.getAll(params);
                 await dispatch({ type: 'OnSuccess', payload: response.data })
-                console.log(response);
-
+                //console.log(response.data);
             } catch (error) {
                 console.log('Failed to fetch product list: ', error);
             }
-
+        }
+        const fetchCategory = async () => {
+            try {
+                const response = await categoryApi.getAll();
+                console.log(response.data);
+                response.data.map(item => setCate(oldArray => [...oldArray, item.name]))
+            } catch (error) {
+                console.log('Failed to fetch category list: ', error);
+            }
         }
 
         fetchProductList();
-    }, [currentPage]);
-    
+        //fetchCategory();
+    }, [currentPage,params]);
+
+    useEffect(() => {
+        const fetchCategory = async () => {
+            try {
+                const response = await categoryApi.getAll();
+                // Lưu response cate vào state 
+                response.data.map(item => setCate(oldArray => [...oldArray, item]))
+            } catch (error) {
+                console.log('Failed to fetch category list: ', error);
+            }
+        }
+
+        fetchCategory();
+    },[1]);
+    //console.log(currentPage);
+    // console.log(loading);
+    // productList ? console.log(productList[0]) : console.log('caccas');;
+
+
+    //productList ? productList.map(x => console.log( (typeof(x.colorProducts[0]) != 'undefined' ) ? x.colorProducts[0].images[0] : 'kk')) : console.log('nu');
+
     return (
         <Container>
             <Row>
+
                 <Col sm="12" md="3">
                     <div className="layer-navigation">
                         <div className="panel">
@@ -155,9 +207,9 @@ function Product(props) {
                                 
                                             {
                                                 cate.map((item,key)=>(
-                                                    <div onClick={()=> addAtt(item)} className="filter" key={key}>
+                                                    <div onClick={()=> addAtt(item,'category')} className="filter" key={key}>
                                                         <span className="item" href="https://www.youtube.com/">
-                                                            {item}
+                                                            {item.name}
                                                         </span>
                                                     </div>
                                                 ))
@@ -256,17 +308,37 @@ function Product(props) {
                         <div className="product-list">
                             <Row>
                                 {
-                                   loading ? ( <Spinner className="loading" color="primary" /> ) :( productList.data.map((data,key) =>(
+                                   loading ? ( <Spinner className="loading" color="primary" /> ) :( productList.map((data,key) =>(
                                         <Col key={key} md="4">
                                             <CardV2
                                                 productName = {data.name}
-                                                productImage = {data.images[0]}
-                                                productPrice = {data.price}
-                                                numberStar={10}
+                                                productImage = {(typeof(data.colorProducts[0]) != 'undefined' ) ? 
+                                                (
+                                                    data.colorProducts[( data.colorProducts.map(item => item.avatar).indexOf(true) ) == -1 ? 0 : data.colorProducts.map(item => item.avatar).indexOf(true)].images[0]
+                                                ) 
+                                                : null}
+
+                                                productPrice = {(typeof(data.colorProducts[0]) != 'undefined' ) ? 
+                                                (
+                                                    data.colorProducts[( data.colorProducts.map(item => item.avatar).indexOf(true) ) == -1 ? 0 : data.colorProducts.map(item => item.avatar).indexOf(true)].price
+                                                ) 
+                                                : null}
+
+                                                numberStar={(typeof(data.review[0]) != 'undefined' ) ? 
+                                                (
+
+                                                    data.review.reduce((accumulator, currentValue, currentIndex,array) =>
+                                                        accumulator + currentValue.rating/array.length
+                                                    ,0)
+                                                    
+                                                ) 
+                                                : 0}
+                                                
                                             />
                                         </Col>
                                     )))
                                 }
+
 
                             </Row>
 

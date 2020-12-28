@@ -4,7 +4,7 @@ import axiosClient from "./axiosClient";
 const productApi = {
     getAll: (params) => {
         const url = '/product/getAll';
-        return axiosClient.get(url , {params});
+        return axiosClient.post(url , params);
     }
 }
 
