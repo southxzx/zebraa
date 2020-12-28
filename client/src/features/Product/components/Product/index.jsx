@@ -28,30 +28,9 @@ function Product(props) {
     const color = [
         "white","blue","green","orange","black","green","orange", 
     ];
-    var color1 = [],color2 = [];
-    function divideColor(){
-        if(color.length >= 4 ){
-            for(let i = 0 ; i < 4 ; i++){
-                color1[i] = color[i];
-            }
-            for(let j = 4 ; j < color.length ; j++){
-                color2[j] = color[j];
-            }
-        }
-        else{
-            for(let i = 0 ; i < color.length ; i++){
-                color1[i] = color[i];
-            }
-        }
-
-    }
-    divideColor();
 
     //Manufacturer
     //`Nike (${0})`,`Adidas (${0})`,`Jordan (${0})`,`Balenciaga (${0})`
-    const manuf = [
-        `Nike (${0})`,`Adidas (${0})`,`Jordan (${0})`,`Balenciaga (${0})`
-    ];
 
     //Attribute
     function addAtt(item,type){       
@@ -127,18 +106,8 @@ function Product(props) {
                 console.log('Failed to fetch product list: ', error);
             }
         }
-        const fetchCategory = async () => {
-            try {
-                const response = await categoryApi.getAll();
-                console.log(response.data);
-                response.data.map(item => setCate(oldArray => [...oldArray, item.name]))
-            } catch (error) {
-                console.log('Failed to fetch category list: ', error);
-            }
-        }
 
         fetchProductList();
-        //fetchCategory();
     }, [currentPage,params]);
 
     useEffect(() => {
@@ -242,36 +211,14 @@ function Product(props) {
 
                                         <div className="item-colors">
                                                 {
-                                                    color1.map((item,key) => (
+                                                    color.map((item,key) => (
                                                         <span onClick={()=> addAtt(item,'color')} className="color" color={item} key={key}></span>
-                                                    ))
-                                                }
-                                        </div>
-                                        <div className="item-colors">
-                                                {
-                                                    color2.map((item,key) => (
-                                                        <span onClick={()=> addAtt(item)} className="color" color={item} key={key}></span>
                                                     ))
                                                 }
                                         </div>
                                     </div>
 
-                                    <div className="filter-manufacture">
-                                        <h4>
-                                            Manufacturer
-                                        </h4>
-                                        <div className="list-item">
-                                            {
-                                                manuf.map((item,key)=>(
-                                                    <div onClick={()=> addAtt(item)} className="filter" key={key}>
-                                                        <span className="item" href="https://www.youtube.com/">
-                                                            {item}
-                                                        </span>
-                                                    </div>
-                                                ))
-                                            }
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -287,7 +234,7 @@ function Product(props) {
                             </div>
 
                             <div className="toolbar-amount">
-                                Total 100 products
+                                Total {productList ? productList.length : null} products
                             </div>
 
                             <div className="sort">
