@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import productApi from '../../../../api/productApi';
 import categoryApi from '../../../../api/categoryApi';
+import colorApi from '../../../../api/colorApi';
 
 
 import { Spinner } from 'reactstrap';
@@ -25,9 +26,7 @@ function Product(props) {
     //price
     const [price, setPrice] = useState({min:2,max:100});
     //color
-    const color = [
-        "white","blue","green","orange","black","green","orange", 
-    ];
+    const [color,setColor] = useState([]);
 
     //Manufacturer
     //`Nike (${0})`,`Adidas (${0})`,`Jordan (${0})`,`Balenciaga (${0})`
@@ -121,8 +120,18 @@ function Product(props) {
             }
         }
 
+        const fetchColor = async () => {
+            try {
+                const response = await colorApi.getAll();
+                response.data.map(item => setColor(oldArray => [...oldArray, item]))
+            } catch (error) {
+                console.log('Failed to fetch color list: ', error);
+            }
+        }
+
         fetchCategory();
-    },[1]);
+        fetchColor();
+    },[]);
     //console.log(currentPage);
     // console.log(loading);
     // productList ? console.log(productList[0]) : console.log('caccas');;
@@ -212,7 +221,7 @@ function Product(props) {
                                         <div className="item-colors">
                                                 {
                                                     color.map((item,key) => (
-                                                        <span onClick={()=> addAtt(item,'color')} className="color" color={item} key={key}></span>
+                                                        <span onClick={()=> addAtt(item,'color')} className="color" color={item.name} key={key}></span>
                                                     ))
                                                 }
                                         </div>
