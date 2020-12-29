@@ -74,7 +74,17 @@ module.exports.getAllProductsByArrival = (req, res) => {
     //Lấy filters bỏ vào findArgs để get SP theo filters
     for (let key in req.body.filters){
         if (req.body.filters[key].length > 0){
-            findArgs[key] = req.body.filters[key];
+            if (key == "colorProducts.price")  {
+                findArgs[key] = {
+                    // Greater than equal
+                    $gte: req.body.filters[key][0],
+                    // Less than equal
+                    $lte: req.body.filters[key][1]
+                }
+            }       
+            else {
+                findArgs[key] = req.body.filters[key];
+            }
         }
     }
     console.log(findArgs);
@@ -82,7 +92,6 @@ module.exports.getAllProductsByArrival = (req, res) => {
     Product.
     find(findArgs).
     populate('category').
-    populate('colorProducts').
     populate({ 
         path: 'colorProducts',
         populate: {

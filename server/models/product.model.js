@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+colorProductSchema = require("../models/color_product").schema;
 
 const Schema = mongoose.Schema;
 const productShema = new mongoose.Schema(
@@ -29,12 +30,7 @@ const productShema = new mongoose.Schema(
             required: true,
             type:Boolean
         },
-        colorProducts:[
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'ColorProduct'
-            }
-        ]
+        colorProducts:[colorProductSchema]
     },{timestamps:true});
 
 module.exports = mongoose.model('Product', productShema);
