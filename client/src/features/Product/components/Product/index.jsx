@@ -24,6 +24,9 @@ function Product(props) {
         "colorProducts.price":[],
     });
 
+    // isColorClicked = false; type= color
+    // if (isClicked == true) HandleAvatar(ProductList); 
+
     //category
     const [cate,setCate] = useState([]);
     const [color,setColor] = useState([]);
@@ -75,11 +78,6 @@ function Product(props) {
             ...params,
             filters: newFilters
         });
-
-        if (type === "colorProducts.color"){
-            HandleAvatar();
-        }
-
     }
 
     function clearAtt(item, type){
@@ -143,9 +141,41 @@ function Product(props) {
     useEffect(() => {
         const fetchProductList = async () =>{
             try {
-                const response = await productApi.getAll(params);
+                let response;
+                // Xử lý avatar qua response
+                if (params["filters"]["colorProducts.color"].length > 0){
+                    response = await productApi.getAll(params);
+
+                    // for qua product
+                    for (let i = 0; i < response.data.data.length; i++){
+                        // for qua color product trong mỗi product
+                        for (let j = 0; j < response.data.data[i].colorProducts.length; j++){
+                            // for màu trong param
+                            for (let k = 0; k < params["filters"]["colorProducts.color"].length; k++){
+                                // nếu màu trong param == màu trong color product thì đổi avatar = true
+                                if (params["filters"]["colorProducts.color"][k] 
+                                    == response.data.data[i].colorProducts[j].color._id){
+
+                                        console.log("dd");
+                                        response.data.data[i].colorProducts[j].avatar = true;
+                                }
+                                else{
+                                    response.data.data[i].colorProducts[j].avatar = false;
+                                }
+                            }
+                            
+                        }
+                    }
+
+                    console.log(response.data.data);
+                                      
+                }
+                else{
+                    response = await productApi.getAll(params);
+                }
+
                 await dispatch({ type: 'OnSuccess', payload: response.data })
-                //console.log(response.data);
+                //console.log(response.data);            
             } catch (error) {
                 console.log('Failed to fetch product list: ', error);
             }
@@ -178,10 +208,6 @@ function Product(props) {
     },[1]);
     //console.log(currentPage);
     // productList ? console.log(productList[0]) : console.log('caccas');;
-
-    const HandleAvatar = () => {
-        console.log(productList);
-    }
     //productList ? productList.map(x => console.log( (typeof(x.colorProducts[0]) != 'undefined' ) ? x.colorProducts[0].images[0] : 'kk')) : console.log('nu');
 
     return (
