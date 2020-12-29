@@ -18,35 +18,53 @@ import { Spinner } from 'reactstrap';
 function Product(props) {
 
     //Att
-    const [attribute,setAttribute] = useState([]);
+    const [attribute,setAttribute] = useState({
+        category:[],
+        "colorProducts.color":[],
+        "colorProducts.price":[],
+    });
 
     //category
     const [cate,setCate] = useState([]);
+    const [color,setColor] = useState([]);
 
     //price
     const [price, setPrice] = useState({min:2,max:100});
-    //color
-    const [color,setColor] = useState([]);
-
-    //Manufacturer
-    //`Nike (${0})`,`Adidas (${0})`,`Jordan (${0})`,`Balenciaga (${0})`
 
     //Attribute
-    function addAtt(item,type){       
+    function addAtt(item,type){  
+        
+        if (type === "colorProducts.price"){
+            // THÊM VÀO STATE FILTERS
+            // vd: category: ['_id1', '_id2']
+            const newFilters = {...params['filters']};
+            const priceFilter = [];
+            // item={min:0, max:100}
+            priceFilter.push(item.min)
+            priceFilter.push(item.max)
+
+            newFilters[type] = priceFilter;
+
+
+            setParams({
+                ...params,
+                filters: newFilters
+            });
+        }
 
         // THÊM TÊN VÀO MẢNG Attribute
-        // cate.splice(cate.indexOf(item),1);
-        var i = item.name.indexOf(' ');
-        if(i > 0){
-            if(attribute.indexOf(item.name.substr(0,i)) >= 0)
-            return;
-            setAttribute(oldArray => [...oldArray, item.name.substr(0,i)]);
+        const newAttributes = {...attribute};
+        // Tìm phần tử đó đã có trong mảng hay chưa
+        const index = newAttributes[type].indexOf(item);
+        if (index === -1){
+            newAttributes[type].push(item);
+            setAttribute({
+                ...attribute,
+                newAttributes
+            })
         }
-        else{
-            if(attribute.indexOf(item.name) >= 0)
-            return;
-            setAttribute(oldArray => [...oldArray, item.name]);
-        }
+
+
 
         // THÊM VÀO STATE FILTERS
         // vd: category: ['_id1', '_id2']
@@ -58,18 +76,45 @@ function Product(props) {
             filters: newFilters
         });
 
-        console.log(params);
+        if (type === "colorProducts.color"){
+            HandleAvatar();
+        }
 
     }
 
-    function clearAtt(item){
-        var filtered = attribute.filter(function(value, index, arr){
-            return value !== item;
+    function clearAtt(item, type){
+
+        // XÓA TRONG STATE FILTERS
+        // vd: category: ['_id1', '_id2']
+        const newFilters = {...params['filters']};
+        const index = newFilters[type].indexOf(item._id);
+        if(index > -1){
+            newFilters[type].splice(index, 1);
+        }
+
+        setParams({
+            ...params,
+            filters: newFilters
         });
-        setAttribute(filtered);
+
+        // XÓA TRONG ATTRIBUTE
+        const newAttributes = {...attribute};
+        const index2 = newAttributes[type].indexOf(item);
+        if (index2 > -1){
+            newAttributes[type].splice(index2, 1);
+        }
+
+        setAttribute({
+            ...attribute,
+            newAttributes
+        })
     }
     function clearAll(){
-        setAttribute([]);
+        setAttribute({
+            category:[],
+            "colorProducts.color":[],
+            "colorProducts.price":[],
+        });
     }
 
 
@@ -87,9 +132,9 @@ function Product(props) {
         limit: pageLimit,
         skip: currentPage,
         filters:{
-            category: [],
-            color: [],
-            price: []
+            "category": [],
+            "colorProducts.color":[],
+            "colorProducts.price": []
         }
     });
 
@@ -114,29 +159,29 @@ function Product(props) {
             try {
                 const response = await categoryApi.getAll();
                 // Lưu response cate vào state 
-                response.data.map(item => setCate(oldArray => [...oldArray, item]))
+                response.data.map(item => setCate(oldArray => [...oldArray, item]));
             } catch (error) {
                 console.log('Failed to fetch category list: ', error);
             }
         }
-
         const fetchColor = async () => {
             try {
                 const response = await colorApi.getAll();
-                response.data.map(item => setColor(oldArray => [...oldArray, item]))
-            } catch (error) {
-                console.log('Failed to fetch color list: ', error);
+                response.data.map(item => setColor(oldArray => [...oldArray, item]));
+            }
+            catch (err) {
+                console.error('Failed to fetch color list: ', err);
             }
         }
-
         fetchCategory();
         fetchColor();
-    },[]);
+    },[1]);
     //console.log(currentPage);
-    // console.log(loading);
-    // productList ? console.log(productList[0]) : console.log('caccas');;
+    //productList ? console.log(productList) : console.log('caccas');;
 
-
+    const HandleAvatar = () => {
+        console.log(productList);
+    }
     //productList ? productList.map(x => console.log( (typeof(x.colorProducts[0]) != 'undefined' ) ? x.colorProducts[0].images[0] : 'kk')) : console.log('nu');
 
     return (
@@ -155,23 +200,30 @@ function Product(props) {
                             <div className="layer">
                                 <div className="list-groups">
                                     <div className="filter-attribute">
-                                     
                                             {
-                                                attribute.map((item,key)=>(
+                                                attribute['category'].map((item,key)=>(
                                                     <div className="att" key={key}>
                                                         <div className="att-item">
-                                                            {item}
+                                                            {item.name}
                                                         </div>
-        
-                                                        <div onClick={() => clearAtt(item)} className="clear">
+                                                        <div onClick={() => clearAtt(item,'category')} className="clear">
                                                             <img src="/Assets/images/cancel.png"></img>
                                                         </div>
                                                     </div>
-
                                                 ))
                                             }
-                                        
-
+                                            {
+                                                attribute['colorProducts.color'].map((item, key) => (
+                                                    <div className="att" key={key}>
+                                                        <div className="att-item">
+                                                            {item.name}
+                                                        </div>
+                                                        <div onClick={() => clearAtt(item, 'colorProducts.color')} className="clear">
+                                                            <img src="/Assets/images/cancel.png"></img>
+                                                        </div>
+                                                    </div>
+                                                ))
+                                            }
                                         <div onClick={()=>clearAll()} className="clear-all">
                                             Clear all
                                         </div>
@@ -205,9 +257,12 @@ function Product(props) {
                                             <InputRange
                                                 maxValue={500}
                                                 minValue={0}
+                                                step={50}
                                                 value={price}
                                                 onChange={value => setPrice(value)}
-                                                onChangeComplete={value => console.log(value)} />
+                                                //onChangeComplete={value =>console.log("price:", value)}
+                                                onChangeComplete={value => addAtt(value,"colorProducts.price")} 
+                                                />
                                             </form>
                                             
                                         </div>
@@ -221,13 +276,11 @@ function Product(props) {
                                         <div className="item-colors">
                                                 {
                                                     color.map((item,key) => (
-                                                        <span onClick={()=> addAtt(item,'color')} className="color" color={item.name} key={key}></span>
+                                                        <span onClick={()=> addAtt(item,'colorProducts.color')} className="color" color={item.name} key={key}></span>
                                                     ))
                                                 }
                                         </div>
-                                    </div>
-
-                                    
+                                    </div>                                   
                                 </div>
                             </div>
                         </div>
