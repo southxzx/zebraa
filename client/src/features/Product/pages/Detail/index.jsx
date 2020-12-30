@@ -7,8 +7,17 @@ import Product_Detail_Related from '../../components/Product_Detail_Related';
 import Product_Detail_Review from '../../components/Product_Detail_Review';
 import Breadcrumbs from '../../../../components/Breadscrumbs';
 
+import { useParams } from "react-router-dom";
 
 function DetailPage(props) {
+    let { _idProduct,_idColorProduct } = useParams(); // id = useParams().id
+
+    console.log(_idProduct,_idColorProduct);
+    console.log(typeof _idProduct); // string
+    console.log(typeof _idColorProduct); // string
+    // console.log(typeof Data[0].id); // number
+    console.log(typeof parseInt(_idProduct)); // number
+
     return (
         <div className="">
             <Header/>
