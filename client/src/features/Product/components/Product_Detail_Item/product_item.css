@@ -165,10 +165,19 @@
     border-color: #444;
 }
 
-.item-color span.color.active{
-    border-color: #fff;
-    box-shadow: 0 0 10px .5px rgba(0, 0, 0, 0.2);
-    transform: scale(1.1);
+.item-color span.color[color="yellow"]{
+    background-color: #fbc531;
+    border-color: #fbc531;
+}
+
+.item-color span.color[color="pink"]{
+    background-color: #ff9ff3;
+    border-color: #ff9ff3;
+}
+
+.item-color span.color[color="gray"]{
+    background-color: #576574;
+    border-color: #576574;
 }
 
 .size-item {

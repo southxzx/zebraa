@@ -8,8 +8,10 @@ import { useEffect } from 'react';
 
 function Product_Detail_Item(props) {
 
-    const {productName,countReview,productPrice,productBrand,productDes,productLove,numberStar} = props
+    const {productName,countReview,productImages,productColor,productImagesColor,productPrice,productBrand,productDes,productLove,numberStar} = props
+    //console.log(productImages);
 
+    
     //count
     const [count,setCount] = useState(1);
     const [value,setValue] = useState(1);
@@ -31,42 +33,31 @@ function Product_Detail_Item(props) {
     }
 
     //color
-    const [color,setColor] = useState([
-        "white",
-        "blue",
-        "green",
-        "orange",
-        "black"
-    ]);
+    const [color,setColor] = useState([]);
+    console.log(productColor);
+    
+    // images
+    const [imageList,setImageList] = useState([]);
+    useEffect(()=>{
 
-    const [imageList,setImageList] = useState([
-        "/Assets/images/nike1-detail.jpg",
-        "/Assets/images/nike1-0-detail.jpg",
-        "/Assets/images/nike1-1-detail.jpg",
-        "/Assets/images/nike1-2-detail.jpg",
-        "/Assets/images/nike1-3-detail.jpg"
-    ]);
+        setImageList(productImages);
+        setColor(productColor);
+        handleContentLoaded();
+
+    },[productImages])
+
+    console.log(imageList);
+
 
     //get image by color
-    function imageListByColor(color){
-        if(color == "white"){
-            setImageList([
-                "/Assets/images/nike1-detail.jpg",
-                "/Assets/images/nike1-0-detail.jpg",
-                "/Assets/images/nike1-1-detail.jpg",
-                "/Assets/images/nike1-2-detail.jpg",
-                "/Assets/images/nike1-3-detail.jpg"
-            ]);
-        }
-
-        if(color == "black"){
-            setImageList([
-                "/Assets/images/nike2-detail.jpg",
-                "/Assets/images/nike2-0-detail.jpg",
-                "/Assets/images/nike2-1-detail.jpg",
-                "/Assets/images/nike2-2-detail.jpg",
-                "/Assets/images/nike2-3-detail.jpg"
-            ]);
+    function imageListByColor(item){
+        
+        for(let i = 0 ; i < color.length; i++){
+            if(item == color[i]){
+                setImageList(productImagesColor[`${color[i]}`][0]);
+                console.log(productImagesColor[`${color[i]}`][0]);
+                
+            }
         }
     }
 
@@ -120,7 +111,7 @@ function Product_Detail_Item(props) {
             this.classList.add('active');
             
             items.forEach(item => item.classList.remove('active'));//remove item border
-            items[0].classList.add('active');
+            //items[0].classList.add('active');
             // shoes.forEach(s => s.classList.remove('show'));
             // shoe.classList.add('show');
         }
@@ -144,7 +135,7 @@ function Product_Detail_Item(props) {
             let h1 = mainContainer.offsetHeight;
 
             //Zoom ratio
-            let ratio = 3;
+            let ratio = 2;
             //Zoom window background-image size
             zoom.style.backgroundSize = w1 * ratio + 'px' + h1 * ratio + 'px';
 
@@ -209,9 +200,7 @@ function Product_Detail_Item(props) {
         }
     }
 
-    useEffect(()=>{
-        handleContentLoaded();
-    },[])
+
 
     return (
         <div className="product-detail-item">

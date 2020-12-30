@@ -4,11 +4,12 @@ import { Container, Row, Col, Form } from 'reactstrap';
 
 function Product_Detail_Image(props) {
     const {imageList} = props;
-    const [image, setImage] = useState(imageList[0]);
+    //console.log(imageList);
+    const [image, setImage] = useState(imageList ? imageList[0] : null);
 
     useEffect(()=>{
-        setImage(imageList[0]);
-    },[imageList[0]]);
+        setImage(imageList ? imageList[0] : null);
+    },[imageList ? imageList[0] : null]);
 
     function changeImage(imgLink){
         setImage(imgLink);
@@ -29,13 +30,13 @@ function Product_Detail_Image(props) {
 
             <div className="image-additional">
                 {
-                    imageList.map((item,key) =>(
+                   imageList ?  imageList.map((item,key) =>(
                         <div onClick={()=>changeImage(item)} className="item " key={key}>
                             <img src={item}>
 
                             </img>
                         </div>
-                    ))
+                    )) : null
                 }
             </div>
 
