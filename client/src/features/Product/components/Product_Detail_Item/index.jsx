@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 
 function Product_Detail_Item(props) {
 
-    const {productName,countReview,productImages,productColor,productImagesColor,productPrice,productBrand,productDes,productLove,numberStar} = props
+    const {productName,productImages,productColor,productImagesColor,productPrice,productPriceColor,productBrand,productDes,productReview,productLove} = props
     //console.log(productImages);
 
     
@@ -36,12 +36,29 @@ function Product_Detail_Item(props) {
     const [color,setColor] = useState([]);
     console.log(productColor);
     
+    //price
+    const [price,setPrice] = useState(0);
+
+    //review
+    const [review,setReview] = useState([]);
+
+    //star
+    const starAverage = review ?  review.reduce((accumulator, currentValue, currentIndex,array) =>
+            accumulator + currentValue.rating/array.length
+        ,0) : null ;
+    
+    //countReview
+    const countReview = review ? review.length : null;
+
+    console.log(starAverage);
     // images
     const [imageList,setImageList] = useState([]);
     useEffect(()=>{
 
         setImageList(productImages);
         setColor(productColor);
+        setPrice(productPrice);
+        setReview(productReview);
         handleContentLoaded();
 
     },[productImages])
@@ -57,6 +74,8 @@ function Product_Detail_Item(props) {
                 setImageList(productImagesColor[`${color[i]}`][0]);
                 console.log(productImagesColor[`${color[i]}`][0]);
                 
+                setPrice(productPriceColor[`${color[i]}`]);
+                console.log(productPriceColor[`${color[i]}`]);
             }
         }
     }
@@ -222,7 +241,7 @@ function Product_Detail_Item(props) {
                         </div>
 
                         <div className="ratings">
-                            <Star numberStar={numberStar}/>
+                            <Star numberStar={starAverage}/>
 
                             <a href="https://www.youtube.com/">
                                 {countReview} Reviews
@@ -234,7 +253,7 @@ function Product_Detail_Item(props) {
                         </div>
 
                         <div className ="product-price">
-                            <span className="price">{productPrice}</span>
+                            <span className="price">{price}$</span>
                         </div>
 
 

@@ -36,6 +36,7 @@ function DetailPage(props) {
     //console.log(productItem.data ? productItem.data[0].colorProducts[(productItem.data[0].colorProducts.map(item => item._id).indexOf(_idColorProduct) == -1 ? 0: productItem.data[0].colorProducts.map(item => item._id).indexOf(_idColorProduct))].images : null);
     const color = [];
     const colorProduct = {};
+    const price = {};
     const handleData = () => {
         if(productItem.data){
             // get all color
@@ -43,16 +44,21 @@ function DetailPage(props) {
 
             // get all images by color
             for(let i = 0 ; i < color.length ; i++){
+                //get all images by color
                 colorProduct[`${color[i]}`] = []
                 colorProduct[color[i]].push(productItem.data[0].colorProducts[i].images)
 
+                // get all price by color
+                price[`${color[i]}`] = productItem.data[0].colorProducts[i].price
             }
-            
+
         }
 
     }
     handleData();
     console.log(colorProduct);
+    console.log(price);
+    console.log(productItem.data ? productItem.data[0].review : null);
     
     return (
         <div className="">
@@ -62,17 +68,18 @@ function DetailPage(props) {
         
                 <Product_Detail_Item 
                     productName = {productItem.data ? productItem.data[0].name : null}
-                    countReview = {productItem.data ? productItem.data[0].review.length : null}
                     productImages = {productItem.data ? productItem.data[0].colorProducts[(productItem.data[0].colorProducts.map(item => item._id).indexOf(_idColorProduct) == -1 ? 0: productItem.data[0].colorProducts.map(item => item._id).indexOf(_idColorProduct))].images : null}
                     productColor = {color}
                     productImagesColor = {colorProduct}
-                    productPrice = "110"
+                    productPrice = {productItem.data ? productItem.data[0].colorProducts[(productItem.data[0].colorProducts.map(item => item._id).indexOf(_idColorProduct) == -1 ? 0: productItem.data[0].colorProducts.map(item => item._id).indexOf(_idColorProduct))].price : null}
+                    productPriceColor = {price}
                     productBrand = "Nike"
                     productDes = {productItem.data ? productItem.data[0].description : null}
                     productLove = {true}
-                    numberStar={4.5}
+                    productReview = {productItem.data ? productItem.data[0].review : null}
                 />
-                <Product_Detail_Review numberReview={4} numberStar={4.7}/>
+                <Product_Detail_Review 
+                    productReview = {productItem.data ? productItem.data[0].review : null}/>
                 <Product_Detail_Related/>
             </div>
         </div>
