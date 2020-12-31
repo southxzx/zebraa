@@ -109,7 +109,7 @@ function Product(props) {
     }
     function clearAll(){
         setAttribute({
-            category:[],
+            "category":[],
             "colorProducts.color":[],
             "colorProducts.price":[],
         });
