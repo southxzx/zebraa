@@ -346,7 +346,14 @@ function Product(props) {
                                    loading ? ( <Spinner className="loading" color="primary" /> ) :( productList.map((data,key) =>(
                                         <Col key={key} md="4">
                                             <CardV2
+                                                productId = {data._id}
                                                 productName = {data.name}
+                                                productCategory = {data.category.name}
+                                                productColorProductId = {(typeof(data.colorProducts[0]) != 'undefined' ) ? 
+                                                (
+                                                    data.colorProducts[( data.colorProducts.map(item => item.avatar).indexOf(true) ) == -1 ? 0 : data.colorProducts.map(item => item.avatar).indexOf(true)]._id
+                                                ) 
+                                                : null}
                                                 productImage = {(typeof(data.colorProducts[0]) != 'undefined' ) ? 
                                                 (
                                                     data.colorProducts[( data.colorProducts.map(item => item.avatar).indexOf(true) ) == -1 ? 0 : data.colorProducts.map(item => item.avatar).indexOf(true)].images[0]
