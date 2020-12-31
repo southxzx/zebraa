@@ -69,7 +69,7 @@ function Product_Detail_Item(props) {
     const ItemClicked = (item,key,type) => {
 
         if (type === 'size'){
-            document.getElementById('quantity').innerHTML = `${item.quantity} products available.`;
+            document.getElementById('quantity').innerHTML = `${item.quantity} available products in size ${item.size.name}`;
 
             var size = document.getElementsByClassName("size");
             
@@ -331,7 +331,6 @@ function Product_Detail_Item(props) {
                                                 {
                                                     size ? size.map((item,key) => (
                                                         <span 
-                                                            ref={refClicked} 
                                                             style={ item.quantity <= 0 ? {"pointerEvents":"none","opacity":0.5} : {backgroundColor:"#cecece"}}  
                                                             className="size" 
                                                             onClick={() => ItemClicked(item,key,"size")} 
