@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import './detail.css'
 import { Container, Row, Col, Breadcrumb } from 'reactstrap';
 import Header from '../../../../components/Header/index.jsx';
+import Footer from '../../../../components/Footer/index.jsx';
 import Product_Detail_Item from '../../components/Product_Detail_Item';
 import Product_Detail_Related from '../../components/Product_Detail_Related';
 import Product_Detail_Review from '../../components/Product_Detail_Review';
 import Breadcrumbs from '../../../../components/Breadscrumbs';
 import productApi from '../../../../api/productApi';
 import { useParams } from "react-router-dom";
+
 
 function DetailPage(props) {
     let { _idProduct,_idColorProduct } = useParams(); // id = useParams().id
@@ -82,6 +84,7 @@ function DetailPage(props) {
                     productReview = {productItem.data ? productItem.data[0].review : null}/>
                 <Product_Detail_Related/>
             </div>
+            <Footer/>
         </div>
 
     );

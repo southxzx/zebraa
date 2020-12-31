@@ -46,3 +46,28 @@ span.star-up .up{
     align-items: center;
     margin-left: 1rem;
 }
+
+.star-review{
+    padding: 10px 0px;
+}
+
+.user-info{
+    display: flex;
+}
+
+.avatar-user{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: blue;
+}
+.avatar-user img{
+    width: 100%;
+}
+.name-user{
+    margin: auto 5px;
+}
+.date{
+    float: right;
+}

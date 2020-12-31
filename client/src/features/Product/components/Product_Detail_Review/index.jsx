@@ -2,6 +2,7 @@ import React, { useEffect,useState } from 'react';
 import './product_review.css'
 import { Container, Row, Col } from 'reactstrap';
 import Star from '../../../../components/Star';
+import { Table } from 'reactstrap';
 
 function Product_Detail_Review(props) {
     const {productReview} = props;
@@ -44,7 +45,45 @@ function Product_Detail_Review(props) {
             <Container>
                 <Row>
                     <Col>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas impedit minima aliquam, fugit excepturi necessitatibus odit voluptatem magni vero, suscipit voluptates tempore ipsa dolores labore aut voluptas sit repudiandae sequi?
+                    {review ? review.reverse().map((value,key) =>(
+                        <Table bordered>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <Row>
+                                            <Col>
+                                                <div className="user-info">
+                                                    <div className="avatar-user">
+                                                        <img src="https://i.imgur.com/cty0hD3.jpeg"/>
+                                                    </div>
+                                                    <p className="name-user">
+                                                        {value.user.name}
+                                                    </p>
+                                                </div>
+                                            </Col>
+                                            <Col>
+                                                <div className="date">
+                                                    {value.createdAt.slice(0,19).replace("T"," / ")}
+                                                </div>
+                                            </Col>
+                                        </Row>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">
+                                        <div className="star-review">
+                                            <Star
+                                                numberStar = {value.rating}
+                                            />
+                                        </div>
+                                        {value.comment}
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </Table>
+                    )) : null}
                     </Col>
                 </Row>
             </Container>
