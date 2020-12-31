@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import productApi from '../../../../api/productApi';
 import categoryApi from '../../../../api/categoryApi';
 import colorApi from '../../../../api/colorApi';
+import Header from '../../../../components/Header';
+import Breadcrumb from '../../../../components/Breadscrumbs';
 
 
 import { Spinner } from 'reactstrap';
@@ -211,6 +213,13 @@ function Product(props) {
     //productList ? productList.map(x => console.log( (typeof(x.colorProducts[0]) != 'undefined' ) ? x.colorProducts[0].images[0] : 'kk')) : console.log('nu');
 
     return (
+        <div>
+        <Header/>
+        <Breadcrumb
+            title="Product"
+            linkBack="Home"
+            active="Product"
+        />
         <Container>
             <Row>
 
@@ -399,6 +408,7 @@ function Product(props) {
                 </Col>
             </Row>
         </Container>
+        </div>
     );
 }
 

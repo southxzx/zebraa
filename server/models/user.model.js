@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 const crypto = require("crypto");
+cartSchema = require("../models/cart.model").schema;
+historySchema = require("../models/history.model").schema;
 
+const Schema = mongoose.Schema;
 // User schema
 const userSchema = new mongoose.Schema(
     {
@@ -29,15 +32,19 @@ const userSchema = new mongoose.Schema(
       resetPasswordLink: {
         data: String,
         default: "",
-        
       },
-      cart:{
-        type: Array,
-        default: []
+      cart:[cartSchema],
+      history:[],
+      phoneNumber:{
+        type: Number,
+        maxlength: 10,
+        minlength: 10
       },
-      history:{
-        type:Array,
-        default:[]
+      address:{
+        type: String
+      },
+      avatar:{
+        type: String
       }
     },
     { timestamps: true }    // can create: createdAt and updatedAt
