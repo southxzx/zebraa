@@ -46,7 +46,7 @@ function Product_Detail_Review(props) {
                 <Row>
                     <Col>
                     {review ? review.reverse().map((value,key) =>(
-                        <Table bordered>
+                        <Table bordered key={key}>
                             <thead>
                                 <tr>
                                     <th>
@@ -72,14 +72,14 @@ function Product_Detail_Review(props) {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="row">
+                                    <td>
                                         <div className="star-review">
                                             <Star
                                                 numberStar = {value.rating}
                                             />
                                         </div>
                                         {value.comment}
-                                    </th>
+                                    </td>
                                 </tr>
                             </tbody>
                         </Table>

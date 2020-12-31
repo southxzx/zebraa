@@ -69,8 +69,17 @@ function DetailPage(props) {
             <div className="main-product-detail">
         
                 <Product_Detail_Item 
+                    productSizes = {productItem.data ? productItem.data[0].colorProducts[
+                        (productItem.data[0].colorProducts.map(item => item._id).indexOf(_idColorProduct) == -1 
+                        ? 0: productItem.data[0].colorProducts.map(item => item._id).indexOf(_idColorProduct))].sizeProducts 
+                        : null}
                     productName = {productItem.data ? productItem.data[0].name : null}
-                    productImages = {productItem.data ? productItem.data[0].colorProducts[(productItem.data[0].colorProducts.map(item => item._id).indexOf(_idColorProduct) == -1 ? 0: productItem.data[0].colorProducts.map(item => item._id).indexOf(_idColorProduct))].images : null}
+
+                    productImages = {productItem.data ? productItem.data[0].colorProducts[
+                        (productItem.data[0].colorProducts.map(item => item._id).indexOf(_idColorProduct) == -1 
+                            ? 0: productItem.data[0].colorProducts.map(item => item._id).indexOf(_idColorProduct))].images 
+                            : null}
+
                     productColor = {color}
                     productImagesColor = {colorProduct}
                     productPrice = {productItem.data ? productItem.data[0].colorProducts[(productItem.data[0].colorProducts.map(item => item._id).indexOf(_idColorProduct) == -1 ? 0: productItem.data[0].colorProducts.map(item => item._id).indexOf(_idColorProduct))].price : null}

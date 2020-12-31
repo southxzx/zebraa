@@ -197,14 +197,14 @@
     align-items: center;
 }
 .item-size span.size{
-    width: 25px;
+    width: 40px;
     height: 25px;
     border-radius: 6px;
     background-color: #eee;
     margin: 0 10px;
     text-align: center;
     line-height: 25px;
-    font-size: 12px;
+    font-size: 100%;
     font-weight: 500;
     cursor: pointer;
     transition: 0.3s;

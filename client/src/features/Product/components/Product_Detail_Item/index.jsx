@@ -4,14 +4,14 @@ import './product_item.css'
 import { Container, Row, Col, Form } from 'reactstrap';
 import Product_Detail_Image from '../Product_Detail_Image';
 import Star from '../../../../components/Star';
-import { useEffect } from 'react';
+import { useEffect} from 'react';
 
 function Product_Detail_Item(props) {
 
-    const {productName,productImages,productColor,productImagesColor,productPrice,productPriceColor,productBrand,productDes,productReview,productLove} = props
-    //console.log(productImages);
+    const {productSizes,productName,productImages,productColor,productImagesColor,
+        productPrice,productPriceColor,productBrand,productDes,productReview,productLove} = props
 
-    
+
     //count
     const [count,setCount] = useState(1);
     const [value,setValue] = useState(1);
@@ -34,7 +34,9 @@ function Product_Detail_Item(props) {
 
     //color
     const [color,setColor] = useState([]);
-    console.log(productColor);
+
+    //Size
+    const [size, setSize] = useState([])
     
     //price
     const [price,setPrice] = useState(0);
@@ -50,21 +52,35 @@ function Product_Detail_Item(props) {
     //countReview
     const countReview = review ? review.length : null;
 
-    console.log(starAverage);
     // images
     const [imageList,setImageList] = useState([]);
+
     useEffect(()=>{
 
         setImageList(productImages);
         setColor(productColor);
         setPrice(productPrice);
         setReview(productReview);
+        setSize(productSizes);
         handleContentLoaded();
 
     },[productImages])
 
-    console.log(imageList);
+    const ItemClicked = (item,key,type) => {
 
+        if (type === 'size'){
+            document.getElementById('quantity').innerHTML = `${item.quantity} products available.`;
+
+            var size = document.getElementsByClassName("size");
+            
+            // Set all size to be grey 
+            productSizes.map((value,key)=>{
+                size[key].style.backgroundColor = "#cecece";
+            })
+            // Set the size we need to be blue 
+            size[key].style.backgroundColor = "#2175f5";
+        }
+    }
 
     //get image by color
     function imageListByColor(item){
@@ -80,11 +96,6 @@ function Product_Detail_Item(props) {
         }
     }
 
-    //Size
-    const [size, setSize] = useState([
-        7,8,9,10,11
-    ])
-
     //Love
     const [love, setLove] = useState(productLove)
 
@@ -95,51 +106,49 @@ function Product_Detail_Item(props) {
     //Handle js
     const handleContentLoaded = () =>{
             ///Item-mini
-        const items = document.querySelectorAll('.item');
-        function changeItem(){
-            items.forEach(item => item.classList.remove('active'));
-            this.classList.add('active');
-        }
-        if(items == null) return
-        else{
-            items.forEach(item => item.addEventListener('click', changeItem));
-        }
+        // const items = document.querySelectorAll('.item');
+        // function changeItem(){
+        //     items.forEach(item => item.classList.remove('active'));
+        //     this.classList.add('active');
+        // }
+        // if(items == null) return
+        // else{
+        //     items.forEach(item => item.addEventListener('click', changeItem));
+        // }
+                     
+
+        // ///color
+        // const shoes = document.querySelectorAll('.shoe');
+        // const colors = document.querySelectorAll('.color');
+
+        // function changeColor(){
+        //     //let color = this.getAttribute('color');
+        //     //let shoe = document.querySelector(`.shoe[color="${color}"]`);
+
+        //     colors.forEach(c => c.classList.remove('active'));
+        //     this.classList.add('active');
+            
+        //     items.forEach(item => item.classList.remove('active'));//remove item border
+        //     //items[0].classList.add('active');
+        //     // shoes.forEach(s => s.classList.remove('show'));
+        //     // shoe.classList.add('show');
+        // }
+        // if(colors == null) return
+        // else{
+        //     colors.forEach(c => c.addEventListener('click', changeColor));
+        // }
             
 
-        ///Size
-        const sizes = document.querySelectorAll('.size');
-        function changeSize(){
-            sizes.forEach(size => size.classList.remove('active'));
-            this.classList.add('active');
-        }
-        if(sizes == null) return
-        else{
-            sizes.forEach(size => size.addEventListener('click', changeSize));
-        }
-            
-
-        ///color
-        const shoes = document.querySelectorAll('.shoe');
-        const colors = document.querySelectorAll('.color');
-
-        function changeColor(){
-            //let color = this.getAttribute('color');
-            //let shoe = document.querySelector(`.shoe[color="${color}"]`);
-
-            colors.forEach(c => c.classList.remove('active'));
-            this.classList.add('active');
-            
-            items.forEach(item => item.classList.remove('active'));//remove item border
-            //items[0].classList.add('active');
-            // shoes.forEach(s => s.classList.remove('show'));
-            // shoe.classList.add('show');
-        }
-        if(colors == null) return
-        else{
-            colors.forEach(c => c.addEventListener('click', changeColor));
-        }
-            
-
+        // const sizes = document.querySelectorAll('.size');
+        // function changeSize(){
+        //     console.log("gggg");
+        //     sizes.forEach(size => size.classList.remove('active'));
+        //     this.classList.add('active');
+        // }
+        // if(sizes == null) return
+        // else{
+        //     sizes.forEach(size => size.addEventListener('click', changeSize));
+        // }
 
 
         ///zoom
@@ -320,12 +329,19 @@ function Product_Detail_Item(props) {
 
                                             <div className="item-size">
                                                 {
-                                                    size.map((item,key) => (
-                                                        <span className="size" key={key}>{item}</span>
+                                                    size ? size.map((item,key) => (
+                                                        <span 
+                                                            ref={refClicked} 
+                                                            style={ item.quantity <= 0 ? {"pointerEvents":"none","opacity":0.5} : {backgroundColor:"#cecece"}}  
+                                                            className="size" 
+                                                            onClick={() => ItemClicked(item,key,"size")} 
+                                                            key={key}>{item.size.name}
+                                                        </span>
                                                     ))
+                                                    : null
                                                 }
                                             </div>
-                                    
+                                            <span id="quantity" className="quantity-size"></span>
                                         </div>
                                     </Col>
                                     
