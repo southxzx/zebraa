@@ -26,6 +26,7 @@
     "reactstrap": "^8.7.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "use-state-if-mounted": "^1.0.4",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

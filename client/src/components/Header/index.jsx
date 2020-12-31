@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'reactstrap';
 import MiniCart from '../MiniCart';
 import Login from '../../features/Register_Login/login';
 import Register from '../../features/Register_Login/register';
-
+import { Link, NavLink } from "react-router-dom";
 function Header(props) {
 
 
@@ -88,9 +88,12 @@ function Header(props) {
                         <nav className="desk-menu">
                             <ul>
                                 <li className="active itemMenu">
-                                    <a className="layer1" href="/" title="Home">
+                                    {/* <a className="layer1" href="/" title="Home">
                                         Home
-                                    </a>
+                                    </a> */}
+                                    <NavLink to='/products' className="layer1" title="Home">
+                                        Home
+                                    </NavLink>
                                 </li>
                                 <li className="itemMenu">
                                     <div className="menu-cate">
