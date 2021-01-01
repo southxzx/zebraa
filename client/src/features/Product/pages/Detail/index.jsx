@@ -39,6 +39,7 @@ function DetailPage(props) {
     const color = [];
     const colorProduct = {};
     const price = {};
+    const colorProductId = {};
     const handleData = () => {
         if(productItem.data){
             // get all color
@@ -51,17 +52,20 @@ function DetailPage(props) {
                 colorProduct[color[i]].push(productItem.data[0].colorProducts[i].images)
 
                 // get all price by color
-                price[`${color[i]}`] = productItem.data[0].colorProducts[i].price
+                price[`${color[i]}`] = productItem.data[0].colorProducts[i].price;
+
+                // get all id colorProduct
+                colorProductId[`${color[i]}`] = productItem.data[0].colorProducts[i]._id;
             }
 
         }
 
     }
     handleData();
-    console.log(colorProduct);
-    console.log(price);
-    console.log(productItem.data ? productItem.data[0].review : null);
-    
+    //console.log(colorProduct);
+    //console.log(price);
+    //console.log(productItem.data ? productItem.data[0].review : null);
+    //console.log(colorProductId);
     return (
         <div className="">
             <Header/>
@@ -82,6 +86,7 @@ function DetailPage(props) {
 
                     productColor = {color}
                     productImagesColor = {colorProduct}
+                    productIdColor = {colorProductId}
                     productPrice = {productItem.data ? productItem.data[0].colorProducts[(productItem.data[0].colorProducts.map(item => item._id).indexOf(_idColorProduct) == -1 ? 0: productItem.data[0].colorProducts.map(item => item._id).indexOf(_idColorProduct))].price : null}
                     productPriceColor = {price}
                     productBrand = "Nike"
