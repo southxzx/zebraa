@@ -1,92 +1,89 @@
 import React from 'react';
+import { useEffect } from 'react';
 import './miniCart.css';
-
-
+import cartApi from '../../api/cartApi';
+import { useState } from 'react';
 
 function MiniCart(props) {
+
+    const [cart,setCart] = useState();
+
+    //Tổng
+    let priceTotal = 0;
+    let numberItem = 0;
+
+    // So sánh các id trong cart và lấy ra product với color và size đúng như đã chọn
+    const getSpecificProduct = () => {
+
+        const idProduct = "5feb385fbd8c14194c6b3ecb";
+        const idColorProduct = "5feb3956bd8c14194c6b3ecc";
+        const idSize = "5fed533333ee690cec4f9007";
+
+        cart.map((item,key)=>{
+            priceTotal += item.quantity * item.idColorProduct.price;
+            numberItem ++;
+        })
+        console.log(priceTotal, numberItem)
+
+    }
+
+    const removeItemInCart = () => {
+        
+    }
+
+    cart ? getSpecificProduct() : console.log("empty cart");
+
+    useEffect(() => {
+        const fetchCart = async () => {
+            try{
+                const response = await cartApi.getAll("5fede8dc2f490c5e6807257b");
+                setCart(response.data.cart);
+                
+            }
+            catch(err){
+                console.log('Failed to fetch cart list: ', err);
+            }
+        }
+        fetchCart();
+    },[1]);
 
     return (
         <div ref={props.wrapperRef} className="miniCart">
             <div className="top-content">
-                <div className="row-total">
-                    <div className="quantity">
-                        <h6>Total: </h6>
-                        <h6>$96.00</h6>
-                    </div>
-                    <div className="total">
-                        <h6>Items:</h6>
-                        <h6>3 </h6>
-                    </div>
-                </div>
+                {
+                    cart ? (
+                        <div className="row-total">
+                            <div className="quantity">
+                                <h6>Total: </h6>
+                                <h6>${priceTotal}</h6>
+                            </div>
+                            <div className="total">
+                                <h6>Items:</h6>
+                                <h6>{numberItem}</h6>
+                            </div>
+                        </div>
+                    )
+                    : null
+                }
             </div>
             <div className="middle-content">
                 <div className="inner">
-                    <div className="item">
-                        <div className="image">
-                            <img src="/Assets/images/product1.png" alt="Product"></img>
-                        </div>
-                        <div className="info">
-                            <p className="name">Vans Oldskool</p>
-                            <p>$30.00</p>
-                            <p>Quantity: <b>1</b></p>
-                        </div>
-                        <a href="#" className="icon-delete"><i className="fa fa-trash-o"></i></a>
-                    </div>
-                    <div className="item">
-                        <div className="image">
-                            <img src="/Assets/images/product1.png" alt="Product"></img>
-                        </div>
-                        <div className="info">
-                            <p className="name">Vans Oldskool</p>
-                            <p>$30.00</p>
-                            <p>Quantity: <b>1</b></p>
-                        </div>
-                        <a href="#" className="icon-delete"><i className="fa fa-trash-o"></i></a>
-                    </div>
-                    <div className="item">
-                        <div className="image">
-                            <img src="/Assets/images/product1.png" alt="Product"></img>
-                        </div>
-                        <div className="info">
-                            <p className="name">Vans Oldskool</p>
-                            <p>$30.00</p>
-                            <p>Quantity: <b>1</b></p>
-                        </div>
-                        <a href="#" className="icon-delete"><i className="fa fa-trash-o"></i></a>
-                    </div>
-                    <div className="item">
-                        <div className="image">
-                            <img src="/Assets/images/product1.png" alt="Product"></img>
-                        </div>
-                        <div className="info">
-                            <p className="name">Vans Oldskool</p>
-                            <p>$30.00</p>
-                            <p>Quantity: <b>1</b></p>
-                        </div>
-                        <a href="#" className="icon-delete"><i className="fa fa-trash-o"></i></a>
-                    </div>               
-                    <div className="item">
-                        <div className="image">
-                            <img src="/Assets/images/product1.png" alt="Product"></img>
-                        </div>
-                        <div className="info">
-                            <p className="name">Vans Oldskool</p>
-                            <p>$30.00</p>
-                            <p>Quantity: <b>1</b></p>
-                        </div>
-                        <a href="#" className="icon-delete"><i className="fa fa-trash-o"></i></a>
-                    </div>
-                    <div className="item">
-                        <div className="image">
-                            <img src="/Assets/images/product1.png" alt="Product"></img>
-                        </div>
-                        <div className="info">
-                            <p className="name">Vans Oldskool</p>
-                            <p>$30.00</p>
-                            <p>Quantity: <b>1</b></p>
-                        </div>
-                        <a href="#" className="icon-delete"><i className="fa fa-trash-o"></i></a>
-                    </div>
+                    {
+                        cart ? cart.map((item,key) => (
+                            <div className="item" key={key}>
+                                <div className="image">
+                                    <img src={item.idColorProduct.images[0]} alt="Product"></img>
+                                </div>
+                                <div className="info">
+                                    <p className="name">{item.idProduct.name}</p>
+                                    <p>${item.idColorProduct.price}</p>
+                                    <p>Quantity: <b>{item.quantity}</b></p>
+                                </div>
+                                <a href="#" onClick={()=> removeItemInCart(item)} className="icon-delete"><i className="fa fa-trash-o"></i></a>
+                            </div>
+                        ))
+                        : null
+                    }
                 </div>
             </div>
             <div className="bottom-content">

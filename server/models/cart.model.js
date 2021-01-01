@@ -12,7 +12,9 @@ const cartSchema = new mongoose.Schema({
         required: true
     },
     idColorProduct:{
-        type: String
+        type: Schema.Types.ObjectId,
+        ref: 'ColorProduct',
+        required: true
     },
     idSize:{
         type: String

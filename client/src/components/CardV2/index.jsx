@@ -43,8 +43,6 @@ function CardV2(props) {
         // return
         return str;
     }
-    console.log(productColorProductId);
-    console.log(typeof productColorProductId);
     return (
         
             <div onMouseEnter={handleHover} onMouseLeave={handleHover} className={isHovered ? "item-inner item-inner-active" : "item-inner" }>
