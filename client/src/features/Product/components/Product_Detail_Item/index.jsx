@@ -6,6 +6,8 @@ import Product_Detail_Image from '../Product_Detail_Image';
 import Star from '../../../../components/Star';
 import { useEffect} from 'react';
 import { useParams,useHistory } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 import handleContentLoaded from './product_item';
 import cartApi from '../../../../api/cartApi';
 
@@ -29,9 +31,7 @@ function Product_Detail_Item(props) {
             setCount(count-1);
         }
     }
-    function handleChange(event) {
-        setValue({value: event.target.value});
-    }
+
     let data = {
         idUser : "5fede8dc2f490c5e6807257b",
         idProduct: "",
@@ -47,7 +47,7 @@ function Product_Detail_Item(props) {
         data.quantity = count;
 
         const addToCart  = async () => {
-            const response = await cartApi.add(data);
+            await cartApi.add(data);
         }
         addToCart();
         event.preventDefault();
@@ -55,9 +55,6 @@ function Product_Detail_Item(props) {
 
     //color
     const [color,setColor] = useState([]);
-
-    //idColorProduct
-    //const [_idColorProduct,set_IdColorProduct] = useState();
 
     //Size
     const [size, setSize] = useState([]);
@@ -108,7 +105,7 @@ function Product_Detail_Item(props) {
             size[key].style.backgroundColor = "#2175f5";
 
             // Set _idSize
-            set_IdSize(productSizes[key].size._id);
+            set_IdSize(productSizes[key]._id);
         }
     }
     
@@ -138,11 +135,14 @@ function Product_Detail_Item(props) {
         setLove(productLove => !productLove)
     }
 
+    console.log(productSizes);
+    console.log(_idSize);
 
     return (
         <div className="product-detail-item">
             <Container>
                 <Row>
+                    <ToastContainer/>
                     <Product_Detail_Image imageList={imageList}/>
 
                     <Col sm="7">
@@ -264,7 +264,7 @@ function Product_Detail_Item(props) {
                                             <div className="number">
                                                 <h4>Qty</h4>
                                                 <div className="btn btn-outline-primary decrease" onClick={()=>decrease()}>-</div>
-                                                <input className= "num" type="text" value={count} onChange={handleChange}/>
+                                                <input className= "num" type="text" value={count} />
                                                 <div className="btn btn-outline-primary increase" onClick={()=>increase()}>+</div>
                                             </div>
                                         </div>
