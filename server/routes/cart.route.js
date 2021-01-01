@@ -9,11 +9,13 @@ router.post('/add',cartController.addCart);
 // Get all carts
 router.get('/get', cartController.getAllItemsInCart);
 
+
+
 // // Update category by ID
 // router.put('/update', categoryController.updateCategory);
 
-// Delete category
-// router.delete('/delete', categoryController.deleteCategory);
+// Delete 
+router.delete('/delete', cartController.deleteItemInCart);
 
 
 module.exports = router;

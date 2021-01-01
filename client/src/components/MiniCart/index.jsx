@@ -26,8 +26,15 @@ function MiniCart(props) {
 
     }
 
-    const removeItemInCart = () => {
-        
+    const removeItemInCart = (item) => {
+        const deleteItem = async () => {
+            try {
+                await cartApi.delete(item._id);
+            } catch (error) {
+                console.log('Failed to remove cart item: ', error);
+            }
+        }
+        deleteItem();
     }
 
     cart ? getSpecificProduct() : console.log("empty cart");
@@ -44,7 +51,7 @@ function MiniCart(props) {
             }
         }
         fetchCart();
-    },[1]);
+    },[cart]);
 
     return (
         <div ref={props.wrapperRef} className="miniCart">

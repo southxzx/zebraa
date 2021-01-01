@@ -22,6 +22,6 @@ const cartSchema = new mongoose.Schema({
     idUser:{
         type: String
     }
-})
+},{timestamps: true})
 
 module.exports = mongoose.model('Cart', cartSchema);

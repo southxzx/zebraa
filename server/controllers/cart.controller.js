@@ -1,7 +1,7 @@
 const Cart = require("../models/cart.model");
 const User = require("../models/user.model");
 
-// Add new size
+// Add new cart
 module.exports.addCart = (req,res) => {
     const cart = new Cart(req.body);
 
@@ -52,7 +52,6 @@ module.exports.addCart = (req,res) => {
 // Get all items in cart by user
 module.exports.getAllItemsInCart = (req, res) => {
     try{
-        console.log(req.query.idUser);
         User.findOne(
             {_id: req.query.idUser},
             {cart:1, _id:0}
@@ -85,8 +84,16 @@ module.exports.getAllItemsInCart = (req, res) => {
         res.status(200).send(err);
     }
 }
-//     Size.find({},(err,sizes) => {
-//         if (err) return res.send(err);
-//         res.status(200).send(sizes);
-//     })
-// }
+
+// Delete Item in Cart
+module.exports.deleteItemInCart = (req, res) => {
+
+    User.update(
+        {"cart._id" : req.query.idItem},
+        {$pull: {"cart": {_id: req.query.idItem}}},
+        (err,success)=>{
+            if (err) return res.json({success: false, err})
+            return res.json({success: true, msg:"Item has been removed successfully!"})
+        }
+    )
+}
