@@ -17,7 +17,8 @@ const cartSchema = new mongoose.Schema({
         required: true
     },
     idSize:{
-        type: String
+        type: String,
+        required: true
     },
     idUser:{
         type: String

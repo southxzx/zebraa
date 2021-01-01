@@ -15,10 +15,6 @@ function MiniCart(props) {
     // So sánh các id trong cart và lấy ra product với color và size đúng như đã chọn
     const getSpecificProduct = () => {
 
-        const idProduct = "5feb385fbd8c14194c6b3ecb";
-        const idColorProduct = "5feb3956bd8c14194c6b3ecc";
-        const idSize = "5fed533333ee690cec4f9007";
-
         cart.map((item,key)=>{
             priceTotal += item.quantity * item.idColorProduct.price;
             numberItem ++;
@@ -40,10 +36,13 @@ function MiniCart(props) {
     cart ? getSpecificProduct() : console.log("empty cart");
 
     useEffect(() => {
+        let isCancelled = false;
         const fetchCart = async () => {
             try{
-                const response = await cartApi.getAll("5fede8dc2f490c5e6807257b");
-                setCart(response.data.cart);
+                if (!isCancelled){
+                    const response = await cartApi.getAll("5fede8dc2f490c5e6807257b");
+                    setCart(response.data.cart);
+                }
                 
             }
             catch(err){
@@ -51,6 +50,9 @@ function MiniCart(props) {
             }
         }
         fetchCart();
+        return () => {
+            isCancelled = true;
+        };
     },[cart]);
 
     return (
@@ -85,7 +87,7 @@ function MiniCart(props) {
                                     <p>${item.idColorProduct.price}</p>
                                     <p>Quantity: <b>{item.quantity}</b></p>
                                 </div>
-                                <a href="#" onClick={()=> removeItemInCart(item)} className="icon-delete"><i className="fa fa-trash-o"></i></a>
+                                <a onClick={()=> removeItemInCart(item)} className="icon-delete"><i className="fa fa-trash-o"></i></a>
                             </div>
                         ))
                         : null
