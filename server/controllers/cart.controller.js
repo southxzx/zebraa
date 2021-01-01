@@ -7,6 +7,10 @@ module.exports.addCart = (req,res) => {
 
     console.log(req.body.idSize);
 
+    if(!req.body.idSize){
+        return res.status(401).json({errors: 'You must choose size'});
+    }
+
     User.findOne(
         {_id: req.body.idUser},
         (err,user) => {
@@ -27,7 +31,7 @@ module.exports.addCart = (req,res) => {
                                 {$inc: {"cart.$.quantity": parseInt(req.body.quantity)}},
                                 (err,success)=>{
                                     if (err) return res.json({success: false, err});
-                                    return res.json({success: true, msg: "Quantity has been updated!"});
+                                    return res.status(200).json({success: true, message: "Quantity has been updated!"});
                                 }
                             )
                         }
@@ -45,6 +49,7 @@ module.exports.addCart = (req,res) => {
                 );
             }
             if (err) return res.send({msg:"Fail to push",err});
+
         }
     );
 }

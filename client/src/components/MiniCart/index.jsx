@@ -15,10 +15,6 @@ function MiniCart(props) {
     // So sánh các id trong cart và lấy ra product với color và size đúng như đã chọn
     const getSpecificProduct = () => {
 
-        const idProduct = "5feb385fbd8c14194c6b3ecb";
-        const idColorProduct = "5feb3956bd8c14194c6b3ecc";
-        const idSize = "5fed533333ee690cec4f9007";
-
         cart.map((item,key)=>{
             priceTotal += item.quantity * item.idColorProduct.price;
             numberItem ++;
