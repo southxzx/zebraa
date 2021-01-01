@@ -14,11 +14,6 @@ import { useParams } from "react-router-dom";
 function DetailPage(props) {
     let { _idProduct,_idColorProduct } = useParams(); // id = useParams().id
 
-    console.log(_idProduct,_idColorProduct);
-    // console.log(typeof _idProduct); // string
-    // console.log(typeof _idColorProduct); // string
-
-
     const [productItem,setProductItem] = useState([])
 
     useEffect(() => {
@@ -34,7 +29,6 @@ function DetailPage(props) {
         }
         fetchSingleProduct();
     },[])
-    console.log(productItem.data ? productItem.data[0] : null);
     //console.log(productItem.data ? productItem.data[0].colorProducts[(productItem.data[0].colorProducts.map(item => item._id).indexOf(_idColorProduct) == -1 ? 0: productItem.data[0].colorProducts.map(item => item._id).indexOf(_idColorProduct))].images : null);
     const color = [];
     const colorProduct = {};

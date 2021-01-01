@@ -7,6 +7,7 @@ import Star from '../../../../components/Star';
 import { useEffect} from 'react';
 import { useParams,useHistory } from "react-router-dom";
 import handleContentLoaded from './product_item';
+import cartApi from '../../../../api/cartApi';
 
 function Product_Detail_Item(props) {
 
@@ -31,9 +32,24 @@ function Product_Detail_Item(props) {
     function handleChange(event) {
         setValue({value: event.target.value});
     }
-    
+    let data = {
+        idUser : "5fede8dc2f490c5e6807257b",
+        idProduct: "",
+        idSize: "",
+        idColorProduct: "",
+        quantity: 0
+    }
+
     function handleSubmit(event) {
-        
+        data.idProduct = _idProduct;
+        data.idSize = _idSize;
+        data.idColorProduct = _idColorProduct;
+        data.quantity = count;
+
+        const addToCart  = async () => {
+            const response = await cartApi.add(data);
+        }
+        addToCart();
         event.preventDefault();
     }
 
@@ -122,10 +138,6 @@ function Product_Detail_Item(props) {
         setLove(productLove => !productLove)
     }
 
-    console.log(_idProduct,_idColorProduct);
-    console.log(productSizes);
-    console.log(_idSize);
-    console.log(count);
 
     return (
         <div className="product-detail-item">

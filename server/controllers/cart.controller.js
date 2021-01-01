@@ -5,12 +5,14 @@ const User = require("../models/user.model");
 module.exports.addCart = (req,res) => {
     const cart = new Cart(req.body);
 
+    console.log(req.body.idSize);
+
     User.findOne(
         {_id: req.body.idUser},
         (err,user) => {
             if (user){
                 //Check xem sản phẩm có trùng không
-                User.find(
+                User.findOne(
                     {
                         "cart.idSize": req.body.idSize
                     },

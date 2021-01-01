@@ -23,7 +23,6 @@ function MiniCart(props) {
             priceTotal += item.quantity * item.idColorProduct.price;
             numberItem ++;
         })
-        console.log(priceTotal, numberItem)
 
     }
 
