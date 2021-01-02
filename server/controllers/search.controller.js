@@ -1,17 +1,26 @@
 const Product = require("../models/product.model");
 
 function escapeRegex(text) {
-    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "");
+    if(text.indexOf(' ') != -1) return text.split(' ');
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, " ");
 }
 
 module.exports.searchProduct = (req, res) => {
-    const regex1 = new RegExp("." + escapeRegex(req.query.name), "i");
+    var regex1;
+    if(Array.isArray(escapeRegex(req.query.name))){
+      regex1 = new RegExp("." + escapeRegex(req.query.name)[1], "i");
+    }else{
+      regex1 = new RegExp("." + escapeRegex(req.query.name), "i");
+       
+    }
     const regex2 = new RegExp("^" + escapeRegex(req.query.name), "i"); // i change upperCase or lowerCase
-    // console.log(regex1);
-    // console.log(regex2);
+   
+    console.log(regex1);
+    console.log(regex2);
+
     Product.find(
         {
-            name : { $in: [ regex1,regex2 ] }
+            name : { $in: [ regex1,regex2] }
         }
     ).
     populate('category').
