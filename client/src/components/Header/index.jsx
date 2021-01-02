@@ -172,8 +172,8 @@ function Header(props) {
                         <nav className="icon">
                             <ul>
                                 <li>
-                                    <form className="search-form">
-                                        <input type="search" placeholder="Search"/>
+                                    <form className="search-form" action='/search' method='GET'>
+                                        <input type="search" placeholder="Search" name="name"/>
                                         <a className="search-icon" href="/search">
                                             <img src="/Assets/images/search.png">
                                             </img>

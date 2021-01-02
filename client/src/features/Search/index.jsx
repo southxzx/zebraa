@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import Breadscrumbs from '../../components/Breadscrumbs';
+import CardV2 from '../../components/CardV2';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
+import searchApi from '../../api/searchApi';
 import './search.css';
 
+
 function Search() {
+
+    var currentLocation = window.location.href;
+    var index = currentLocation.indexOf('=');
+    var keyword = currentLocation.slice(index+1,currentLocation.length).trim();
+
+    useEffect(() => {
+        const fetchSearch = async () => {
+            const response = await searchApi.get(keyword);
+            console.log(response.data);
+            setProduct(response.data)
+        }
+
+        fetchSearch();
+    },[1])
+
+    const [product,setProduct] = useState([]);
+    //console.log(product.data);
+
+
     return (
         <div>
             <Header/>
@@ -21,7 +43,7 @@ function Search() {
                             <div className="left-side">
                                 <img src="/Assets/images/search.png"/>
                                 <form>                                   
-                                    <input className="search-input" type="search" placeholder="Search"/>                                            
+                                    <input className="search-input" type="search" placeholder="Search" name="name"/>                                            
                                 </form>
                             </div>
                             <div className="right-side">
@@ -41,8 +63,48 @@ function Search() {
                                 </select>
                             </div>
                         </div>
-                        <h4>Result of "Air jordan"</h4>
+                        <h4>Result of "{keyword}"</h4>
                     </div>
+                    <Row>
+                        {
+                            product.data ? ( product.data.map((data,key) =>(
+                                    <Col key={key} md="4">
+                                        <CardV2
+                                            productId = {data._id}
+                                            productName = {data.name}
+                                            productCategory = {data.category.name}
+                                            productColorProductId = {(typeof(data.colorProducts[0]) != 'undefined' ) ? 
+                                            (
+                                                data.colorProducts[( data.colorProducts.map(item => item.avatar).indexOf(true) ) == -1 ? 0 : data.colorProducts.map(item => item.avatar).indexOf(true)]._id
+                                            ) 
+                                            : null}
+                                            productImage = {(typeof(data.colorProducts[0]) != 'undefined' ) ? 
+                                            (
+                                                data.colorProducts[( data.colorProducts.map(item => item.avatar).indexOf(true) ) == -1 ? 0 : data.colorProducts.map(item => item.avatar).indexOf(true)].images[0]
+                                            ) 
+                                            : null}
+
+                                            productPrice = {(typeof(data.colorProducts[0]) != 'undefined' ) ? 
+                                            (
+                                                data.colorProducts[( data.colorProducts.map(item => item.avatar).indexOf(true) ) == -1 ? 0 : data.colorProducts.map(item => item.avatar).indexOf(true)].price
+                                            ) 
+                                            : null}
+
+                                            numberStar={(typeof(data.review[0]) != 'undefined' ) ? 
+                                            (
+
+                                                data.review.reduce((accumulator, currentValue, currentIndex,array) =>
+                                                    accumulator + currentValue.rating/array.length
+                                                ,0)
+                                                    
+                                            ) 
+                                            : 0}
+                                                
+                                        />
+                                    </Col>
+                            ))) :null
+                        }
+                    </Row>
                 </Container>
             </div>
             <Footer/>
