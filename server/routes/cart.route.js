@@ -11,8 +11,8 @@ router.get('/get', cartController.getAllItemsInCart);
 
 
 
-// // Update category by ID
-// router.put('/update', categoryController.updateCategory);
+// // Update 
+router.put('/update', cartController.updateItemInCart);
 
 // Delete 
 router.delete('/delete', cartController.deleteItemInCart);

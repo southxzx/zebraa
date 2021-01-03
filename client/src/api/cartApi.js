@@ -15,6 +15,10 @@ const colorApi = {
     delete : (idItem)=>{
         const url = `/cart/delete?idItem=${idItem}`;
         return axiosClient.delete(url);
+    },
+    update: (data)=>{
+        const url = `/cart/update`;
+        return axiosClient.put(url, data);
     }
 }
 

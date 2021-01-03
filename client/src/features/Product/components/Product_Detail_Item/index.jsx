@@ -135,8 +135,8 @@ function Product_Detail_Item(props) {
         setLove(productLove => !productLove)
     }
 
-    console.log(productSizes);
-    console.log(_idSize);
+    // console.log(productSizes);
+    // console.log(_idSize);
 
     return (
         <div className="product-detail-item">
