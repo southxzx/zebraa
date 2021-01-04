@@ -16,7 +16,7 @@ function Header(props) {
     const [modal, setModal] = useState(false);
     const [popoverCart, setPopoverCart] = useState(false);
     const [popoverUser, setPopoverUser] = useState(false);
-    const [login, setLogin] = useState(false);
+    const [login, setLogin] = useState(true);
 
     // Bật form LOGIN/REGISTER
     const [modalLogin, setModalLogin] = useState(false);

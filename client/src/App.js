@@ -7,6 +7,7 @@ import Product from './features/Product';
 import Cart from './features/Cart';
 import Search from './features/Search';
 import Profile from './features/Profile';
+import Activate from './components/ActiveAccount';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
       <Route path='/cart' exact component={Cart} />
       <Route path='/search' exact component={Search} />
       <Route path='/profile' exact component={Profile}/>
-      
+      <Route path='/users/activate/:token' exact component={Activate}/>
     </Switch>
   </BrowserRouter>
   );

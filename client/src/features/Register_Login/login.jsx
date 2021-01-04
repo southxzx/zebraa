@@ -41,30 +41,34 @@ function Login(props) {
                                     </a>
                                     <p className="or">or</p>
                                 </div>
-                                <div className="login-frm">
-                                    <div className="email">
-                                        <input type="email" className="frm-input frm-error"  placeholder="Email address"/>
-                                        <span className="error-message">Please enter a valid email address.</span>
+                                
+                                <form>
+                                    <div className="login-frm">
+                                        <div className="email">
+                                            <input type="email" className="frm-input frm-error"  placeholder="Email address"/>
+                                            <span className="error-message">Please enter a valid email address.</span>
+                                        </div>
+                                        <div className="password">
+                                            <input type="password" className="frm-input frm-error"  placeholder="Password"/>
+                                            <span className="error-message">Please enter a valid email address.</span>
+                                        </div>
                                     </div>
-                                    <div className="password">
-                                        <input type="password" className="frm-input frm-error"  placeholder="Password"/>
-                                        <span className="error-message">Please enter a valid email address.</span>
+                                    <div className="row-forgot">
+                                        <div className="remember">
+                                            <input type="checkbox"/>
+                                            <label>Remember me</label>
+                                        </div>
+                                        <p>Forgot your password?</p>
                                     </div>
-                                </div>
-                                <div className="row-forgot">
-                                    <div className="remember">
-                                        <input type="checkbox"/>
-                                        <label>Remember me</label>
+                                    <a className="btn-default btn-sign-in">
+                                        SIGN IN
+                                    </a>
+                                    <div className="else">
+                                        <label>Not a member?</label>
+                                        <a onClick={toggleRegisterForm}>Sign Up</a>
                                     </div>
-                                    <p>Forgot your password?</p>
-                                </div>
-                                <a className="btn-default btn-sign-in">
-                                    SIGN IN
-                                </a>
-                                <div className="else">
-                                    <label>Not a member?</label>
-                                    <a onClick={toggleRegisterForm}>Sign Up</a>
-                                </div>
+                                </form>
+
                             </div>
                         </div>
                     </Col>
