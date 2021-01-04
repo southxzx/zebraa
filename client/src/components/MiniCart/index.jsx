@@ -5,6 +5,8 @@ import cartApi from '../../api/cartApi';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import {usePromiseTracker, trackPromise} from 'react-promise-tracker';
+import Loader from 'react-loader-spinner';
 
 
 function MiniCart(props) {
@@ -12,7 +14,7 @@ function MiniCart(props) {
 
 
     const cartList = useSelector(state => state.cart.cartList.cart);
-    cartList ? console.log(cartList) : console.log("ko co");
+    const [isRender,setIsRender] = useState(false);
 
     //Tổng
     let priceTotal = 0;
@@ -30,16 +32,19 @@ function MiniCart(props) {
 
     const dispatch = useDispatch();
 
+    const { promiseInProgress } = usePromiseTracker();
+
     const removeItemInCart = (item) => {
         const deleteItem = async () => {
             try {
-                await cartApi.delete(item._id);
+                await trackPromise(cartApi.delete(item._id));
                 await dispatch({ type: 'removeItem'});
             } catch (error) {
                 console.log('Failed to remove cart item: ', error);
             }
         }
         deleteItem();
+        setIsRender(!isRender);
     }
 
     cartList ? getSpecificProduct() : console.log("empty cart");
@@ -51,7 +56,7 @@ function MiniCart(props) {
         const fetchCart = async () => {
             try{
                 if (!isCancelled){
-                    const response = await cartApi.getAll("5fede8dc2f490c5e6807257b");
+                    const response = await trackPromise(cartApi.getAll("5fede8dc2f490c5e6807257b"));
                     await dispatch({ type: 'getCart', payload: response.data })
                   // setCart(cartList);
                 }
@@ -66,7 +71,7 @@ function MiniCart(props) {
         return () => {
             isCancelled = true;
         };
-    },[cartList]);
+    },[isRender]);
 
     return (
         <div ref={props.wrapperRef} className="miniCart">
@@ -74,6 +79,17 @@ function MiniCart(props) {
                 (
                     cartList.length > 0 ? (
                         <div>
+                            {cartList ? (promiseInProgress &&
+                                <div className="load">
+                                    <Loader
+                                        type="ThreeDots"
+                                        color="#ff6500"
+                                        height={30}
+                                        width={30}
+                                        timeout={3000} //3 secs
+
+                                    />
+                                </div>) : null}
                             <div className="top-content">
                                 <div className="row-total">
                                     <div className="quantity">
@@ -118,8 +134,21 @@ function MiniCart(props) {
                     )
                     : 
                     (
-                        <div className="empty-cart">
-                            Your shopping cart is empty!
+                        <div>
+                            {promiseInProgress &&
+                                <div className="load">
+                                    <Loader
+                                        type="ThreeDots"
+                                        color="#ff6500"
+                                        height={30}
+                                        width={30}
+                                        timeout={3000} //3 secs
+
+                                    />
+                                </div>}
+                            <div className="empty-cart">
+                                Your shopping cart is empty!
+                            </div>
                         </div>
                     )
                 ) 

@@ -8,6 +8,8 @@ import {
 import './cart.css';
 import { useDispatch, useSelector } from 'react-redux'; 
 import cartApi from '../../api/cartApi'; 
+import {usePromiseTracker, trackPromise} from 'react-promise-tracker';
+import Loader from 'react-loader-spinner';
 
 
 function Cart() {
@@ -27,7 +29,8 @@ function Cart() {
             setCount(count-1);
         }
     }
-    console.log(cartList);
+
+    const { promiseInProgress } = usePromiseTracker();
 
     const [isOpenCollapse1, setIsOpenCollapse1] = useState(false);
 
@@ -51,7 +54,7 @@ function Cart() {
     const removeItemInCart = (item) => {
         const deleteItem = async () => {
             try {
-                await cartApi.delete(item._id);
+                await trackPromise(cartApi.delete(item._id));
                 await dispatch({ type: 'removeItem'});
             } catch (error) {
                 console.log('Failed to remove cart item: ', error);
@@ -109,7 +112,7 @@ function Cart() {
 
         
         const updateItemInCart = async () =>{
-            await cartApi.update(dataSaveChanges);
+            await trackPromise(cartApi.update(dataSaveChanges));
         }
         updateItemInCart();
         setIsRender(!isRender);
@@ -121,7 +124,7 @@ function Cart() {
         const fetchCart = async () => {
             try{
 
-                    const response = await cartApi.getAll("5fede8dc2f490c5e6807257b");
+                    const response = await trackPromise(cartApi.getAll("5fede8dc2f490c5e6807257b"));
                     await dispatch({ type: 'getCart', payload: response.data })
                     setCart(response.data.cart);
             }
@@ -162,12 +165,22 @@ function Cart() {
                 <Row>
                     <div className="cart-content">
                         <form>
+                            { promiseInProgress &&
+                                <div className="load">
+                                    <Loader
+                                        type="ThreeDots"
+                                        color="#ff6500"
+                                        height={100}
+                                        width={100}
+                                    //3 secs
+
+                                    />
+                                </div>}
                             <Table size="large" bordered>
                                 <thead>
                                     <tr>
                                         <th>Image</th>
                                         <th>Product Name</th>
-                                        <th>Category</th>
                                         <th>Size</th>
                                         <th>Quantity</th>
                                         <th>Unit Price</th>
@@ -181,7 +194,6 @@ function Cart() {
                                             <tr>
                                                 <td className="thumbnail" scope="row"><img className="thumbnail-cart" src={item.idColorProduct.images[0]} /></td>
                                                 <td>{item.idProduct.name}</td>
-                                                <td>{item.idProduct.category.name}</td>
                                                 <td>
                                                     <select 
                                                         value= {isEdit === key ? valueState :
@@ -232,7 +244,19 @@ function Cart() {
                                             </tr>
                                         </tbody>
                                     ))
-                                    : null
+                                        : (<div>
+                                            {promiseInProgress &&
+                                                <div className="load">
+                                                    <Loader
+                                                        type="ThreeDots"
+                                                        color="#ff6500"
+                                                        height={100}
+                                                        width={100}
+                                                        timeout={3000} //3 secs
+
+                                                    />
+                                                </div>}
+                                        </div>)
                                 }
                             </Table>
                         </form>

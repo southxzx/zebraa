@@ -91,3 +91,6 @@ input.quantity-input.form-control{
 .cart-content .cart-action i:hover{
     color: rgb(255, 0, 0);
 }
+.cart-content .load{
+    text-align: center;
+}
