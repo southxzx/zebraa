@@ -61,7 +61,7 @@ app.use('/api/sizeProduct',allSizeProductRouter);
 // Cart routes
 app.use('/api/cart',allCartRouter);
 // Search routes
-app.use('/search',allSearchRouter);
+app.use('/api/search',allSearchRouter);
 
 
 app.use((req, res) => {
