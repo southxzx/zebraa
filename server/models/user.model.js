@@ -35,10 +35,8 @@ const userSchema = new mongoose.Schema(
       },
       cart:[cartSchema],
       history:[],
-      phoneNumber:{
-        type: Number,
-        maxlength: 10,
-        minlength: 10
+      phone:{
+        type: String
       },
       address:{
         type: String

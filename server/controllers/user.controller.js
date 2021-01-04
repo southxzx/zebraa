@@ -16,8 +16,8 @@ sgMail.setApiKey(process.env.MAIL_KEY);
 
 
 module.exports.registerController = (req,res) =>{
-    const {name, email, password} = req.body;     //client gửi qua axios post
-    console.log(name,email,password);
+    const {name,address,phone, email, password} = req.body;     //client gửi qua axios post
+    console.log(name,email,password,address,phone,);
 
     const errors = validationResult(req);
 
@@ -54,6 +54,8 @@ module.exports.registerController = (req,res) =>{
       const token = jwt.sign(
           {
             name,
+            address,
+            phone,
             email,
             password
           },
@@ -111,11 +113,13 @@ module.exports.activationController = (req,res) => {
         // If valid save to database
         // Get name, email, password from token
 
-        const { name, email, password } = jwt.decode(token);
+        const { name,address,phone, email, password } = jwt.decode(token);
 
         console.log(email);
         const user = new User({
           name,
+          address,
+          phone,
           email,
           password
         });
