@@ -284,3 +284,78 @@ module.exports.googleController = (req,res) => {
       }
     })
 }
+
+
+module.exports.facebookController = (req,res) => {
+  const { userID, accessToken } = req.body;
+
+  const url = `https://graph.facebook.com/v9.0/${userID}/?fields=id,name,email,picture.width(96).height(96)&access_token=${accessToken}`; // facebook provide, export like a json
+  console.log(url);
+
+  return(
+    fetch(url,{
+      method: 'GET'
+    })
+      .then(response => response.json())
+      .then(response => {
+
+        console.log(response);
+
+        const { email, name, picture } = response;
+        
+        User.findOne({
+          email
+        }).exec((err,user) => {
+          if (user){
+            const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+              expiresIn: '7d'
+            });
+            const { _id, email, name, role, avatar } = user;
+
+            return res.json({
+              token,
+              user: { _id, email, name, role, avatar }
+            });
+          }
+          else{
+            let password = email + process.env.JWT_SECRET;
+
+            user = new User({
+              name,
+              email,
+              password,
+              avatar : picture.data.url
+            });
+
+            user.save((err, data) => {
+              if (err) {
+                console.log('ERROR FACEBOOK LOGIN ON USER SAVE', err);
+                return res.status(400).json({
+                  error: 'User signup failed with facebook'
+                });
+              }
+
+              const token = jwt.sign({ _id: data._id },process.env.JWT_SECRET,{
+                expiresIn: '7d' 
+               
+              });
+
+              const { _id, email, name, role, avatar } = data;
+
+              return res.json({
+                token,
+                user: { _id, email, name, role, avatar }
+              });
+
+            });
+
+          }
+        })
+      })
+      .catch(error => {
+        res.json({
+          error: 'Facebook login failed. Try later'
+        });
+      })
+  );
+}

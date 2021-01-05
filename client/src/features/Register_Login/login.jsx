@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import axiosClient from '../../api/axiosClient';
 import { GoogleLogin } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
 function Login(props) {
     const  history  = useHistory();
@@ -125,6 +126,28 @@ function Login(props) {
            
     };
 
+    //// Send Facebook token
+    function sendFacebookToken(userID, accessToken){
+        axiosClient
+            .post('user/facebooklogin', {
+                userID,
+                accessToken
+            })
+            .then(res => {
+                console.log(res.data);
+                informParent(res);
+            })
+            .catch(error => {
+                console.log('GOOGLE SIGNIN ERROR', error.response);
+            });
+    }
+
+    // Get response from Facebook
+    const responseFacebook = (response) => {
+        console.log(response);
+        sendFacebookToken(response.userID, response.accessToken)
+    };
+
     return (
         <div>
             <Modal size="lg" isOpen={props.isOpen}>
@@ -161,9 +184,24 @@ function Login(props) {
                                             </button>
                                         )}
                                     ></GoogleLogin>
-                                    <a className="btn-default btn-login btn-facebook">
-                                        <i className="fa fa-facebook"></i>
-                                    </a>
+                                    
+                                    <FacebookLogin
+                                        appId={`${process.env.REACT_APP_FACEBOOK_CLIENT}`}
+                                        autoLoad={false}    // If true, when login it go to LoginWithFacebook and We won't to do this
+                                        callback={responseFacebook}
+                                        render={renderProps => (
+                                            <button
+                                                onClick={renderProps.onClick}
+                                                className='btn-register'
+                                            >
+                                                <div className='btn-default btn-login btn-facebook'>
+                                                    <i className='fa fa-facebook' />
+                                                </div>
+                                                
+                                            </button>
+                                        )}
+                                    ></FacebookLogin>
+
                                     <a className="btn-default btn-login btn-twitter">
                                         <i className="fa fa-twitter"></i>
                                     </a>
