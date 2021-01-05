@@ -1,0 +1,13 @@
+
+
+.content .password_txt{
+    margin: auto;
+    display: block;
+    padding: 13px;
+    width: 20rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    border-radius: 5px;
+    color: black;
+    border: 1px solid black;
+}

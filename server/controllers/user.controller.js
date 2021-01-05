@@ -446,3 +446,62 @@ module.exports.forgetController = (req,res) => {
     });
   }
 }
+
+
+module.exports.resetController = (req,res) => {
+  const { resetPasswordLink, newPassword } = req.body;
+
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    const firstError = errors.array().map(error => error.msg)[0];
+    return res.status(422).json({
+      errors: firstError
+    });
+  }
+  else{
+    if(resetPasswordLink){
+      jwt.verify(resetPasswordLink,process.env.JWT_RESET_PASSWORD, (err,decoded) => {
+        
+        if (err) {
+          return res.status(400).json({
+            errors: 'Expired link. Try again'
+          });
+        }
+
+        User.findOne({
+          resetPasswordLink
+        }).exec((err,user) => {
+
+          if (err || !user) {
+            return res.status(400).json({
+              errors: 'Something went wrong. Try later'
+            });
+          }
+
+          const updatedFields = {
+            password: newPassword,
+            resetPasswordLink: ''
+          };
+
+          user = _.extend(user, updatedFields); // Copies every property of the source objects into the first object.
+          // var target = {a:3, c: 3};
+          // _.extend(target, {a: 1, b: 2}); // target is now {a: 1, b: 2, c: 3}
+
+          user.save((err, result) => {  // Updates an existing document or inserts a new document, depending on its document parameter.
+            if (err) {
+              return res.status(400).json({
+                errors: 'Error resetting user password'
+              });
+            }
+            res.json({
+              message: `Great! Now you can login with your new password`
+            });
+          });
+
+        });
+
+      });
+    }
+  }
+}
