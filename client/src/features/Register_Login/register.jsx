@@ -53,30 +53,30 @@ function Register(props) {
                         password: password1
                     })// Theo flow từ client -> server, post để gọi server sau đó then,catch để lấy message,errors từ server
                     .then(res => {
-                        // setFormData({
-                        //     ...formData,
-                        //     name: '',
-                        //     address:'',
-                        //     phone:'',
-                        //     email: '',
-                        //     password1: '',
-                        //     password2: '',
-                        //     textChange: 'Submitted'
-                        // });
+                        setFormData({
+                            ...formData,
+                            name: '',
+                            address:'',
+                            phone:'',
+                            email: '',
+                            password1: '',
+                            password2: '',
+                            textChange: 'Submitted'
+                        });
 
                         toast.success(res.data.message);
                     })
                     .catch(err => {
-                        // setFormData({
-                        // ...formData,
-                        // name: '',
-                        // address:'',
-                        // phone:'',
-                        // email: '',
-                        // password1: '',
-                        // password2: '',
-                        // textChange: 'Sign Up'
-                        // });
+                        setFormData({
+                        ...formData,
+                        name: '',
+                        address:'',
+                        phone:'',
+                        email: '',
+                        password1: '',
+                        password2: '',
+                        textChange: 'Sign Up'
+                        });
                         toast.error(err.response.data.errors);
                     });
             }

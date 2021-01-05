@@ -22,6 +22,11 @@ function Login(props) {
         props.toggleRegisterForm();       
     }
 
+    const toggleForgetForm = () => {
+        props.toggleLoginForm(); 
+        props.toggleForgetForm();
+    }
+
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -61,7 +66,7 @@ function Login(props) {
                             password: '',
                             textChange: 'Submitted'
                         });
-                        console.log(formData);
+                        
                         //toast.success("Sign In Successfully");
 
                         // Because have isAuth() so Login will render : Redirect to='/'
@@ -237,12 +242,13 @@ function Login(props) {
                                             <input type="checkbox"/>
                                             <label>Remember me</label>
                                         </div>
-                                        <Link
+                                        {/* <Link
                                             to='/users/password/forget'
                                             className='forget'
                                             >
                                             Forget password?
-                                        </Link>  
+                                        </Link>   */}
+                                        <a onClick={toggleForgetForm} className='forget'>Forget password?</a>
                                     </div>
                                     <button type="submit" className='btn-register'>
                                         <span type="submit" className="btn-default btn-sign-in">

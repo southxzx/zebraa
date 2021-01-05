@@ -16,6 +16,7 @@ const {
 router.post('/register',validRegister,controller.registerController);
 router.post('/activation',controller.activationController);
 router.post('/login',validLogin,controller.loginController);
+router.put('/password/forget',forgotPasswordValidator,controller.forgetController);
 
 // Google and Facebook Login
 router.post('/googlelogin', controller.googleController);

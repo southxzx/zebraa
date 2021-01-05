@@ -146,3 +146,10 @@
     width: 100%;
     outline: none;
 }
+
+
+/* --------------------------- FORGET -------------------------- */
+.forget{
+    text-align: center;
+    color: rgb(255, 94, 0) !important;
+}

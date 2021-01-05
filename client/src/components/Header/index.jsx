@@ -5,6 +5,8 @@ import MiniCart from '../MiniCart';
 import Login from '../../features/Register_Login/login';
 import Register from '../../features/Register_Login/register';
 import { Link, NavLink } from "react-router-dom";
+import cookie from 'js-cookie';
+import Forget from '../../features/Register_Login/forget';
 function Header(props) {
 
 
@@ -16,11 +18,12 @@ function Header(props) {
     const [modal, setModal] = useState(false);
     const [popoverCart, setPopoverCart] = useState(false);
     const [popoverUser, setPopoverUser] = useState(false);
-    const [login, setLogin] = useState(true);
+    const [login, setLogin] = useState(false);
 
-    // Bật form LOGIN/REGISTER
+    // Bật form LOGIN/REGISTER/FORGET
     const [modalLogin, setModalLogin] = useState(false);
     const [modalRegister, setModalRegister] = useState(false);
+    const [modalForget, setModalForget] = useState(false);
 
     const toggleLoginForm = () => {
         setModalLogin(!modalLogin);
@@ -29,6 +32,10 @@ function Header(props) {
     const toggleRegisterForm = () => {
         setModalRegister(!modalRegister);
         console.log("Register",modalRegister);
+    }
+    const toggleForgetForm = () => {
+        setModalForget(!modalForget);
+        console.log("Forget",modalForget);
     }
 
     // Bật popover CART
@@ -79,6 +86,31 @@ function Header(props) {
             window.removeEventListener("scroll", handleShowHeader);
           };
       },[showHeader]);
+
+    /// login 10s
+    
+    // useEffect(() => {
+    //     const changeStatusLogin = () => {
+    //         if(cookie.get('token')){
+    //             console.log(cookie.get('token'));
+    //             setTimeout(()=>{
+    //                 cookie.remove('token');
+    //                 localStorage.removeItem('user');
+    //                 //setLogin(true);
+                    
+    //             },10000);
+    //             //setLogin(true);
+    //         }
+    //         else{
+    //            // setLogin(false)
+    //             console.log('no cookie');
+    //         }
+    //     }
+    //     changeStatusLogin();
+
+    // },[cookie.get('token')])
+
+    console.log(localStorage.getItem('user'));
 
     return (
         <header className={showHeader ? "dark-bg" : "transparent-bg"}>
@@ -180,8 +212,9 @@ function Header(props) {
                                         </a>
                                     </form>
                                 </li>
-                                {login ? 
-                                <li>
+                                {cookie.get('token') ? 
+                                    null : 
+                                    <li>
                                     <a onClick={toggleLoginForm}>
                                         <img src="/Assets/images/enter.png">
                                         </img>
@@ -190,13 +223,19 @@ function Header(props) {
                                         isOpen={modalLogin}
                                         toggleLoginForm={toggleLoginForm}
                                         toggleRegisterForm={toggleRegisterForm}
+                                        toggleForgetForm={toggleForgetForm}
                                     />
                                     <Register
                                         isOpen={modalRegister}
                                         toggleLoginForm={toggleLoginForm}
                                         toggleRegisterForm={toggleRegisterForm}
                                     />
-                                </li> : null}
+                                    <Forget
+                                        isOpen={modalForget}
+                                        toggleLoginForm={toggleLoginForm}
+                                        toggleForgetForm={toggleForgetForm}
+                                    />
+                                </li>}
                                 <li>
                                     <a href="https://www.youtube.com/">
                                         <img src="/Assets/images/heart.png">
@@ -218,26 +257,29 @@ function Header(props) {
                                     </div>
                                     <span className="count">0</span>
                                 </li>
-                                <li>
-                                    <div className="user">
-                                        <a  id="user-icon" onClick={toggleUser}>
-                                            <img className="user-image" src="/Assets/images/user.jpg">
-                                            </img> 
-                                        </a>
-                                        {popoverUser ? 
-                                        <div ref={wrapperRef} className="popover-user">
-                                            <div className="content">
-                                                <h6>My account</h6>
-                                                <div className="link">
-                                                    <a href="/profile"><i className="fa fa-cog"></i>Profile</a>
-                                                    <a><i class="fa fa-lock"></i>Change password</a>
-                                                    <a><i class="fa fa-sign-out"></i>Logout</a>
+                                {cookie.get('token') ? 
+                                    <li>
+                                        <div className="user">
+                                            <a  id="user-icon" onClick={toggleUser}>
+                                                <img className="user-image" src="/Assets/images/user.jpg">
+                                                </img> 
+                                            </a>
+                                            {popoverUser ? 
+                                            <div ref={wrapperRef} className="popover-user">
+                                                <div className="content">
+                                                    <h6>My account</h6>
+                                                    <div className="link">
+                                                        <a href="/profile"><i className="fa fa-cog"></i>Profile</a>
+                                                        <a><i class="fa fa-lock"></i>Change password</a>
+                                                        <a><i class="fa fa-sign-out"></i>Logout</a>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            : null}
                                         </div>
-                                        : null}
-                                    </div>
-                                </li>
+                                    </li> 
+                                : null}
+                                
                             </ul>
                         </nav>
                     </Col>
