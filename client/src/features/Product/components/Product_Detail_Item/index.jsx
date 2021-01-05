@@ -33,7 +33,7 @@ function Product_Detail_Item(props) {
     }
 
     let data = {
-        idUser : "5fede8dc2f490c5e6807257b",
+        idUser : "5ff32e8742af3c23788f8538",
         idProduct: "",
         idSize: "",
         idColorProduct: "",
@@ -45,6 +45,8 @@ function Product_Detail_Item(props) {
         data.idSize = _idSize;
         data.idColorProduct = _idColorProduct;
         data.quantity = count;
+
+        console.log(data);
 
         const addToCart  = async () => {
             await cartApi.add(data);
@@ -69,10 +71,10 @@ function Product_Detail_Item(props) {
     const [review,setReview] = useState([]);
 
     //star
-    const starAverage = review ?  review.reduce((accumulator, currentValue, currentIndex,array) =>
+    const starAverage = review ?  parseFloat(review.reduce((accumulator, currentValue, currentIndex,array) =>
             accumulator + currentValue.rating/array.length
-        ,0) : null ;
-    
+        ,0)).toFixed(1) : null ;
+    console.log(starAverage);
     //countReview
     const countReview = review ? review.length : null;
 
@@ -93,16 +95,18 @@ function Product_Detail_Item(props) {
     const ItemClicked = (item,key,type) => {
 
         if (type === 'size'){
-            document.getElementById('quantity').innerHTML = `${item.quantity} available products in size ${item.size.name}`;
+            document.getElementById('quantity').innerHTML = `(${item.quantity} available products in size ${item.size.name})`;
 
             var size = document.getElementsByClassName("size");
             
             // Set all size to be grey 
             productSizes.map((value,key)=>{
-                size[key].style.backgroundColor = "#cecece";
+                size[key].style.backgroundColor = "#fff";
+                size[key].style.color = "#000";
             })
             // Set the size we need to be blue 
-            size[key].style.backgroundColor = "#2175f5";
+            size[key].style.backgroundColor = "rgb(255, 94, 0)";
+            size[key].style.color = "#fff";
 
             // Set _idSize
             set_IdSize(productSizes[key]._id);
@@ -163,10 +167,6 @@ function Product_Detail_Item(props) {
 
                             <a href="https://www.youtube.com/">
                                 {countReview} Reviews
-                            </a>
-
-                            <a href="https://www.youtube.com/">
-                                Write A Review
                             </a>
                         </div>
 
@@ -234,22 +234,27 @@ function Product_Detail_Item(props) {
                                         <div className="product-size">
                                             <div className="size-name">
                                                 Size
+                                                <span id="quantity" className="quantity-size"></span>
                                             </div>
 
                                             <div className="item-size">
+                                                <Row>
                                                 {
                                                     size ? size.map((item,key) => (
-                                                        <span 
-                                                            style={ item.quantity <= 0 ? {"pointerEvents":"none","opacity":0.5} : {backgroundColor:"#cecece"}}  
-                                                            className="size" 
-                                                            onClick={() => ItemClicked(item,key,"size")} 
-                                                            key={key}>{item.size.name}
-                                                        </span>
+                                                        <Col md="2">
+                                                            <span
+                                                                style={item.quantity <= 0 ? { "pointerEvents": "none", "opacity": 0.5 } : { backgroundColor: "#fff" }}
+                                                                className="size"
+                                                                onClick={() => ItemClicked(item, key, "size")}
+                                                                key={key}>{item.size.name}
+                                                            </span>
+                                                        </Col>
                                                     ))
                                                     : null
                                                 }
+                                                </Row>
                                             </div>
-                                            <span id="quantity" className="quantity-size"></span>
+                                            
                                         </div>
                                     </Col>
                                     
@@ -272,7 +277,7 @@ function Product_Detail_Item(props) {
 
                                     <Col sm="12" md="6" className="size-item">
                                         <div className="add-to-cart">
-                                            <button type="submit" className="add btn" >Add To Cart</button>
+                                            <button type="submit" className="btn-default btn-subscribe" >Add To Cart</button>
                                         </div>
                                     </Col>
                                 </Row>

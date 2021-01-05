@@ -2,11 +2,13 @@ import React from 'react';
 import { useEffect } from 'react';
 import './miniCart.css';
 import cartApi from '../../api/cartApi';
+import historyApi from '../../api/historyApi';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {usePromiseTracker, trackPromise} from 'react-promise-tracker';
 import Loader from 'react-loader-spinner';
+
 
 
 function MiniCart(props) {
@@ -39,24 +41,50 @@ function MiniCart(props) {
             try {
                 await trackPromise(cartApi.delete(item._id));
                 await dispatch({ type: 'removeItem'});
+                setIsRender(!isRender);
             } catch (error) {
                 console.log('Failed to remove cart item: ', error);
             }
         }
         deleteItem();
-        setIsRender(!isRender);
     }
 
     cartList ? getSpecificProduct() : console.log("empty cart");
 
+    let history = {
+        idUser:"5ff32e8742af3c23788f8538",
+        idProduct:"",
+        idColorProduct:"",
+        idSize:"",
+        totalPrice:"",
+        quantity:2
+    }
 
+    const checkOut = () => {
+
+        const addHistory = async (history) => {
+            await trackPromise(historyApi.add(history))
+        };
+
+        cartList.map((item, key)=>{
+            history.idProduct = item.idProduct;
+            history.idColorProduct = item.idColorProduct;
+            history.idSize = item.idSize;
+            history.quantity = item.quantity;
+            history.totalPrice = item.idColorProduct.price*item.quantity;
+            addHistory(history);
+            removeItemInCart(item);
+        })
+
+
+    }
 
     useEffect(() => {
         let isCancelled = false;
         const fetchCart = async () => {
             try{
                 if (!isCancelled){
-                    const response = await trackPromise(cartApi.getAll("5fede8dc2f490c5e6807257b"));
+                    const response = await trackPromise(cartApi.getAll("5ff32e8742af3c23788f8538"));
                     await dispatch({ type: 'getCart', payload: response.data })
                   // setCart(cartList);
                 }
@@ -126,7 +154,7 @@ function MiniCart(props) {
                                 <Link to="/cart" className="btn-default btn-edit">
                                     Edit Cart
                                 </Link>
-                                <a className="btn-default btn-checkout">
+                                <a onClick={()=>checkOut()} className="btn-default btn-checkout">
                                     Checkout
                                 </a>
                             </div>
@@ -152,7 +180,24 @@ function MiniCart(props) {
                         </div>
                     )
                 ) 
-                : null
+                : (
+                    <div>
+                    {promiseInProgress &&
+                        <div className="load">
+                            <Loader
+                                type="ThreeDots"
+                                color="#ff6500"
+                                height={30}
+                                width={30}
+                                timeout={3000} //3 secs
+
+                            />
+                        </div>}
+                    <div className="empty-cart">
+                        Your shopping cart is empty!
+                    </div>
+                </div>
+                )
             } 
         </div>
     )

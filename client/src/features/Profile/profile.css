@@ -166,3 +166,29 @@
     border-radius: 10px;
     border: 1px solid #cecece;
 }
+.modal .review-content{
+    text-align: center;
+    margin: 30px;
+}
+.react-stars{
+    margin: auto;
+    outline: none;
+}
+.modal .review-content .area-content{
+    width: 100%;
+    outline: none;
+    padding: 15px;
+    height: 150px;
+}
+.modal .row-review{
+    height: 414px;
+    width: 800px;
+    display: block !important;
+}
+.modal .review-content .btn-submit{
+    width: 100%;
+    margin-top: 20px;
+}
+.modal .thank{
+    
+}

@@ -20,9 +20,9 @@ function Search() {
             console.log(response.data);
             setProduct(response.data)
         }
-
         fetchSearch();
     },[1])
+
 
     const [product,setProduct] = useState([]);
     //console.log(product.data);

@@ -24,38 +24,37 @@ module.exports.addHistory = (req,res) => {
 
 // Get all history -- find(query, projection)
 module.exports.getAllHistories = (req, res) => {
-    User.find(
-        {_id: req.query.idUser},
-        {history:1, _id:0},
-        (err,data) => {
-        if (err) return res.send(err);
-        res.status(200).send(data);
-    }).
-    populate({
-        path: 'history',
-        populate: {
-            path: 'idProduct',
-            select: {name:1,category:1,colorProducts:1},
+    try {
+        User.findOne(
+            {_id: req.query.idUser},
+            {history:1, _id:0}
+        ).
+        populate({
+            path: 'history',
             populate: {
-                path: 'category',
-                select: {name:1},
-            }
-          }
-    }).
-    populate({
-        path: 'history',
-        populate: {
-            path: 'idColorProduct',
-            select: {price:1,images:1,color:1},
+                path: 'idProduct',
+                select: {name:1,category:1,colorProducts:1},
+                populate: {
+                    path: 'category',
+                    select: {name:1},
+                }
+              }
+        }).
+        populate({
+            path: 'history',
             populate: {
-                path: "color"
-            }
-          }
-    }).
-    exec((err,user) => {
-        if (err) {
-            return res.send(err);
-        }
-        res.status(200).send(user);
-    })
+                path: 'idColorProduct',
+                select: {price:1,images:1,color:1},
+                populate: {
+                    path: "color"
+                }
+              }
+        }).
+        exec((err, data)=>{
+            if (err) return res.send(err);
+            res.status(200).send(data);
+        });
+    } catch (error) {
+        return res.json({error: error});
+    }
 }
