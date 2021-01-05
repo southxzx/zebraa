@@ -17,5 +17,7 @@ router.post('/register',validRegister,controller.registerController);
 router.post('/activation',controller.activationController);
 router.post('/login',validLogin,controller.loginController);
 
+// Google and Facebook Login
+router.post('/googlelogin', controller.googleController);
 
 module.exports = router;

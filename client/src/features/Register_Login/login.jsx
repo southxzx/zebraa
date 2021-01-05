@@ -7,6 +7,7 @@ import { Container, Row, Col } from 'reactstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import axiosClient from '../../api/axiosClient';
+import { GoogleLogin } from 'react-google-login';
 
 function Login(props) {
     const  history  = useHistory();
@@ -97,9 +98,31 @@ function Login(props) {
     const informParent = (response) => {
         authenticate(response, () => {
             isAuth() && isAuth().role === 'admin'
-            ? props.history.push('/admin')
-            : props.history.push('/private');
+            ? history.push('/admin')
+            : history.push('/private');
         });
+    };
+
+    //// Send google token
+    function sendGoogleToken(tokenId){
+        axiosClient
+            .post('user/googlelogin', {
+                idToken: tokenId
+            })
+            .then(res => {
+                console.log(res.data);
+                    informParent(res);
+                })
+            .catch(error => {
+                console.log('GOOGLE SIGNIN ERROR', error.response);
+            });
+        }
+    
+    // Get response from Google
+    const responseGoogle = (response) => {
+        console.log(response);
+        sendGoogleToken(response.tokenId);  // Google provide
+           
     };
 
     return (
@@ -120,9 +143,24 @@ function Login(props) {
                                 </div>
                                 <div className="login-with">
                                     <p>With your social network</p>
-                                    <a className="btn-default btn-login btn-google">
-                                        <i className="fa fa-google-plus"></i>
-                                    </a>
+                                    <GoogleLogin
+                                        clientId={`${process.env.REACT_APP_GOOGLE_CLIENT}`}
+                                        onSuccess={responseGoogle}
+                                        onFailure={responseGoogle}
+                                        cookiePolicy={'single_host_origin'}
+                                        render={renderProps => (
+                                            <button
+                                            onClick={renderProps.onClick}
+                                            disabled={renderProps.disabled}
+                                            className='btn-register'
+                                            >
+                                                <div className='btn-default btn-login btn-google'>
+                                                    <i className='fa fa-google ' />
+                                                </div>
+                                                {/* <span className='ml-4'>Sign In with Google</span> */}
+                                            </button>
+                                        )}
+                                    ></GoogleLogin>
                                     <a className="btn-default btn-login btn-facebook">
                                         <i className="fa fa-facebook"></i>
                                     </a>
