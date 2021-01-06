@@ -7,7 +7,7 @@ export const setCookie = (key, value) => {
     if (window !== 'undefiend') {
         cookie.set(key, value, {
             // 1 Day
-            expires: 1
+            expires: 1         ///  1/1440 1minutes
         }) 
     }
 }

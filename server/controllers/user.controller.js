@@ -505,3 +505,56 @@ module.exports.resetController = (req,res) => {
     }
   }
 }
+
+
+module.exports.changePassword = (req,res) => {
+  const {_id, oldPassword , newPassword} = req.body;
+
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    const firstError = errors.array().map(error => error.msg)[0];
+    return res.status(422).json({
+      errors: firstError
+    });
+  }
+  else{
+    User.findOne({
+      _id
+    }).exec((err,user) => {
+
+      if (err || !user) {
+        return res.status(400).json({
+          errors: 'Something went wrong. Try later'
+        });
+      }
+
+      if(user.authenticate(oldPassword)){
+
+        const updatedField = {
+          password : newPassword
+        }
+
+        user = _.extend(user, updatedField);
+
+        user.save((err, result) => {  // Updates an existing document or inserts a new document, depending on its document parameter.
+          if (err) {
+            return res.status(400).json({
+              errors: 'Error resetting user password'
+            });
+          }
+          res.json({
+            message: `Great! Now you can login with your new password`
+          });
+        });
+
+      }else{
+        res.status(400).json({
+          errors : 'Does not match password'
+        })
+      }
+
+
+    })
+  }
+}

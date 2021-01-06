@@ -5,6 +5,7 @@ import MiniCart from '../MiniCart';
 import Login from '../../features/Register_Login/login';
 import Register from '../../features/Register_Login/register';
 import { Link, NavLink } from "react-router-dom";
+import jwt from 'jsonwebtoken';
 import cookie from 'js-cookie';
 import Forget from '../../features/Register_Login/forget';
 function Header(props) {
@@ -109,7 +110,7 @@ function Header(props) {
     //     changeStatusLogin();
 
     // },[cookie.get('token')])
-
+ 
     console.log(localStorage.getItem('user'));
 
     return (
