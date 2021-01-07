@@ -1,4 +1,6 @@
 import cookie from 'js-cookie'
+import axiosClient from '../api/axiosClient';
+import jwt from 'jsonwebtoken';
 
 // Helper Functions to set,remove cookie and deal with Local Storage
 
@@ -64,6 +66,20 @@ export const isAuth = () => {
         }
     }
 };
+
+//
+export const isAuthorized = () =>{  
+    console.log('ss');
+    const token = cookie.get('token');
+    let {_id} = jwt.decode(token);
+
+    return axiosClient.get(`/user/author/?_id=${_id}`)     // resolve promise pending
+                .then(res => {
+                    return res.data.role;
+                })
+    //return 'admin';
+    
+}
 
 // SignOut
 export const signout = next => {

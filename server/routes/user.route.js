@@ -23,4 +23,7 @@ router.put('/password/change',controller.changePassword);
 // Google and Facebook Login
 router.post('/googlelogin', controller.googleController);
 router.post('/facebooklogin',controller.facebookController);
+
+//
+router.get('/author',controller.authorController);
 module.exports = router;

@@ -9,6 +9,9 @@ import Search from './features/Search';
 import Profile from './features/Profile';
 import Activate from './components/ActiveAccount';
 import ResetPassword from './components/ResetPassword';
+import AdminRoute from './Routes/AdminRoute';
+import AdminHome from './features/Admin/pages/AdminHome';
+import IsAuthorized from './features/Admin/isAuthorized/isAuthorized';
 
 function App() {
   return (
@@ -21,6 +24,8 @@ function App() {
       <Route path='/profile' exact component={Profile}/>
       <Route path='/users/activate/:token' exact component={Activate}/>
       <Route path='/users/password/reset/:token' exact component={ResetPassword}/>
+
+      <AdminRoute path='/admin' exact component={AdminHome}/>
     </Switch>
   </BrowserRouter>
   );

@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'reactstrap';
 import { Modal } from 'reactstrap';
 import 'react-toastify/dist/ReactToastify.css'
 import axiosClient from '../../api/axiosClient';
+import { isAuthorized } from '../../helpers/auth';
 
 function Register(props) {
 
@@ -39,6 +40,7 @@ function Register(props) {
     // Handle submit data
     function handleSubmit(event){
         event.preventDefault();
+        isAuthorized();
 
         if (name && address && phone && email && password1){
             if (password1 === password2){
