@@ -1,0 +1,80 @@
+.activate{
+    background-color: #107fca;
+    width: 100%;
+}
+.activate .activate_main{
+    padding: 5rem;
+} 
+.activate .activate_main .activate_content{
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 10px;
+} 
+.activate_content .content{
+    width: 100%;
+    padding-top: 10rem;
+    border-radius: 1rem;
+}
+.activate_content .content h1{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.content .activate_btn{
+    display: flex;
+    width: 100%;
+    margin-top: 3.5rem;
+
+}
+.activate-button{
+    background-color: rgb(255, 94, 0);
+    margin: auto;
+    border: none;
+    height: 100%;
+    border-radius: 10px;
+    padding: 6px;
+}
+.activate-button:hover{
+    background-color: rgb(226 96 20);
+}
+.activate-button:focus{
+    border: none;
+    height: 100%;
+    outline: none;
+}
+.activate-button i{
+    padding-left: 45px;
+    font-size: 20px;
+    color: white;
+}
+.activate-button span{
+    width: 100%;
+    height: 100px;
+    margin-right: 40px;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    padding: 12px;
+    line-height: 50px;
+    transition: all 0.3s;
+}
+
+.content .activate_sig{
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    display: grid;
+}
+.content .activate_sig::after{
+    content: '';
+    border: 1px solid #e2e8f0;
+    width: 50%;
+    margin: auto;
+    margin-top: 5px;
+}
+
+.content .activate_sig span{
+    font-size: 14px;
+    font-family: sans-serif;
+}
