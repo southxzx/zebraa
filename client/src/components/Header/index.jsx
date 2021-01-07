@@ -213,8 +213,8 @@ function Header(props) {
                                         </a>
                                     </form>
                                 </li>
-                                {/* {cookie.get('token') ?  */}
-                                    {/* null :  */}
+                                {cookie.get('token') ? 
+                                    null :  
                                     <li>
                                     <a onClick={toggleLoginForm}>
                                         <img src="/Assets/images/enter.png">
@@ -237,7 +237,7 @@ function Header(props) {
                                         toggleForgetForm={toggleForgetForm}
                                     />
                                 </li>
-                                {/* } */}
+                                }
                                 <li>
                                     <a href="https://www.youtube.com/">
                                         <img src="/Assets/images/heart.png">
@@ -259,7 +259,7 @@ function Header(props) {
                                     </div>
                                     <span className="count">0</span>
                                 </li>
-                                {/* {cookie.get('token') ?  */}
+                                {cookie.get('token') ? 
                                     <li>
                                         <div className="user">
                                             <a  id="user-icon" onClick={toggleUser}>
@@ -280,7 +280,7 @@ function Header(props) {
                                             : null}
                                         </div>
                                     </li> 
-                                {/* : null} */}
+                                : null} 
                                 
                             </ul>
                         </nav>

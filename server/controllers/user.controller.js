@@ -188,7 +188,7 @@ module.exports.loginController = (req,res) =>{
         },
         process.env.JWT_SECRET,
         {
-          expiresIn: '3m' // token valid in 7d, you can set remember me in front and set it for 30d
+          expiresIn: '7d' // token valid in 7d, you can set remember me in front and set it for 30d
         }
       );
 
