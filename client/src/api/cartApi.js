@@ -1,7 +1,7 @@
 import axiosClient from "./axiosClient";
 import { toast } from 'react-toastify';
 
-const colorApi = {
+const cartApi = {
     getAll : (idUser) =>{
         const url = `/cart/get?idUser=${idUser}`;
         return axiosClient.get(url);
@@ -15,7 +15,11 @@ const colorApi = {
     delete : (idItem)=>{
         const url = `/cart/delete?idItem=${idItem}`;
         return axiosClient.delete(url);
+    },
+    update: (data)=>{
+        const url = `/cart/update`;
+        return axiosClient.put(url, data);
     }
 }
 
-export default colorApi;
+export default cartApi;

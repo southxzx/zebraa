@@ -74,7 +74,7 @@ function Login(props) {
                         // props.history.push to Redirect link
                         isAuth() && isAuth().role === 'admin'
                         ? history.push('/admin')
-                        : history.push('/products')
+                        : history.push('/')
 
                         console.log(isAuth());
                         toast.success(`Hey ${res.data.user.name}, Welcome back!`);
@@ -105,7 +105,7 @@ function Login(props) {
         authenticate(response, () => {
             isAuth() && isAuth().role === 'admin'
             ? history.push('/admin')
-            : history.push('/private');
+            : history.push('/');
         });
     };
 

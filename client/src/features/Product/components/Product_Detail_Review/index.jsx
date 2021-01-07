@@ -15,9 +15,9 @@ function Product_Detail_Review(props) {
     const [review,setReview] = useState([]);
 
     //star
-    const starAverage = review ?  review.reduce((accumulator, currentValue, currentIndex,array) =>
+    const starAverage = review ?  parseFloat(review.reduce((accumulator, currentValue, currentIndex,array) =>
             accumulator + currentValue.rating/array.length
-        ,0) : null ;
+        ,0)).toFixed(1) : null ;
     
     //countReview
     const countReview = review ? review.length : null;

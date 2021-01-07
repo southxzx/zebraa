@@ -41,6 +41,7 @@ const allReviewRouter = require('./routes/review.route');
 const allSizeProductRouter = require('./routes/size_product');
 const allCartRouter = require('./routes/cart.route');
 const allSearchRouter = require('./routes/search.route');
+const allHistoryRouter = require('./routes/history.route');
 
 // User routes
 app.use('/api/user',allUserRouter);
@@ -62,6 +63,8 @@ app.use('/api/sizeProduct',allSizeProductRouter);
 app.use('/api/cart',allCartRouter);
 // Search routes
 app.use('/api/search',allSearchRouter);
+// History routes
+app.use('/api/history',allHistoryRouter);
 
 
 app.use((req, res) => {

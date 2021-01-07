@@ -38,14 +38,14 @@
 }
 .btn-subscribe{
     background-color: rgb(255, 94, 0);
-    color: #fff;
+    color: #fff !important;
     border: 1px solid rgb(255, 94, 0);
     transition: all 0.3s;
 }
 .btn-subscribe:hover{
     background-color: #fff;
-    border: 1px solid #e1e1e1;
-    color: rgb(255, 94, 0);
+    border: 1px solid rgb(255, 94, 0);
+    color: rgb(255, 94, 0)!important;
 }
 .btn-login{
     text-align: center;

@@ -75,7 +75,8 @@ export const isAuthorized = () =>{
 
     return axiosClient.get(`/user/author/?_id=${_id}`)     // resolve promise pending
                 .then(res => {
-                    return res.data.role;
+                    if(res.data.role == 'admin')
+                        return true;
                 })
     //return 'admin';
     

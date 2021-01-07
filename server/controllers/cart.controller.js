@@ -54,6 +54,21 @@ module.exports.addCart = (req,res) => {
     );
 }
 
+// Update Cart
+module.exports.updateItemInCart = (req, res) => {
+    User.update(
+        {"cart.idSize" : req.body.idSizeOld},
+        {
+            "cart.$.quantity" : req.body.quantity,
+            "cart.$.idSize": req.body.idSizeNew
+        },
+        (err,success)=>{
+            if (err) return res.json({success: false, err});
+            return res.status(200).json({success: true, message: "Item has been updated!"});
+        }
+    )
+}
+
 // Get all items in cart by user
 module.exports.getAllItemsInCart = (req, res) => {
     try{
@@ -65,7 +80,28 @@ module.exports.getAllItemsInCart = (req, res) => {
             path: 'cart',
             populate: {
                 path: 'idProduct',
-                select: {name:1}
+                select: {name:1,category:1,colorProducts:1},
+                populate: {
+                    path: 'category',
+                    select: {name:1},
+                }
+              }
+        }).
+        populate({
+            path: 'cart',
+            populate: {
+                path: 'idProduct',
+                select: {name:1,category:1,colorProducts:1},
+                populate: {
+                    path: 'colorProducts',
+                    populate: {
+                        path:'sizeProducts',
+                        populate: {
+                            path:'size',
+                            select: {name:1}
+                        }
+                    }
+                }
               }
         }).
         populate({

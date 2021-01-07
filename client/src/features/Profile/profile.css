@@ -67,7 +67,7 @@
 }
 .btn-upload:hover, .btn-reset:hover{
     background-color:rgb(255, 94, 0);
-    color: #fff;
+    color: #fff!important;
 }
 
 /* ----------------------- HISTORY --------------- */
@@ -91,7 +91,7 @@
 }
 .profile-section .card .card-content .block .history-content{
     padding-top: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(255, 94, 0);;
     border-radius: 12px;
 }
 .profile-section .card .card-content .block::before{
@@ -104,4 +104,91 @@
     border: 4px solid rgb(255, 94, 0);
     border-radius: 50%;
     z-index: 1;
+}
+.profile-section .search-content .search-form{
+    border-radius: 8px;
+    height: 50px;
+    border: 1px solid #ccc;
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+.profile-section .search-content .search-form .left-side{
+    position: relative;
+    height: 100%;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    padding-left: 28px;
+}
+.profile-section .search-content .search-form .left-side img{
+    width: 16px;
+    height: 16px;
+}
+.profile-section .search-content .search-form .left-side form{
+    height: 100%;
+    width: 100%;
+}
+.profile-section .search-content .search-form .left-side .search-input {
+    font-size: 16px;
+    height: 100%;
+    width: 100%;
+    padding-left: 28px;
+    border: none;
+}
+.profile-section .search-content .search-form .right-side{
+    display: flex;
+    padding-right: 15px;
+    margin-left: auto;
+}
+
+.profile-section .search-content p{
+    text-align: center;
+    margin-top: 20px;
+}
+.profile-section .history-content{
+    display: flex;
+}
+.profile-section .history-content .block-detail{
+    padding: 0 30px;
+}
+.profile-section .history-content .block-detail:last-child{
+    margin: auto;
+}
+.profile-section .history-content .thumbnail{
+    margin-left: 10px;
+    width: 50px;
+    height: 50px;
+}
+.profile-section .history-content .thumbnail img{
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #cecece;
+}
+.modal .review-content{
+    text-align: center;
+    margin: 30px;
+}
+.react-stars{
+    margin: auto;
+    outline: none;
+}
+.modal .review-content .area-content{
+    width: 100%;
+    outline: none;
+    padding: 15px;
+    height: 150px;
+}
+.modal .row-review{
+    height: 414px;
+    width: 800px;
+    display: block !important;
+}
+.modal .review-content .btn-submit{
+    width: 100%;
+    margin-top: 20px;
+}
+.modal .thank{
+    
 }

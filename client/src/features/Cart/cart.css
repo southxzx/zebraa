@@ -10,7 +10,12 @@
     text-align: center;
 }
 .thumbnail .thumbnail-cart {
+    border-radius: 10px;
     width: 75px;
+    border: 1px solid #cecece;
+}
+.cart-content .table{
+    text-align: center;
 }
 .cart-content .table td{
     font-size: 17px;
@@ -70,4 +75,22 @@ input.quantity-input.form-control{
 }
 .cart-content .option-cart-btn .btn-check-out{
     float: right;
+}
+.cart-content .cart-action i{
+    font-size: 120%;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.cart-content .cart-action .fa-check-square{
+    color: green;
+}
+.cart-content .cart-action .fa-check-square:hover{
+    color: darkgreen;
+}
+.cart-content .cart-action i:hover{
+    color: rgb(255, 0, 0);
+}
+.cart-content .load{
+    text-align: center;
 }

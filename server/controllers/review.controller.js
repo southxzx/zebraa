@@ -6,7 +6,6 @@ module.exports.addReview = (req,res) => {
     const review = new Review(req.body);
 
     review.save((err,doc)=>{
-        console.log(req.body.product);
         if(err) return res.json({success: false, err});
         if (doc){
             Product.findOne({ _id: req.body.product},(err,data)=>{

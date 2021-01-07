@@ -191,27 +191,43 @@
 .product-size .size-name{
     font-size: 22px;
 }
+.product-size .size-name span{
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 60%;
+    
+}
 .product-size .item-size{
     padding: 8px 0;
     display: flex;
     align-items: center;
 }
+.item-size .row{
+    width: 150%;
+}
+.item-size .col-md-2{
+    padding: 3px!important;
+}
 .item-size span.size{
-    width: 40px;
-    height: 25px;
-    border-radius: 6px;
-    background-color: #eee;
-    margin: 0 10px;
-    text-align: center;
-    line-height: 25px;
-    font-size: 100%;
-    font-weight: 500;
+    border: 1px solid rgb(255, 94, 0);
+    border-radius: 5px;
+    width: 50px;
+    height: 40px;
+    font-size: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
-    transition: 0.3s;
+}
+
+.item-size span.size:hover{
+    background-color:rgb(255, 94, 0)!important;
+    color: #fff!important;
+    transition: .5s;
 }
 
 .item-size .active{
-    background-color:  #2175f5 !important;
+    background-color:rgb(255, 94, 0)!important;
     color: #fff;
     transition: .5s;
 }

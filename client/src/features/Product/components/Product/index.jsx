@@ -115,6 +115,15 @@ function Product(props) {
             "colorProducts.color":[],
             "colorProducts.price":[],
         });
+        const filters = {
+            "category": [],
+            "colorProducts.color":[],
+            "colorProducts.price": []
+        };
+        setParams({
+            ...params,
+            filters: filters
+        });
     }
 
 
