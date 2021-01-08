@@ -11,7 +11,7 @@ import Activate from './components/ActiveAccount';
 import ResetPassword from './components/ResetPassword';
 import AdminRoute from './Routes/AdminRoute';
 import AdminHome from './features/Admin/pages/AdminHome';
-import IsAuthorized from './features/Admin/isAuthorized/isAuthorized';
+
 
 function App() {
   return (

@@ -588,3 +588,31 @@ module.exports.authorController = (req,res) => {
     }))
   }
 }
+
+
+module.exports.requireSinIn = expressJwt({
+  secret: process.env.JWT_SECRET,
+  algorithms : ['HS256']
+})
+
+module.exports.adminMiddleware = (req,res) => {
+  console.log(req.user);
+
+  User.findOne({
+    _id: req.user._id
+  }).exec((err,user) => {
+    if(err || !user){
+      return res.status(400).json({
+        errors : 'User not found'
+      })
+    }
+
+    if (user.role !== 'admin') {
+      return res.status(400).json({
+        error: 'Admin resource. Access denied.'
+      });
+    }
+
+    next();
+  })
+}
