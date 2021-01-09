@@ -43,28 +43,7 @@ input.quantity-input.form-control{
     display: inline-block;
     margin-right: 5px;
 }
-.collapse.show{
-    padding: 20px;
-}
-.collapse.show input{
-    margin-bottom: 15px;
-    padding: 20px;
-    font-size: 90%;
-}
-.collapse-destination.collapse.show p{
-    margin-top: 10px;
-    text-align: right;
-}
-.collapse-destination.collapse.show p::before{
-    content: '* ';
-    color: #F00;
-    font-weight: bold;
-}
-.collapse-destination button.btn.btn-white {
-    line-height: 28px;
-    border: 1px solid #ddd;
-    border-radius: 0 5px 5px 0;
-}
+
 .error-msg{
     color: red;
 }

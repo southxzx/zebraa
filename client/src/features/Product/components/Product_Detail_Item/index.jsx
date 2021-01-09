@@ -19,6 +19,9 @@ function Product_Detail_Item(props) {
     const {productSizes,productName,productImages,productColor,productImagesColor,productIdColor,
         productPrice,productPriceColor,productBrand,productDes,productReview,productLove} = props
 
+    // REtrieve user from localStorage
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user);
 
     //count
     const [count,setCount] = useState(1);
@@ -33,7 +36,7 @@ function Product_Detail_Item(props) {
     }
 
     let data = {
-        idUser : "5ff32e8742af3c23788f8538",
+        idUser : user._id,
         idProduct: "",
         idSize: "",
         idColorProduct: "",

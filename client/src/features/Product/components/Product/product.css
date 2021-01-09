@@ -3,21 +3,21 @@
     border: 1px#e1e1e1 solid;
 }
 
-.panel{
+.layer-navigation .panel{
     padding: 25px 20px;
 }
 
-.panel .layer-heading{
+.layer-navigation .panel .layer-heading{
     margin-bottom: 40px;
 }
-.panel .layer-heading h3{
+.layer-navigation .panel .layer-heading h3{
     font-size: 25px;
     padding-bottom: 15px;
     border-bottom: 1px solid #e1e1e1;
 }
 
-.panel .layer{}
-.panel .layer .list-groups{}
+.layer-navigation .panel .layer{}
+.layer-navigation .panel .layer .list-groups{}
 .list-groups .filter-category{
     padding-bottom: 15px;
     border-bottom: 1px solid #e1e1e1;

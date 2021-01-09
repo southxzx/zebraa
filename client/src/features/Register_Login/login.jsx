@@ -40,7 +40,7 @@ function Login(props) {
         const text = event.target.name;
         setFormData({ ...formData, [text]: event.target.value });
         //console.log(name,email, password1, password2);
-        console.log(text, event.target.value);
+        //console.log(text, event.target.value);
     };
 
     // Handle submit data
@@ -59,7 +59,7 @@ function Login(props) {
                 })
                 .then(res => { 
                     authenticate(res,() => {    // middleware authenticate must be next() to pass To ,() => {...}
-                        
+                        console.log(res.data.user);
                         setFormData({
                             ...formData,
                             email: '',
@@ -180,11 +180,9 @@ function Login(props) {
                                             <button
                                             onClick={renderProps.onClick}
                                             disabled={renderProps.disabled}
-                                            className='btn-register'
+                                            className='btn-default btn-login btn-google'
                                             >
-                                                <div className='btn-default btn-login btn-google'>
                                                     <i className='fa fa-google ' />
-                                                </div>
                                                 {/* <span className='ml-4'>Sign In with Google</span> */}
                                             </button>
                                         )}
@@ -197,19 +195,16 @@ function Login(props) {
                                         render={renderProps => (
                                             <button
                                                 onClick={renderProps.onClick}
-                                                className='btn-register'
+                                                className='btn-default btn-login  btn-facebook'
                                             >
-                                                <div className='btn-default btn-login btn-facebook'>
-                                                    <i className='fa fa-facebook' />
-                                                </div>
-                                                
+                                                    <i className='fa fa-facebook' />                                               
                                             </button>
                                         )}
                                     ></FacebookLogin>
 
-                                    <a className="btn-default btn-login btn-twitter">
+                                    <button className="btn-default btn-login btn-twitter">
                                         <i className="fa fa-twitter"></i>
-                                    </a>
+                                    </button>
                                     <p className="or">or</p>
                                 </div>
                                 
@@ -250,12 +245,9 @@ function Login(props) {
                                         </Link>   */}
                                         <a onClick={toggleForgetForm} className='forget'>Forget password?</a>
                                     </div>
-                                    <button type="submit" className='btn-register'>
-                                        <span type="submit" className="btn-default btn-sign-in">
+                                    <button type="submit" className='btn-register btn-default btn-sign-in'>
                                             SIGN IN
-                                        </span>
                                     </button>
-
                                     <div className="else">
                                         <label>Not a member?</label>
                                         <a onClick={toggleRegisterForm}>Sign Up</a>
@@ -263,11 +255,6 @@ function Login(props) {
                                 </form>
 
                             </div>
-                        </div>
-                    </Col>
-                    <Col className="login-artwork">
-                        <div className="login-artwork">
-                            <img src="Assets/images/login.png"/>
                         </div>
                     </Col>
                 </div>

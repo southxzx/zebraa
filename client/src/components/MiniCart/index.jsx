@@ -13,7 +13,9 @@ import Loader from 'react-loader-spinner';
 
 function MiniCart(props) {
 
-
+    // REtrieve user from localStorage
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user);
 
     const cartList = useSelector(state => state.cart.cartList.cart);
     const [isRender,setIsRender] = useState(false);
@@ -52,7 +54,7 @@ function MiniCart(props) {
     cartList ? getSpecificProduct() : console.log("empty cart");
 
     let history = {
-        idUser:"5ff32e8742af3c23788f8538",
+        idUser:user._id,
         idProduct:"",
         idColorProduct:"",
         idSize:"",
@@ -84,7 +86,7 @@ function MiniCart(props) {
         const fetchCart = async () => {
             try{
                 if (!isCancelled){
-                    const response = await trackPromise(cartApi.getAll("5ff32e8742af3c23788f8538"));
+                    const response = await trackPromise(cartApi.getAll(user._id));
                     await dispatch({ type: 'getCart', payload: response.data })
                   // setCart(cartList);
                 }
@@ -113,8 +115,7 @@ function MiniCart(props) {
                                         type="ThreeDots"
                                         color="#ff6500"
                                         height={30}
-                                        width={30}
-                                        timeout={3000} //3 secs
+                                        width={30} //3 secs
 
                                     />
                                 </div>) : null}
@@ -169,8 +170,7 @@ function MiniCart(props) {
                                         type="ThreeDots"
                                         color="#ff6500"
                                         height={30}
-                                        width={30}
-                                        timeout={3000} //3 secs
+                                        width={30} //3 secs
 
                                     />
                                 </div>}
@@ -188,8 +188,7 @@ function MiniCart(props) {
                                 type="ThreeDots"
                                 color="#ff6500"
                                 height={30}
-                                width={30}
-                                timeout={3000} //3 secs
+                                width={30}//3 secs
 
                             />
                         </div>}

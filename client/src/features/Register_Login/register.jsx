@@ -40,7 +40,7 @@ function Register(props) {
     // Handle submit data
     function handleSubmit(event){
         event.preventDefault();
-        isAuthorized();
+        // isAuthorized();
 
         if (name && address && phone && email && password1){
             if (password1 === password2){
@@ -151,48 +151,37 @@ function Register(props) {
                                         <span className="error-message">&nbsp;</span>
                                     </div>
                                     <div className="password">
-                                        <input 
-                                            type="password" 
-                                            className="frm-input frm-error"  
-                                            placeholder="Password"
-                                            name = 'password1'
-                                            onChange={(event)=>handleChange(event)}
-                                            value={password1}/>
-                                        <span className="error-message">&nbsp;</span>
+                                        <div className="field1">
+                                            <input 
+                                                type="password" 
+                                                className="frm-input frm-error"  
+                                                placeholder="Password"
+                                                name = 'password1'
+                                                onChange={(event)=>handleChange(event)}
+                                                value={password1}/>
+                                            <span className="error-message">&nbsp;</span>
+                                        </div>
+                                        <div className="field2">
+                                            <input 
+                                                type="password" 
+                                                className="frm-input frm-error"  
+                                                placeholder="Confirm Password"
+                                                name = 'password2'
+                                                onChange={(event)=>handleChange(event)}
+                                                value={password2}/>     
+                                            <span className="error-message">&nbsp;</span>   
+                                        </div>
                                     </div>
-
-                                    <div className="password">
-                                        <input 
-                                            type="password" 
-                                            className="frm-input frm-error"  
-                                            placeholder="Confirm Password"
-                                            name = 'password2'
-                                            onChange={(event)=>handleChange(event)}
-                                            value={password2}/>     
-                                        <span className="error-message">&nbsp;</span>    
-                                    </div>
-                                
                                     <p>By creating an account, you agree to Nike's Privacy Policy and Terms of Use.</p>
-                                    <button type="submit" className='btn-register'>
-                                        <span type="submit" className="btn-default btn-sign-in">
+                                    <button type="submit" className='btn-register btn-default btn-sign-in'>
                                             {textChange}
-                                        </span>
                                     </button>
-                                    
                                 </form>
-                                
-                                   
-
                                 <div className="else">
                                     <label>Already a member?</label>
                                     <a onClick={toggleLoginForm}>Sign In</a>
                                 </div>
                             </div>
-                        </div>
-                    </Col>
-                    <Col class="login-artwork">
-                        <div class="login-artwork">
-                            <img src="Assets/images/register.png"/>
                         </div>
                     </Col>
                 </div>

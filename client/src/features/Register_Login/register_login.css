@@ -1,7 +1,7 @@
 /* --------------------------- LOGIN -------------------------- */
 
-.row-login{
-    display: flex;
+.row-login .form-group {
+    margin-bottom: 0;
 }
 .row-login .col:last-child{
     background-color:#f2f4f4;
@@ -118,18 +118,22 @@
 
 /* --------------------------- REGISTER -------------------------- */
 
-.login-modal .content .login-frm .name{
+.login-modal .content .login-frm .password{
     max-width: 100%;
 }
-.login-modal .content .login-frm .name .first-name{
+.login-modal .content .login-frm .password .field1{
     display: inline-block;
     width: 47%;
     float: left;
 }
-.login-modal .content .login-frm .name .last-name{
+.login-modal .content .login-frm .password .field2{
     display: inline-block;
     width: 47%;
     float: right;
+}
+
+.login-modal .content .login-frm p{
+    display: inline-block;
 }
 
 .btn-register{

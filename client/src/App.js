@@ -12,6 +12,7 @@ import ResetPassword from './components/ResetPassword';
 import AdminRoute from './Routes/AdminRoute';
 import AdminHome from './features/Admin/pages/AdminHome';
 import IsAuthorized from './features/Admin/isAuthorized/isAuthorized';
+import Checkout from './features/Checkout';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Route path='/cart' exact component={Cart} />
       <Route path='/search' exact component={Search} />
       <Route path='/profile' exact component={Profile}/>
+      <Route path='/checkout' exact component={Checkout}/>
       <Route path='/users/activate/:token' exact component={Activate}/>
       <Route path='/users/password/reset/:token' exact component={ResetPassword}/>
 
