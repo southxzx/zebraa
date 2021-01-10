@@ -10,6 +10,6 @@
 }
 
 .title-common h4 {
-    font-family: 'Poppins';
+    font-family: 'Poppins' !important;
     margin-top: 6px;
 }

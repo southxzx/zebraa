@@ -1,0 +1,152 @@
+.checkout{
+    padding: 20px 0;
+}
+.checkout .step-checkout{
+    width: 70%;
+    margin: 0 auto;
+}
+.checkout .btn-next{
+    float: right;
+    width: 11%;
+}
+
+.checkout .title{
+    text-align: center;
+    padding-bottom: 20px;
+    color: #a37031;
+    font-weight: 500;
+}
+.checkout .title p{
+    padding: 2px 0;
+    background-color: bisque;
+}
+.cart-calculation .load{
+    text-align: center;
+}
+.checkout .rs-steps-item-title{
+    color: rgb(255, 94, 0);
+    font-size: 120%;
+    font-weight: 500;
+}
+.checkout .rs-steps-item-description{
+    font-size: 80%;
+    font-weight: 300;
+}
+.rs-steps-item-status-finish .rs-steps-item-icon-wrapper:not(.rs-steps-item-custom-icon) {
+    border-color: rgb(255, 94, 0)!important;
+    color: #fff;
+}
+.rs-steps-item-status-finish .rs-steps-item-icon-wrapper:not(.rs-steps-item-custom-icon) .rs-steps-item-icon::before {
+    content: '\f00c';
+    color:  rgb(255, 94, 0)!important;
+    border-top-width: 5px!important;
+}
+.rs-steps-item-status-finish .rs-steps-item-tail, .rs-steps-item-status-finish .rs-steps-item-title::after{
+    border-color:rgb(255, 94, 0)!important;
+}
+.checkout .rs-steps-item-icon-wrapper{
+    border-color: none!important;
+    border: 1px solid rgb(255, 94, 0);
+}
+.rs-steps-item-status-process .rs-steps-item-icon-wrapper:not(.rs-steps-item-custom-icon){
+    background-color: rgb(255, 94, 0) !important;
+    border-color: rgb(255, 94, 0) !important;
+    color: #fff !important;
+}
+
+/* Confirm */
+.collapse.show{
+    padding: 20px;
+}
+.checkout .info input,
+.checkout .info textarea{
+    margin-bottom: 15px;
+    font-weight: 500;
+    color: #000;
+    padding: 20px;
+    font-size: 90%;
+}
+.checkout .info textarea{
+    width: 100%;
+}
+.checkout .info p{
+    margin-top: 10px;
+    text-align: right;
+}
+.checkout .info p::before{
+    content: '* ';
+    color: #F00;
+    font-weight: bold;
+}
+.checkout .info button.btn.btn-white {
+    line-height: 28px;
+    height: 42px;
+    border: 1px solid #ddd;
+    border-radius: 0 5px 5px 0;
+    transition: all 0.3s;
+}
+.checkout .info button.btn.btn-white:hover{
+    background-color: rgb(255, 94, 0);
+    color: #fff;
+}
+
+/* Payment */
+
+.checkout .panel .payment{
+    text-align: center;
+}
+.checkout .panel .payment .btn-cash{
+    width: 750px;
+    height: 55px;
+    font-weight: 500;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #498f3a;
+    color: #fff;
+    font-size: 166%;
+    margin-bottom: 17px;
+    transition: background-color 0.3s;
+}
+.checkout .panel .payment .btn-cash:hover{
+    background-color: #2a7419;
+}
+.checkout .panel .payment .btn-cash:active,
+.checkout .panel .payment .btn-cash:focus{
+    background-color: #2a7419;
+}
+.checkout .panel .payment .btn-cash i{
+    padding: 0 5px;
+}
+.success-paypal{
+    color: #2a7419;
+    text-align: center;
+}
+
+/* Invoice */
+.checkout .invoice-box{
+    background-color: white;
+    width: 70%;
+    margin: 0 auto;
+    padding: 40px;
+}
+.checkout .delivery{
+    padding: 10px;
+    background-color: rgb(235, 235, 235)
+}
+.checkout .invoice-box img{
+    max-width: 120px;
+}
+.checkout .invoice-box h2{
+    float: right;
+}
+.checkout .invoice-box .row{
+    padding: 20px 0 20px 0;
+    border-bottom: 1px solid #cecece;
+    border-bottom: 1px solid #cecece;
+}
+.checkout .invoice-box .last-row{
+    padding-bottom: 0;
+    border: none;
+}
+.checkout .invoice-box thead{
+    background-color: antiquewhite;
+}

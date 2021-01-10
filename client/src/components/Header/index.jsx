@@ -8,8 +8,11 @@ import { Link, NavLink } from "react-router-dom";
 import jwt from 'jsonwebtoken';
 import cookie from 'js-cookie';
 import Forget from '../../features/Register_Login/forget';
+import { signout } from '../../helpers/auth';
 function Header(props) {
 
+    // REtrieve user from localStorage
+    const user = JSON.parse(localStorage.getItem('user'));
 
     // Ref CLICK OUTSIDE
     const wrapperRef = useRef(null);
@@ -19,7 +22,7 @@ function Header(props) {
     const [modal, setModal] = useState(false);
     const [popoverCart, setPopoverCart] = useState(false);
     const [popoverUser, setPopoverUser] = useState(false);
-    const [login, setLogin] = useState(false);
+    const [isReload, setIsReload] = useState(false);
 
     // Bật form LOGIN/REGISTER/FORGET
     const [modalLogin, setModalLogin] = useState(false);
@@ -110,8 +113,20 @@ function Header(props) {
     //     changeStatusLogin();
 
     // },[cookie.get('token')])
+
+    // useEffect(() => {
+    //     if(cookie.get('token')){
+    //         setIsReload(!isReload);
+    //     }
+    // },[])
+
+
+    const logout = () => {
+        signout();
+        setIsReload(!isReload);
+    }
  
-    console.log(localStorage.getItem('user'));
+    //console.log(localStorage.getItem('user'));
 
     return (
         <header className={showHeader ? "dark-bg" : "transparent-bg"}>
@@ -263,7 +278,7 @@ function Header(props) {
                                     <li>
                                         <div className="user">
                                             <a  id="user-icon" onClick={toggleUser}>
-                                                <img className="user-image" src="/Assets/images/user.jpg">
+                                                <img className="user-image" src={user.avatar ? user.avatar : '"/Assets/images/user.jpg"'}>
                                                 </img> 
                                             </a>
                                             {popoverUser ? 
@@ -273,7 +288,7 @@ function Header(props) {
                                                     <div className="link">
                                                         <a href="/profile"><i className="fa fa-cog"></i>Profile</a>
                                                         <a><i class="fa fa-lock"></i>Change password</a>
-                                                        <a><i class="fa fa-sign-out"></i>Logout</a>
+                                                        <a onClick={()=>logout()}><i class="fa fa-sign-out"></i>Logout</a>
                                                     </div>
                                                 </div>
                                             </div>

@@ -225,6 +225,7 @@ a.sub-text.nav-link {
   font-size: 13px;
   font-family: 'Poppins';
   font-weight: 400;
+  color: black;
 }
 
 li.pl-4.sub-item-text.nav-item:hover{

@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import cartApi from '../../api/cartApi'; 
 import {usePromiseTracker, trackPromise} from 'react-promise-tracker';
 import Loader from 'react-loader-spinner';
+import { Link } from 'react-router-dom';
 
 
 function Cart() {
@@ -19,6 +20,9 @@ function Cart() {
     const [isEdit,setIsEdit] = useState(9999);
     const [isRender,setIsRender] = useState(false);
     const [valueState,setValueState] = useState("");
+
+    // REtrieve user from localStorage
+    const user = JSON.parse(localStorage.getItem('user'));
 
     function increase(){
         setCount(count+1);
@@ -124,7 +128,7 @@ function Cart() {
         const fetchCart = async () => {
             try{
 
-                    const response = await trackPromise(cartApi.getAll("5ff32e8742af3c23788f8538"));
+                    const response = await trackPromise(cartApi.getAll(user._id));
                     await dispatch({ type: 'getCart', payload: response.data })
                     setCart(response.data.cart);
             }
@@ -232,7 +236,7 @@ function Cart() {
                                                     {item.idColorProduct.price}
                                                 </td>
                                                 <td>
-                                                    665$
+                                                    {item.idColorProduct.price * item.quantity}
                                                 </td>
                                                 <td>
                                                     <div className="cart-action">
@@ -275,78 +279,15 @@ function Cart() {
                                     <label className="error-msg">Your coupon is invalid!</label>
                                     <a className="btn-default btn-subscribe">Apply</a>
                                 </Collapse>
-                            </div>
-                            <div className="panel">
-                                <div className="heading">
-                                    <a onClick={toggleCollapse1} >
-                                        <h5>Delivery Information</h5>
-                                        <i className="fa fa-caret-down" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                                <Collapse className="collapse-destination" isOpen={isOpenCollapse1}>
-                                    <form>
-                                        <Row>
-                                            <Col lg="2">
-                                                <p>Name:</p>
-                                            </Col>
-                                            <Col lg="10">
-                                                <Input placeholder="Your name"></Input>
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col lg="2">
-                                                <p>Destination:</p>
-                                            </Col>
-                                            <Col lg="10">
-                                                <InputGroup>
-                                                    <Input placeholder="Your destination"></Input>
-                                                    <InputGroupAddon addonType="prepend">
-                                                        <Button color="white"><i className="fa fa-map-o" aria-hidden="true"></i></Button>
-                                                    </InputGroupAddon>
-                                                </InputGroup>
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col lg="2">
-                                                <p>Phone:</p>
-                                                
-                                            </Col>
-                                            <Col lg="10">
-                                                <Input placeholder="Your phone number"></Input>
-                                            </Col>
-                                        </Row>
-                                    </form>                                   
-                                    <a className="btn-default btn-subscribe">Confirm Information</a>
-                                </Collapse>
-                            </div>                         
+                            </div>                        
                         </div>
-
-                        <div className="cart-calculation">
-                        <Table bordered>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Sub-total:</th>
-                                    <td>650$</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Discount:</th>
-                                    <td>0$</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Total:</th>
-                                    <td>650$</td>
-                                </tr>
-                            </tbody>
-                        </Table>
-                    </div>
-
                     <div className="option-cart-btn">
                         <a className="btn-default btn-subscribe btn-continue">
                             Continue shopping
                         </a>
-                        <a className="btn-default btn-subscribe btn-check-out">
+                        <Link to="/checkout" className="btn-default btn-subscribe btn-check-out">
                             Checkout
-                        </a>
+                        </Link>
                     </div>
                     </div>
                     

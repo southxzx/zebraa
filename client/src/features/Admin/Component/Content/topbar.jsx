@@ -26,7 +26,7 @@ function Topbar(props) {
             expand="md"
         >
             <Button className="move" onClick={toggleSidebar}>
-                <i class="fa fa-bars" aria-hidden="true"></i>
+                <i className="fa fa-bars" aria-hidden="true"></i>
             </Button>
             <div className="search-bar">
                 <input type="search" placeholder="Search" name="name"/>
@@ -38,7 +38,7 @@ function Topbar(props) {
 
             <div className="ring-bar">
                 <a href="https://www.youtube.com/">
-                    <i class="fa fa-bell-o" aria-hidden="true"></i>
+                    <i className="fa fa-bell-o" aria-hidden="true"></i>
                 </a>
                 <span className="count">0</span>
             </div>

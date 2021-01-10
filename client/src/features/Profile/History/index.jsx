@@ -17,6 +17,8 @@ function History() {
     const [done,setDone] = useState(false);
 
     // historyList.history ? console.log(historyList.history) : console.log("B");
+    // REtrieve user from localStorage
+    const user = JSON.parse(localStorage.getItem('user'));
 
     const toggleReviewForm = (id) => {
         console.log(id);
@@ -32,7 +34,7 @@ function History() {
 
     let data = {
         product:"",
-        user:"5ff32e8742af3c23788f8538",
+        user:user._id,
         rating:"",
         comment:""
     };
