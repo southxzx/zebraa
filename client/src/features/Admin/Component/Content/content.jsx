@@ -5,6 +5,7 @@ import { BrowserRouter,Switch, Route } from "react-router-dom";
 import Topbar from "./topbar";
 import Sidebar from "../Sidebar/sidebar";
 import DashBoard from "../../pages/DashBoard";
+import AddProduct from "../../pages/Products/Add";
 
 
 
@@ -26,9 +27,8 @@ function Content(props) {
                             <Switch>
                                 <Route exact path="/admin" component={DashBoard} />
                                 <Route path="/admin/about" exact component={() => "About kojkojojo hiohoih"} />
-                                {/* <Route exact path="/Pages" component={() => "Pages"} />
-                                <Route exact path="/faq" component={() => "FAQ"} />
-                                <Route exact path="/contact" component={() => "Contact"} />*/}
+                                <Route path="/admin/products/add" exact component={AddProduct} />
+                                
                             </Switch>
                         </BrowserRouter>
                     </div>

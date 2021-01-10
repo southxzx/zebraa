@@ -21,26 +21,16 @@ function Sidebar(props) {
     const submenus = [
         [
           {
-            title: "Home 1",
-            target: "Home-1",
+            title: "Add Product",
+            target: "/admin/products/add",
           },
           {
-            title: "Home 2",
-            target: "Home-2",
+            title: "Edit Product",
+            target: "/admin/products/edit",
           },
           {
-            itle: "Home 3",
-            target: "Home-3",
-          },
-        ],
-        [
-          {
-            title: "Page 1",
-            target: "Page-1",
-          },
-          {
-            title: "Page 2",
-            target: "Page-2",
+            title: "Remove Product",
+            target: "/admin/products/remove",
           },
         ],
       ];
@@ -65,13 +55,13 @@ function Sidebar(props) {
                     </NavItem>
 
                     <NavItem>
-                        <NavLink className="side-item" tag={Link} to={"/admin/product"}>
+                        <NavLink className="side-item" tag={Link} to={"/admin/color"}>
                             <i className="fa fa-product-hunt" aria-hidden="true"></i>
-                            <div className="side-text">Product</div>
+                            <div className="side-text">Color</div>
                         </NavLink>
                     </NavItem>
 
-                    <SubMenu className="side-sub" title="Pages" icon='fa fa-product-hunt' items={submenus[1]} />
+                    <SubMenu className="side-sub" title="Product" icon='fa fa-product-hunt' items={submenus[0]} />
 
                     <NavItem>
                         <NavLink className="side-item" tag={Link} to={"/admin/about"}>
