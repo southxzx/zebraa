@@ -50,3 +50,11 @@ module.exports.addColorProduct = async (req, res) => {
 
 
 }
+
+// Get all color product -- find(query, projection)
+module.exports.getAllColorProduct = (req, res) => {
+    ColorProduct.find({},(err,colorProduct) => {
+        if (err) return res.send(err);
+        res.status(200).send(colorProduct);
+    })
+}

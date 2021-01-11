@@ -4,6 +4,7 @@ import './add.css'
 import { Steps } from 'rsuite';
 import AddProductAdmin from './AddProductAdmin';
 import AddColorProduct from './AddColorProduct';
+import AddSizeProduct from './AddSizeProduct';
 
 
 function AddProduct(props) {
@@ -20,17 +21,24 @@ function AddProduct(props) {
     const render = (step) => {
 
         switch(step){
-          case 1:
+          case 0:
             return (
                 <AddProductAdmin
                     nextStep={() => onNext()}
                 />
             )
 
-           case 0:
+           case 1:
             return (
                 <AddColorProduct
                     nextStep={() => onNext()}
+                />
+            )
+
+           case 2:
+            return(
+                <AddSizeProduct
+                
                 />
             )
 
