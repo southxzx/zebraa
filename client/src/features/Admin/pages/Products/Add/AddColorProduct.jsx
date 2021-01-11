@@ -12,12 +12,14 @@ function AddColorProduct(props) {
         color: '',
         price: '',
         avatar: false,
-
+        imgFile: []
 
     });
 
-    const [colorList,setColor] = useState([]);
-    const {_idProduct,color,price,avatar} = formData;
+    const [colorList,setColorList] = useState([]);
+    const [imageFile, setImageFile] = useState([]);
+
+    const {_idProduct,color,price,avatar,imgFile} = formData;
 
     // Handle change form inputs
     function handleChange(event) {
@@ -25,71 +27,101 @@ function AddColorProduct(props) {
         setFormData({ ...formData, [text]: event.target.value });
     };
 
+    
+    function handleImgChange(event) {
+        const imgFiles = event.target.files[0];
+
+        //Check duplicate or undefined
+        let flag = true;
+        for(let i =0 ;i < imageFile.length;i++){
+            if(imageFile && imgFiles){
+                if(imageFile[i].lastModified == imgFiles.lastModified)
+                    flag = false;
+            }
+            if(!imgFiles){
+                flag = false;
+            }
+
+        }
+
+        if(flag === true){
+            setImageFile(oldArray => [...oldArray, imgFiles]);
+        }
+        
+    }
+    console.log(imageFile);
+
+    useEffect(() => {
+        setFormData({...formData,imgFile:imageFile})
+    },[imageFile])
+
+    
+
     // Handle submit data
     function handleSubmit(event){
         event.preventDefault();
 
         if(_idProduct && color && price ){
-            var formDatas = new FormData();
-            var imagefiles = document.querySelectorAll('.images');
-            // console.log(imagefiles);
-            imagefiles.forEach((value,key) => formDatas.append("images", value.files[key]));
+            let bodyFormData = new FormData();
             
+            bodyFormData.append('color',color);
+            bodyFormData.append('price',price);
+            bodyFormData.append('avatar',avatar);
+            bodyFormData.append('product',_idProduct);
+            imgFile.forEach(value => bodyFormData.append('images',value));
 
-            console.log(formDatas);
-            axiosClient.post('/colorProduct/add',formDatas,{
-                product: _idProduct,
-                color,
-                price,
-                avatar,
-                images: formDatas
-            },{
+
+            axiosClient.post('/colorProduct/add',bodyFormData,{
                 headers: {
                     "Content-Type": "multipart/form-data"
-                  }
+                }
             })
-            .then(res=>{})
-            .catch(err=>{})
+            .then(res=>{
+                setFormData({
+                    _idProduct : '',
+                    color: '',
+                    price: '',
+                    avatar: false,
+                    imgFile: []
+                })
+            })
+            .catch(err=>{
+                setFormData({
+                    _idProduct : '',
+                    color: '',
+                    price: '',
+                    avatar: false,
+                    imgFile: []
+                })
+            })
+
+            //Next step
+            props.nextStep();
         }
-        console.log(formData);
+        
     }
 
     useEffect(() => {
-        const fetchColor = async () => {
+        const fetchData = async () => {
             try {
-                const response = await colorApi.getAll();
-                console.log(response.data);
+                const responseColor = await colorApi.getAll();
+                const responseProduct = await productApi.getAll({});
+                //console.log(responseColor.data);
+                //console.log(responseColor.data[0]._id);
 
-                setColor(response.data);
-                setFormData({...formData, color: response.data[0]._id});
+                // console.log(responseProduct.data.data[responseProduct.data.data.length - 1]);
+                setColorList(responseColor.data);
+                setFormData({...formData, color: responseColor.data[0]._id ,  _idProduct: responseProduct.data.data[responseProduct.data.data.length - 1]._id});
+                
                 
             } catch (error) {
                 console.log('Failed to fetch color list: ', error);
             }
-
-           
-
         }
 
-        const fetchLastProduct = async () => {
-            try {
-                const response = await productApi.getAll({});
-                console.log(response.data);
-
-                // console.log(response.data.data[response.data.data.length - 1]);
-                setFormData({...formData, _idProduct: response.data.data[response.data.data.length - 1]._id});
-                
-            } catch (error) {
-                console.log('Failed to fetch product list: ', error);
-            }
-
-            
-
-        }
-
-        fetchColor();
-        fetchLastProduct();
+        fetchData();
     },[])
+
 
     return (
         <div className="add-color-product-admin">
@@ -116,11 +148,11 @@ function AddColorProduct(props) {
                         <span className="error-message">&nbsp;</span>
                     </div>
  
-                    <Input type="file" name="images" id="file" />
-                    <Input type="file" name="images" id="exampleFile" />
-                    <Input type="file" name="images" id="exampleFile" />
-                    <Input type="file" name="images" id="exampleFile" />
-                    <Input type="file" name="images" id="exampleFile" />
+                    <Input type="file" name="images" onChange={(event) => handleImgChange(event)} id="file" />
+                    <Input type="file" name="images" onChange={(event) => handleImgChange(event)} id="exampleFile" />
+                    <Input type="file" name="images" onChange={(event) => handleImgChange(event)} id="exampleFile" />
+                    <Input type="file" name="images" onChange={(event) => handleImgChange(event)} id="exampleFile" />
+                    <Input type="file" name="images" onChange={(event) => handleImgChange(event)} id="exampleFile" />
 
 
                 </div>
@@ -130,6 +162,7 @@ function AddColorProduct(props) {
                 </button>
 
             </form>
+
         </div>
     );
 }

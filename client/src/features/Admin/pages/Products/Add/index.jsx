@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import Title from '../../../Component/Common/Title';
 import './add.css'
 import { Steps } from 'rsuite';
-import AddProductAdmin from './AddProduct';
+import AddProductAdmin from './AddProductAdmin';
 import AddColorProduct from './AddColorProduct';
 
 
@@ -20,14 +20,14 @@ function AddProduct(props) {
     const render = (step) => {
 
         switch(step){
-          case 0:
+          case 1:
             return (
                 <AddProductAdmin
                     nextStep={() => onNext()}
                 />
             )
 
-           case 1:
+           case 0:
             return (
                 <AddColorProduct
                     nextStep={() => onNext()}
