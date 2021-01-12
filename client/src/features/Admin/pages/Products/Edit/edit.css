@@ -1,0 +1,32 @@
+.edit-products{
+    padding: 20px 0;
+}
+
+.edit-products td.table-img {
+    width: 100px;
+    height: 100px;
+    image-rendering: pixelated;
+    border: none;
+}
+
+.edit-products td.table-img img{
+    width: 100%;
+    height: 100%;
+}
+
+.edit-products .th-image p{
+    text-align: center;
+}
+.edit-products th.table-num{
+    position: relative;
+    top: 35px;
+} 
+.edit-products td.table-name{
+    position: relative;
+    top: 35px;
+}
+.edit-products td.table-name p{
+    text-align: center;
+    font-family: 'Poppins';
+    font-weight: 400;
+}

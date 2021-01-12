@@ -33,6 +33,7 @@ function App() {
       <AdminRoute path='/admin' exact component={AdminHome}/>
       <AdminRoute path='/admin/about' exact component={() => <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen}/>}/>
       <AdminRoute path='/admin/products/add' exact component={() => <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen}/>}/>
+      <AdminRoute path='/admin/products/edit' exact component={() => <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen}/>}/>
     </Switch>
   </BrowserRouter>
   );

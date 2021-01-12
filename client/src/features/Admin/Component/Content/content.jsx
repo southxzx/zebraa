@@ -6,6 +6,7 @@ import Topbar from "./topbar";
 import Sidebar from "../Sidebar/sidebar";
 import DashBoard from "../../pages/DashBoard";
 import AddProduct from "../../pages/Products/Add";
+import EditProduct from "../../pages/Products/Edit";
 
 
 
@@ -28,6 +29,7 @@ function Content(props) {
                                 <Route exact path="/admin" component={DashBoard} />
                                 <Route path="/admin/about" exact component={() => "About kojkojojo hiohoih"} />
                                 <Route path="/admin/products/add" exact component={AddProduct} />
+                                <Route path="/admin/products/edit" exact component={EditProduct} />
                                 
                             </Switch>
                         </BrowserRouter>

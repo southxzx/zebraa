@@ -49,7 +49,7 @@ function AddProduct(props) {
 
     return (
         <div className="add-products">
-            <Title title="PRODUCTS" title_below="Zebraa Products" />
+            <Title title="ADD PRODUCTS" title_below="Zebraa Products" />
 
             <div className="add-content-step">
                 <Steps current={step}>
