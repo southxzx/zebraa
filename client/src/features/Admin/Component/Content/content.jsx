@@ -8,6 +8,7 @@ import DashBoard from "../../pages/DashBoard";
 import AddProduct from "../../pages/Products/Add";
 import EditProduct from "../../pages/Products/Edit_Remove";
 import EditDetail from "../../pages/Products/EditDeTail/index.jsx";
+import RemoveProduct from "../../pages/Products/Remove";
 
 
 
@@ -32,6 +33,7 @@ function Content(props) {
                                 <Route path="/admin/products/add" exact component={AddProduct} />
                                 <Route path="/admin/products/edit" exact component={EditProduct} />
                                 <Route path="/admin/products/edit/:_idProduct" exact component={EditDetail} />
+                                <Route path="/admin/products/remove_product/:_idProduct" exact component={RemoveProduct} />
                                 
                             </Switch>
                         </BrowserRouter>
