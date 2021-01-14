@@ -58,9 +58,6 @@
 
 /* ///// AddProduct Admin ////// */
 
-.add-product-admin{}
-
-.add-product-admin-frm{}
 
 .add-product-admin-frm .login-frm .frm-input{
     width: 100%;
@@ -81,3 +78,4 @@
     color: red;
     font-size: 10px;
 }
+

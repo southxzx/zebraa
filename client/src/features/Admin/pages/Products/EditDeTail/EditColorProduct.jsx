@@ -22,7 +22,7 @@ function EditColorProduct(props) {
 
     const {color,price,avatar,imgFile} = formData;
     const [colorList,setColorList] = useState([]);
-    const [imageFile, setImageFile] = useState([]);
+    
 
     // Handle change form inputs
     function handleChange(event) {
@@ -30,28 +30,6 @@ function EditColorProduct(props) {
         setFormData({ ...formData, [text]: event.target.value });
     };
 
-        
-    function handleImgChange(event) {
-        const imgFiles = event.target.files[0];
-
-        //Check duplicate or undefined
-        let flag = true;
-        for(let i =0 ;i < imageFile.length;i++){
-            if(imageFile && imgFiles){
-                if(imageFile[i].lastModified == imgFiles.lastModified)
-                    flag = false;
-            }
-            if(!imgFiles){
-                flag = false;
-            }
-
-        }
-
-        if(flag === true){
-            setImageFile(oldArray => [...oldArray, imgFiles]);
-        }
-        
-    }
 
     // Handle submit data
     function handleSubmit(event){
@@ -84,9 +62,6 @@ function EditColorProduct(props) {
         
     }
 
-    // useEffect(() => {
-    //     setFormData({...formData,imgFile:imageFile})
-    // },[imageFile])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -127,20 +102,20 @@ function EditColorProduct(props) {
         
     };
     
-      const onPreview = async file => {
+    const onPreview = async file => {
         let src = file.url;
         if (!src) {
-          src = await new Promise(resolve => {
+            src = await new Promise(resolve => {
             const reader = new FileReader();
             reader.readAsDataURL(file.originFileObj);
             reader.onload = () => resolve(reader.result);
-          });
+            });
         }
         const image = new Image();
         image.src = src;
         const imgWindow = window.open(src);
         imgWindow.document.write(image.outerHTML);
-      };
+    };
 
     return (
         <div className="edit_color_product">

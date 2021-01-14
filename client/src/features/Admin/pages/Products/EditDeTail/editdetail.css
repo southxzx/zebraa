@@ -150,11 +150,6 @@
 
 
 /* ////////////// EditColorProduct  */
-
-.edit_color_product{}
-.edit_color_product .edit_color_showImg {
-    
-}
 .edit_color_product .edit_color_showImg .color_showImg {
     display: flex;
     justify-content: space-evenly;
@@ -202,7 +197,7 @@
     height: 100%;
 } 
 
-.ant-upload-list.ant-upload-list-picture-card {
+.edit_color_product .ant-upload-list.ant-upload-list-picture-card {
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -55,8 +55,8 @@ function AddProduct(props) {
                 <Steps current={step}>
                     <Steps.Item title="Add Product" description="Description" />
                     <Steps.Item title="Add Color Product" description="Description" />
-                    <Steps.Item title="Waiting" description="Description" />
-                    <Steps.Item title="Waiting" description="Description" />
+                    <Steps.Item title="Add Size Color Product" description="Description" />
+                    
                 </Steps>
 
                 <hr />

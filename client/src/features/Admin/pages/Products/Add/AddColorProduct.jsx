@@ -30,32 +30,32 @@ function AddColorProduct(props) {
     };
 
     
-    function handleImgChange(event) {
-        const imgFiles = event.target.files[0];
+    // function handleImgChange(event) {
+    //     const imgFiles = event.target.files[0];
 
-        //Check duplicate or undefined
-        let flag = true;
-        for(let i =0 ;i < imageFile.length;i++){
-            if(imageFile && imgFiles){
-                if(imageFile[i].lastModified == imgFiles.lastModified)
-                    flag = false;
-            }
-            if(!imgFiles){
-                flag = false;
-            }
+    //     //Check duplicate or undefined
+    //     let flag = true;
+    //     for(let i =0 ;i < imageFile.length;i++){
+    //         if(imageFile && imgFiles){
+    //             if(imageFile[i].lastModified == imgFiles.lastModified)
+    //                 flag = false;
+    //         }
+    //         if(!imgFiles){
+    //             flag = false;
+    //         }
 
-        }
+    //     }
 
-        if(flag === true){
-            setImageFile(oldArray => [...oldArray, imgFiles]);
-        }
+    //     if(flag === true){
+    //         setImageFile(oldArray => [...oldArray, imgFiles]);
+    //     }
         
-    }
-    console.log(imageFile);
+    // }
+    // console.log(imageFile);
 
-    useEffect(() => {
-        setFormData({...formData,imgFile:imageFile})
-    },[imageFile])
+    // useEffect(() => {
+    //     setFormData({...formData,imgFile:imageFile})
+    // },[imageFile])
 
     
 
@@ -70,7 +70,7 @@ function AddColorProduct(props) {
             bodyFormData.append('price',price);
             bodyFormData.append('avatar',avatar);
             bodyFormData.append('product',_idProduct);
-            imgFile.forEach(value => bodyFormData.append('images',value));
+            imgFile.forEach(value => bodyFormData.append('images',value.originFileObj));
 
 
             axiosClient.post('/colorProduct/add',bodyFormData,{
@@ -124,6 +124,31 @@ function AddColorProduct(props) {
         fetchData();
     },[])
 
+    const [fileList, setFileList] = useState([]);
+
+    const onChange = ({ fileList: newFileList }) => {
+        setFileList(newFileList);
+
+        const imgFiles = newFileList;
+
+        setFormData({...formData,imgFile:imgFiles})
+        
+    };
+    
+    const onPreview = async file => {
+        let src = file.url;
+        if (!src) {
+            src = await new Promise(resolve => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file.originFileObj);
+            reader.onload = () => resolve(reader.result);
+            });
+        }
+        const image = new Image();
+        image.src = src;
+        const imgWindow = window.open(src);
+        imgWindow.document.write(image.outerHTML);
+    };
 
     return (
         <div className="add-color-product-admin">
@@ -150,17 +175,33 @@ function AddColorProduct(props) {
                         <span className="error-message">&nbsp;</span>
                     </div>
  
-                    <Input type="file" name="images" onChange={(event) => handleImgChange(event)} id="file" />
-                    <Input type="file" name="images" onChange={(event) => handleImgChange(event)} id="exampleFile" />
-                    <Input type="file" name="images" onChange={(event) => handleImgChange(event)} id="exampleFile" />
-                    <Input type="file" name="images" onChange={(event) => handleImgChange(event)} id="exampleFile" />
-                    <Input type="file" name="images" onChange={(event) => handleImgChange(event)} id="exampleFile" />
-
+                    <div className="input_image_color">
+                            <ImgCrop rotate>
+                                <Upload
+                                    //action="http://localhost:3000/admin/products/edit/5ffc4cbedb153c18dcda44eb"
+                                    listType="picture-card"
+                                    fileList={fileList}
+                                    type="file" 
+                                    name="images"
+                                    onChange={onChange}
+                                    onPreview={onPreview}
+                                    
+                                >
+                                    {fileList.length < 5 && '+ Upload'}
+                                </Upload>
+                            </ImgCrop>
+                            
+                            {/* <Input type="file" name="images" onChange={(event) => handleImgChange(event)} id="file" />
+                            <Input type="file" name="images" onChange={(event) => handleImgChange(event)} id="exampleFile" />
+                            <Input type="file" name="images" onChange={(event) => handleImgChange(event)} id="exampleFile" />
+                            <Input type="file" name="images" onChange={(event) => handleImgChange(event)} id="exampleFile" />
+                            <Input type="file" name="images" onChange={(event) => handleImgChange(event)} id="exampleFile" /> */}
+                        </div>
 
                 </div>
 
                 <button type="submit" className='btn-default btn-subscribe btn-next'>
-                    Next
+                   Save and Next
                 </button>
 
             </form>

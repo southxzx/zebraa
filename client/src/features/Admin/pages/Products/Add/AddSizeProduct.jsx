@@ -97,7 +97,7 @@ function AddSizeProduct(props) {
                 </div>
 
                 <button type="submit" className='btn-default btn-subscribe btn-next'>
-                    Next
+                    Add
                 </button>
 
             </form>
