@@ -26,8 +26,10 @@ function ChooseColorEdit(props) {
             infoNew[it] = item[it];
         }
         
-        // Next step
+
         props.infoData(infoNew);
+        //Next step
+        props.nextStep();
         
     }
     return (
@@ -36,7 +38,7 @@ function ChooseColorEdit(props) {
                 <Row>
                     {
                         colorList ? colorList.map(item => (
-                            <Col lg="4">
+                            <Col key={item._id} lg="4">
                             <div className="choose_color">
                                 <Card body inverse className="color" colors={item.color.name}>
                                     <CardTitle tag="h5">{item.color.name.toUpperCase()}</CardTitle>

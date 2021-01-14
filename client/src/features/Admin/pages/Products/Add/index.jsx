@@ -65,7 +65,7 @@ function AddProduct(props) {
                     </div>
                 <hr />
 
-                <button onClick={onNext} disabled={step === 3} className="btn-default btn-subscribe btn-next">Next</button>
+                {/* <button onClick={onNext} disabled={step === 3} className="btn-default btn-subscribe btn-next">Next</button> */}
 
             </div>
         </div>

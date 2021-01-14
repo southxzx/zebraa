@@ -44,14 +44,14 @@ function EditProduct(props) {
                 <tbody>
                     {
                         product ? product.map((item,key) => (
-                            <tr>
+                            <tr key={key}>
                             <th className="table-num" scope="row">{key+1}</th>
                             <td className="table-img"><img src={item.colorProducts ? item.colorProducts[0].images[0] : null}></img></td>
                             <td className="table-name"><p>{item.name}</p></td>
                             <td className="table-name"><p>{category.map(cate => (cate._id === item.category._id) ? cate.name : null)}</p></td>
                             <td className="table-name"><p>{item.colorProducts ? item.colorProducts.length : 0}</p></td>
                             <td className="table-name"><p>{item.active.toString()}</p></td>
-                            <td className="table-name"><p> <Link to ={`/admin/products/edit/${item._id}`} >Edit</Link> / <Link>Remove</Link> </p></td>
+                            <td className="table-name"><p> <Link to ={`/admin/products/edit/${item._id}`} >Edit</Link> / <Link to={''}>Remove</Link> </p></td>
                             </tr>
                         )) : null
                     }

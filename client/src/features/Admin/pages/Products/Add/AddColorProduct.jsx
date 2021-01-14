@@ -1,5 +1,7 @@
 import React,{useEffect, useState} from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Upload } from 'antd';
+import ImgCrop from 'antd-img-crop';
 import axiosClient from '../../../../../api/axiosClient';
 import productApi  from '../../../../../api/productApi'; 
 import colorApi from '../../../../../api/colorApi';

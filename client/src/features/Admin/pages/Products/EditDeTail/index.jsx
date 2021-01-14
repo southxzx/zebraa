@@ -98,8 +98,8 @@ function EditDetail(props) {
                 <Steps current={step}>
                     <Steps.Item title="Edit Detail Product" description="Description" />
                     <Steps.Item title="Choose Color Edit Product" description="Description" />
-                    <Steps.Item title="Choose Color Edit Product" description="Description" />
-                    <Steps.Item title="Waiting" description="Description" />
+                    <Steps.Item title="Edit Color Product" description="Description" />
+                    <Steps.Item title="Edit Size Product" description="Description" />
                 </Steps>
 
                 <hr />
@@ -108,7 +108,7 @@ function EditDetail(props) {
                     </div>
                 <hr />
 
-                <button onClick={onNext} disabled={step === 3} className="btn-default btn-subscribe btn-next">Next</button>
+                {/* <button onClick={onNext} disabled={step === 3} className="btn-default btn-subscribe btn-next">Next</button> */}
 
             </div>
         </div>

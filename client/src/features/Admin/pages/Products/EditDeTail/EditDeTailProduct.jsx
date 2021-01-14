@@ -14,7 +14,7 @@ function EditDeTailProduct(props) {
         description: '',
         active: true,
         category: '',
-        category_name:''
+       
 
     });
     const [cate,setCate] = useState([]);
@@ -83,7 +83,7 @@ function EditDeTailProduct(props) {
                 setFormData({...formData, name:responseProduct.data.data[0].name,
                     description:responseProduct.data.data[0].description, 
                     category: responseProduct.data.data[0].category._id,
-                    category_name:responseProduct.data.data[0].category.name + ' No Choose'
+                    
                 });
                 
             } catch (error) {
@@ -127,18 +127,19 @@ function EditDeTailProduct(props) {
                         <Input onChange={(event)=>handleChange(event)} type="select" name="category" id="exampleSelect">
                            
                             {
-                                cate ? cate.map(item =>  (
-                                    <option onChange={(event)=>handleChange(event)} value={item._id} key={item._id}>{item.name}</option>
-                                )) : null
+                                cate ? cate.map((item,key) => item._id === category ? 
+                                    (<option key={key} selected="selected" onChange={(event)=>handleChange(event)} value={item._id}>{item.name}</option>) 
+                                    : ( <option onChange={(event)=>handleChange(event)} value={item._id} key={item._id}>{item.name}</option>) 
+                                ) : null
                             }
-                            <option selected="selected" onChange={(event)=>handleChange(event)} value={category}>{category_name}</option>
+                            
                         </Input>
                     </div>
 
                 </div>
 
                 <button type="submit" className='btn-default btn-subscribe btn-next'>
-                    Next
+                   Save and Next
                 </button>
 
             </form>

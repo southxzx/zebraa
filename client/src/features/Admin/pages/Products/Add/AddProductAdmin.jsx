@@ -126,7 +126,7 @@ function AddProductAdmin(props) {
                 </div>
 
                 <button type="submit" className='btn-default btn-subscribe btn-next'>
-                    Next
+                   Save and Next
                 </button>
 
             </form>

@@ -7,7 +7,8 @@
 }
 .add-products .btn-next{
     float: right;
-    width: 11%;
+    width: 20%;
+    margin-top: 40px;
 }
 
 .add-products .title{
