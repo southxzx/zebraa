@@ -30,3 +30,15 @@ module.exports.addSizeProduct = (req,res) => {
     // })
 
 }
+
+// module.exports.updateSizeProduct = (req,res) => {
+
+//     Product.updateOne(
+//         {"sizeProducts._id": req.query.id},
+//         {$set : {'sizeProducts.$.quantity':req.body.quantity}},
+//         (err,success) => {
+//             if (err) return res.json({success: false, err});
+//             return res.json({success: true, msg: "Size has been updated"});
+//         }
+//     )
+// }

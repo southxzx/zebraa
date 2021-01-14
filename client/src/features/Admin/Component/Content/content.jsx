@@ -6,7 +6,8 @@ import Topbar from "./topbar";
 import Sidebar from "../Sidebar/sidebar";
 import DashBoard from "../../pages/DashBoard";
 import AddProduct from "../../pages/Products/Add";
-import EditProduct from "../../pages/Products/Edit";
+import EditProduct from "../../pages/Products/Edit_Remove";
+import EditDetail from "../../pages/Products/EditDeTail/index.jsx";
 
 
 
@@ -30,6 +31,7 @@ function Content(props) {
                                 <Route path="/admin/about" exact component={() => "About kojkojojo hiohoih"} />
                                 <Route path="/admin/products/add" exact component={AddProduct} />
                                 <Route path="/admin/products/edit" exact component={EditProduct} />
+                                <Route path="/admin/products/edit/:_idProduct" exact component={EditDetail} />
                                 
                             </Switch>
                         </BrowserRouter>

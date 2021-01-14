@@ -51,7 +51,7 @@ function EditProduct(props) {
                             <td className="table-name"><p>{category.map(cate => (cate._id === item.category._id) ? cate.name : null)}</p></td>
                             <td className="table-name"><p>{item.colorProducts ? item.colorProducts.length : 0}</p></td>
                             <td className="table-name"><p>{item.active.toString()}</p></td>
-                            <td className="table-name"><p> <Link to="/gg">Edit</Link> / <Link>Remove</Link> </p></td>
+                            <td className="table-name"><p> <Link to ={`/admin/products/edit/${item._id}`} >Edit</Link> / <Link>Remove</Link> </p></td>
                             </tr>
                         )) : null
                     }
