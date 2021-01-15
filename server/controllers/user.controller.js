@@ -562,29 +562,3 @@ module.exports.changePassword = (req,res) => {
 
 
 ////
-
-module.exports.authorController = (req,res) => {
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    const firstError = errors.array().map(error => error.msg)[0];
-    return res.status(422).json({
-      errors: firstError
-    });
-  }
-  else{
-    User.findOne({
-      _id : req.query._id
-    },((err,user) => {
-      if(err) return res.status(400).json({errors : 'Does not match'})
-      if(user){
-
-        const {role} = user;
-
-        return res.json({
-          role
-        })
-      }
-    }))
-  }
-}

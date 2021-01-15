@@ -1,0 +1,246 @@
+
+a,
+a:hover,
+a:focus {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+/* ---------------------------------------------------
+     TOPBAR STYLE
+----------------------------------------------------- */
+.topbar {
+  width: 81.3%;
+  background-color: #fbfbfb !important;
+  float: right;
+}
+
+.topbar .move{
+  margin-right: 25px;
+  background-color: rgb(255, 94, 0);
+}
+
+.topbar .search-bar{
+  position: relative;
+}
+.topbar input[type="search"]{
+  width: 800px;
+  border: solid 1px #ccc;
+  background: #ededed;
+  padding: 8px 35px 8px 15px;
+  border-radius: 20px;
+  transition: all .5s;
+}
+.topbar input[type="search"]:focus{
+  width: 800px;
+  background-color: #fff;
+  border-color: #1b1b1b;
+}
+.topbar .search-bar .search-icon{
+  right: 0;
+  position: absolute;
+  width: 18px;
+  right: 0px;
+  top: 50%;
+  transform: translate(-70%, -50%);
+}
+
+.topbar .search-bar .search-icon img{
+  width: 100%;
+  height: 100%;
+}
+
+.topbar .ring-bar{
+  margin-left: 8px;
+}
+
+.topbar .ring-bar a i{
+  font-size: 20px;
+  margin-left: 40px;
+}
+.topbar .ring-bar span.count{
+  color: white;
+  top: 15px;
+  left: 84%;
+  font-size: 13px;
+  position: absolute;
+  background-color: red;
+  padding: 1px 6px;
+  border-radius: 50%;
+}
+
+.topbar .user-bar{
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 16%;
+  right: 8%;
+}
+.topbar .user-bar .user-image{
+  border-radius: 50%;
+  width: 125%;
+  border: 2px solid #fff;
+}
+
+/* ---------------------------------------------------
+SIDEBAR STYLE
+----------------------------------------------------- */
+.sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  background:white;
+  color: #ffffff;
+  /* margin-left: -250px; */
+  transition: all 0.5s;
+}
+
+.sidebar.is-open {
+  margin-left: -250px;
+  transition: 0.5s;
+}
+
+.sidebar-header {
+  background:#ffffff;
+  border-bottom: 1px solid #c5bbbb;
+  padding-bottom: 8px;
+}
+
+.sidebar-header h3 {
+  color: black;
+  padding: 15px;
+  font-size: 20px;
+  position: relative;
+  top: 8px;
+  align-items: center;
+  text-align: center;
+  font-family: 'Poppins';
+}
+
+.sidebar ul p {
+  color: #fff;
+  padding: 10px;
+}
+  
+.menu-open {
+  background:#ffffff;
+}
+
+.nav-item:hover {
+  color: #ffffff;
+  background: #fff;
+}
+
+.items-menu {
+  color: #fff;
+  background: rgb(255, 94, 0);
+}
+
+li a.dropdown-toggle::after {
+  display: inline-flex;
+  position: relative;
+  left: 60%;
+  top: 10%;
+}
+
+.sidebar-header > span {
+  position: relative;
+  float: right;
+  margin: 0.5em;
+  font-size: 2rem;
+  cursor: pointer;
+  display: none;
+}
+.side-menu {
+  height: calc(100vh - 130px);
+  overflow-y: scroll;
+}
+
+.side-menu::-webkit-scrollbar {
+  width: 10px;
+}
+
+.side-menu::-webkit-scrollbar-thumb {
+  background:rgb(255, 94, 0);
+  border-radius: 3px;
+}
+
+.side-menu::-webkit-scrollbar-thumb:hover {
+  background: rgb(255, 94, 0);
+}
+
+.side-menu .nav-item{
+  border-bottom: 1px solid #eae5e5;
+}
+.side-menu .nav-item:hover i{
+  color: rgb(255, 94, 0);
+}
+
+.side-menu .nav-item:hover .side-text{
+  color: rgb(255, 94, 0);
+}
+
+.side-item{
+  display: flex;
+  font-size: 15px;
+  padding: 12px;
+}
+
+.side-item i{
+  margin-right: 10px;
+  padding-top: 2px;
+  color: black;
+}
+
+.side-item .side-text{
+  color: black;
+  font-family: 'Poppins';
+  font-weight: 500;
+}
+  
+/* ---------------------------------------------------
+CONTENT STYLE
+----------------------------------------------------- */
+.content {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.admin-main .admin-content {
+  width: 80%;
+  float: right;
+}
+
+/* ---------------------------------------------------
+SUBMENU
+----------------------------------------------------- */
+
+a.dropdown-toggle.sub-item.nav-link{
+  color: black;
+  font-size: 15px;
+  font-family: 'Poppins';
+  font-weight: 400;
+}
+
+a.sub-text.nav-link {
+  font-size: 13px;
+  font-family: 'Poppins';
+  font-weight: 400;
+  color: black;
+}
+
+li.pl-4.sub-item-text.nav-item:hover{
+  background-color:  rgba(224, 91, 13, 0.918) !important;
+}
+
+a.dropdown-toggle.sub-item.nav-link i {
+  font-size: 16px;
+  margin-right: 7px;
+  position: relative;
+  right: 4px;
+}
+
+
+
+.admin-side {
+  background-color: #f4f5f7;
+}

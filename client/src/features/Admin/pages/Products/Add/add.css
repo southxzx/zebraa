@@ -1,0 +1,81 @@
+.add-products{
+    padding: 20px 0;
+}
+.add-products .add-content-step{
+    width: 70%;
+    margin: 0 auto;
+}
+.add-products .btn-next{
+    float: right;
+    width: 20%;
+    margin-top: 40px;
+}
+
+.add-products .title{
+    text-align: center;
+    padding-bottom: 20px;
+    color: #a37031;
+    font-weight: 500;
+}
+.add-products .title p{
+    padding: 2px 0;
+    background-color: bisque;
+}
+.cart-calculation .load{
+    text-align: center;
+}
+.add-products .rs-steps-item-title{
+    color: rgb(255, 94, 0);
+    font-size: 120%;
+    font-weight: 500;
+}
+.add-products .rs-steps-item-description{
+    font-size: 80%;
+    font-weight: 300;
+}
+.rs-steps-item-status-finish .rs-steps-item-icon-wrapper:not(.rs-steps-item-custom-icon) {
+    border-color: rgb(255, 94, 0)!important;
+    color: #fff;
+}
+.rs-steps-item-status-finish .rs-steps-item-icon-wrapper:not(.rs-steps-item-custom-icon) .rs-steps-item-icon::before {
+    content: '\f00c';
+    color:  rgb(255, 94, 0)!important;
+    border-top-width: 5px!important;
+}
+.rs-steps-item-status-finish .rs-steps-item-tail, .rs-steps-item-status-finish .rs-steps-item-title::after{
+    border-color:rgb(255, 94, 0)!important;
+}
+.add-products .rs-steps-item-icon-wrapper{
+    border-color: none!important;
+    border: 1px solid rgb(255, 94, 0);
+}
+.rs-steps-item-status-process .rs-steps-item-icon-wrapper:not(.rs-steps-item-custom-icon){
+    background-color: rgb(255, 94, 0) !important;
+    border-color: rgb(255, 94, 0) !important;
+    color: #fff !important;
+}
+
+
+/* ///// AddProduct Admin ////// */
+
+
+.add-product-admin-frm .login-frm .frm-input{
+    width: 100%;
+    padding: 15px 20px 15px 20px;
+    font-size: 12px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    color: #666666!important;
+}
+.add-product-admin-frm .login-frm .frm-input:focus{
+    outline: none;
+}
+.add-product-admin-frm .login-frm div{
+    text-align: center;
+}
+.add-product-admin-frm .login-frm .error-message{
+    text-align: center;
+    color: red;
+    font-size: 10px;
+}
+
