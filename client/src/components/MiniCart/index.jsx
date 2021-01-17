@@ -8,17 +8,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {usePromiseTracker, trackPromise} from 'react-promise-tracker';
 import Loader from 'react-loader-spinner';
-
+import { RemoveItem } from '../../utils/cart';
 
 
 function MiniCart(props) {
 
     // REtrieve user from localStorage
     const user = JSON.parse(localStorage.getItem('user'));
-    console.log(user);
+    // console.log(user);
 
     const cartList = useSelector(state => state.cart.cartList.cart);
     const [isRender,setIsRender] = useState(false);
+
+    console.log(cartList);
 
     //Tổng
     let priceTotal = 0;
@@ -38,47 +40,19 @@ function MiniCart(props) {
 
     const { promiseInProgress } = usePromiseTracker();
 
+    cartList ? getSpecificProduct() : console.log("");
+
     const removeItemInCart = (item) => {
         const deleteItem = async () => {
             try {
                 await trackPromise(cartApi.delete(item._id));
-                await dispatch({ type: 'removeItem'});
                 setIsRender(!isRender);
+                await RemoveItem(item);
             } catch (error) {
                 console.log('Failed to remove cart item: ', error);
             }
         }
         deleteItem();
-    }
-
-    cartList ? getSpecificProduct() : console.log("empty cart");
-
-    let history = {
-        idUser:user._id,
-        idProduct:"",
-        idColorProduct:"",
-        idSize:"",
-        totalPrice:"",
-        quantity:2
-    }
-
-    const checkOut = () => {
-
-        const addHistory = async (history) => {
-            await trackPromise(historyApi.add(history))
-        };
-
-        cartList.map((item, key)=>{
-            history.idProduct = item.idProduct;
-            history.idColorProduct = item.idColorProduct;
-            history.idSize = item.idSize;
-            history.quantity = item.quantity;
-            history.totalPrice = item.idColorProduct.price*item.quantity;
-            addHistory(history);
-            removeItemInCart(item);
-        })
-
-
     }
 
     useEffect(() => {
@@ -90,13 +64,12 @@ function MiniCart(props) {
                     await dispatch({ type: 'getCart', payload: response.data })
                   // setCart(cartList);
                 }
-                
             }
             catch(err){
                 console.log('Failed to fetch cart list: ', err);
             }
         }
-        
+    
         fetchCart();
         return () => {
             isCancelled = true;
@@ -109,7 +82,7 @@ function MiniCart(props) {
                 (
                     cartList.length > 0 ? (
                         <div>
-                            {cartList ? (promiseInProgress &&
+                            {!cartList || promiseInProgress ? (
                                 <div className="load">
                                     <Loader
                                         type="ThreeDots"
@@ -123,7 +96,7 @@ function MiniCart(props) {
                                 <div className="row-total">
                                     <div className="quantity">
                                         <h6>Total: </h6>
-                                        <h6>${priceTotal}</h6>
+                                        <h6>${parseFloat(priceTotal).toFixed(2)}</h6>
                                     </div>
                                     <div className="total">
                                         <h6>Items:</h6>
@@ -155,9 +128,9 @@ function MiniCart(props) {
                                 <Link to="/cart" className="btn-default btn-edit">
                                     Edit Cart
                                 </Link>
-                                <a onClick={()=>checkOut()} className="btn-default btn-checkout">
+                                <Link to="/checkout" className="btn-default btn-checkout">
                                     Checkout
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     )

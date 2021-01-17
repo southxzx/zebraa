@@ -31,6 +31,7 @@ function Countdown() {
                     <Col>
                         <div className="countdown-item" onMouseEnter={handleHover1} onMouseLeave={handleHover1}>
                             <Card
+                                image="/Assets/images/product1.png"
                                 hover={isHovered1 ? "true" : null}
                                 active={isHovered1 ? "true" : null}
                             />
@@ -39,6 +40,7 @@ function Countdown() {
                     <Col>
                         <div className="countdown-item" onMouseEnter={handleHover3} onMouseLeave={handleHover3}>
                             <Card
+                                image="/Assets/images/product2.png"
                                 active="true"
                                 hover={isHovered3 ? "true" : null}
                             />
@@ -48,6 +50,7 @@ function Countdown() {
                     <Col>
                         <div className="countdown-item" onMouseEnter={handleHover2} onMouseLeave={handleHover2}>
                             <Card
+                                image="/Assets/images/product3.png"
                                 hover={isHovered2 ? "true" : null}
                                 active={isHovered2 ? "true" : null}
                             />

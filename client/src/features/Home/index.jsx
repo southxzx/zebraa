@@ -18,9 +18,8 @@ function Home() {
             </div>
             <Cate/>
             <Countdown/>
-            <Prod/>
+            {/* <Prod/> */}
             <Footer/>
-            <BackToTop/>
         </div>
     )
 }

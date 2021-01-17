@@ -10,7 +10,10 @@ import Payment from './Payment';
 import Delivery from './Delivery';
 import { Link } from 'react-router-dom';
 import orderApi from '../../api/orderApi';
-
+import cartApi from '../../api/cartApi';
+import { trackPromise, usePromiseTracker } from 'react-promise-tracker';
+import historyApi from '../../api/historyApi';
+import { RemoveItem } from '../../utils/cart';
 
 function Checkout() {
 
@@ -30,11 +33,11 @@ function Checkout() {
     totalOrder:"",
   })
 
-    const [step, setStep] = React.useState(0);
+  const [step, setStep] = React.useState(0);
+
   const onChange = nextStep => {
     setStep(nextStep < 0 ? 0 : nextStep > 3 ? 3 : nextStep);
   };
-
 
   const handlePayment = (value) => {
     setOrder({
@@ -48,6 +51,46 @@ function Checkout() {
     if (order.payment !== ""){
       await orderApi.add(order);
     }
+    saveHistory();
+  }
+
+  const removeItemInCart = (item) => {
+    const deleteItem = async () => {
+        try {
+            await trackPromise(cartApi.delete(item._id));
+            await RemoveItem(item);
+        } catch (error) {
+            console.log('Failed to remove cart item: ', error);
+        }
+    }
+    deleteItem();
+}
+
+  let history = {
+    idUser: order.idUser,
+    idProduct: "",
+    idColorProduct: "",
+    idSize: "",
+    totalPrice: "",
+    quantity: 2
+  }
+
+  const saveHistory = () => {
+
+    const addHistory = async (history) => {
+      await trackPromise(historyApi.add(history))
+    };
+
+    order.cart.map((item,key)=>{
+      history.idProduct = item.idProduct._id;
+      history.idColorProduct = item.idColorProduct._id;
+      history.idSize = item.idSize;
+      history.quantity = item.quantity;
+      history.totalPrice = item.idColorProduct.price * item.quantity;
+      addHistory(history);
+      removeItemInCart(item);
+    })
+
   }
 
   const render = (step) => {
@@ -64,7 +107,7 @@ function Checkout() {
         return (
           <Payment
             handlePayment={(type) => handlePayment(type)}
-            value={400}
+            value={order.totalOrder}
             nextStep={() => onNext()}
             infoData={(data) => getInfoData(data)}
             addOrder={()=> addOrder()}

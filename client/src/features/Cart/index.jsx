@@ -11,6 +11,7 @@ import cartApi from '../../api/cartApi';
 import {usePromiseTracker, trackPromise} from 'react-promise-tracker';
 import Loader from 'react-loader-spinner';
 import { Link } from 'react-router-dom';
+import { RemoveItem } from '../../utils/cart';
 
 
 function Cart() {
@@ -60,12 +61,13 @@ function Cart() {
             try {
                 await trackPromise(cartApi.delete(item._id));
                 await dispatch({ type: 'removeItem'});
+                RemoveItem(item);
+                setIsRender(!isRender);
             } catch (error) {
                 console.log('Failed to remove cart item: ', error);
             }
         }
         deleteItem();
-        setIsRender(!isRender);
     }
     const editItemInCart = (item,key) => {
         var dropdownSize = document.getElementsByClassName('custom-select');
@@ -117,9 +119,9 @@ function Cart() {
         
         const updateItemInCart = async () =>{
             await trackPromise(cartApi.update(dataSaveChanges));
+            setIsRender(!isRender);
         }
         updateItemInCart();
-        setIsRender(!isRender);
     }
 
     cartList ? getSpecificProduct() : console.log("empty cart");
@@ -233,10 +235,10 @@ function Cart() {
                                                     </InputGroup>
                                                 </td>
                                                 <td>
-                                                    {item.idColorProduct.price}
+                                                    ${item.idColorProduct.price}
                                                 </td>
                                                 <td>
-                                                    {item.idColorProduct.price * item.quantity}
+                                                    ${item.idColorProduct.price * item.quantity}
                                                 </td>
                                                 <td>
                                                     <div className="cart-action">
@@ -264,6 +266,9 @@ function Cart() {
                                 }
                             </Table>
                         </form>
+                        <div className="total">
+                            <h3>Total: ${priceTotal}</h3>
+                        </div>
                         <h2>What would you like to do next?</h2>
                         <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
                         <div className="panel-group">  

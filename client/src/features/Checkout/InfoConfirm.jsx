@@ -4,7 +4,7 @@ import {usePromiseTracker, trackPromise} from 'react-promise-tracker';
 import Loader from 'react-loader-spinner';
 import { useDispatch } from 'react-redux';
 import cartApi from '../../api/cartApi';
-
+import FormError from '../../utils/formError';
 
 function InfoConfirm(props) {
 
@@ -22,6 +22,12 @@ function InfoConfirm(props) {
         totalOrder:"",
     });
 
+    const [formErr,setFormErr] = useState({
+        addressValid: true,
+        phoneValid: true,
+        nameValid: true
+    })
+
     // REtrieve user from localStorage
     const user = JSON.parse(localStorage.getItem('user'));
     //console.log(user);
@@ -29,9 +35,9 @@ function InfoConfirm(props) {
     let totalRaw = 0, discount = 10, shipmentFee = 5, totalOrder = 0;
     const cal = () => {
         cartList.map((item, key) =>{
-            totalRaw += item.idColorProduct.price;
+            totalRaw += item.idColorProduct.price * item.quantity;
         }) 
-        totalOrder = parseFloat(totalRaw - ((totalRaw * discount)/100)).toFixed(2);
+        totalOrder = parseFloat(totalRaw - ((totalRaw * discount)/100) + shipmentFee).toFixed(2);
         //console.log(totalRaw,totalOrder);
     }
     cartList ? cal() : console.log("");
@@ -71,7 +77,7 @@ function InfoConfirm(props) {
         if (typeof(infoNew.address) === "undefined" 
             || typeof(infoNew.name) === "undefined"  
             || typeof(infoNew.phone) === "undefined" ){
-
+                // Validation form
         }
         else{
             // Next step
@@ -103,6 +109,7 @@ function InfoConfirm(props) {
                                     <p>Name:</p>
                                 </Col>
                                 <Col lg="9">
+                                    { formErr.nameValid ? (null) : (<div className="warning"><span> Error : Please enter your name.</span></div>)}   
                                     <Input onChange={(e)=>handleChange(e, "name")} placeholder="Your name" defaultValue={user.name ? user.name : ""}></Input>
                                 </Col>
                             </Row>
@@ -111,20 +118,22 @@ function InfoConfirm(props) {
                                     <p>Address:</p>
                                 </Col>
                                 <Col lg="9">
+                                    { formErr.addressValid ? (null) : (<div className="warning"><span> Error : Please enter your address.</span></div>)}
                                     <InputGroup>
                                         <Input onChange={(e)=>handleChange(e, "address")} placeholder="Your address" defaultValue={user.address ? user.address : ""}></Input>
                                         <InputGroupAddon addonType="prepend">
                                             <Button color="white"><i className="fa fa-map-o" aria-hidden="true"></i></Button>
                                         </InputGroupAddon>
                                     </InputGroup>
+                                    
                                 </Col>
                             </Row>
                             <Row>
                                 <Col lg="3">
                                     <p>Phone:</p>
-
                                 </Col>
                                 <Col lg="9">
+                                { formErr.phoneValid ? (null) : (<div className="warning"><span> Error : Please enter your phone number.</span></div>)}  
                                     <Input onChange={(e)=>handleChange(e, "phone")} placeholder="Your phone number" defaultValue={user.phone ? user.phone : ""}></Input>
                                 </Col>
                             </Row>

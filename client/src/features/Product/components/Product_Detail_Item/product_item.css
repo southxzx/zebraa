@@ -82,11 +82,22 @@
     padding: 10px 0px;
 }
 .product-price .price{
-    font-size: 20px;
+    font-size: 200%;
+    margin-right: 20px;
+    font-weight: 500;
+    color: rgb(231, 53, 43);
+}
+
+.product-price .old-price{
+    font-size: 200%;
+    font-weight: 500;
+    text-decoration: line-through;
+    color: #afafaf;
 }
 
 .product-info{
     padding: 10px 0px;
+    font-size: 120%;
 }
 .product-info ul.list-info{
     list-style: none;
@@ -102,6 +113,10 @@
 }
 .product-info ul.list-info li span.cate{
     margin-left: 5px;
+    background-color: antiquewhite;
+    padding: 3px 8px;
+    border-radius: 4px;
+    color: rgb(231, 53, 43);
 }
 .product-des{
     border-top: 1px solid #e1e1e1;
@@ -126,7 +141,24 @@
     display: flex;
     align-items: center;
 }
-.item-color span.color{
+.product-color .item-color .row{
+    width: 150%;
+}
+.product-color .item-color .img-color{
+    width: 50px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.product-color .item-color .img-color img{
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #cecece;
+    transition: all 0.3s;
+}
+.product-color .item-color .img-color img:hover{
+    border: 1.5px solid rgb(255, 94, 0);
+}
+/* .item-color span.color{
     width: 25px;
     height: 25px;
     border-radius: 50%;
@@ -178,7 +210,7 @@
 .item-color span.color[color="gray"]{
     background-color: #576574;
     border-color: #576574;
-}
+} */
 
 .size-item {
     padding-left: 0 !important;
@@ -189,6 +221,9 @@
     border-top: 1px solid #e1e1e1;
 }
 .product-size .size-name{
+    font-size: 22px;
+}
+.quantity .quantity-name{
     font-size: 22px;
 }
 .product-size .size-name span{
@@ -250,16 +285,28 @@
     margin-right: 5px;
 }
 .quantity .number .num{
+    line-height: 26px;
+    border: 1px solid rgb(255, 94, 0);
+    border-radius: 7px;
     width: 75px;
-    height: 38px;
+    height: 41px;
     text-align: center;
-    
-    padding-top: -7px;
     
 }
 .quantity .number .increase{
     width: 35px;
     margin-left: 5px;
+}
+.quantity .number .btn-quantity{
+    background-color:  rgb(255, 94, 0);
+    color: #fff;
+    border-radius: 7px;
+}
+.quantity .number .btn-quantity:hover,
+.quantity .number .btn-quantity:active{
+    background-color: #fff;
+    border: 1px solid rgb(255, 94, 0);
+    color: rgb(255, 94, 0);
 }
 
 .add-to-cart{

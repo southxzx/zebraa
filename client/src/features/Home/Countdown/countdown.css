@@ -1,5 +1,4 @@
 .countdown{
-    background-color: #f6f5f1;
     padding-bottom: 70px;
 }
 .countdown .countdown-title{
@@ -39,14 +38,14 @@
 .countdown-container .countdown-item .active{
     transition: all 0.5s;
     opacity: 1!important;
-    border-color: #fff !important;
+    /* border-color: #fff !important; */
     box-shadow: 6px 8px 30px 0px rgba(0, 0, 0, 0.1), inset 0 0 0 1px #ffffff !important;
 }
 .countdown-container .countdown-item .item-inner{
     text-align: center;
     opacity: 0.5;
     border-color: #fff;
-    border: 2px solid #d7d7d7;
+    border: 1px solid rgb(255, 94, 0);
     border-radius: 15px;
     padding-bottom: 15px;
     box-shadow: 1px 1px 0 0 #ffffff inset, 1px 1px 0 0 #ffffff;

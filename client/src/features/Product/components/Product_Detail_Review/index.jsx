@@ -54,7 +54,7 @@ function Product_Detail_Review(props) {
                                             <Col>
                                                 <div className="user-info">
                                                     <div className="avatar-user">
-                                                        <img src="https://i.imgur.com/cty0hD3.jpeg"/>
+                                                        <img src={value.user.avatar ? value.user.avatar : '/Assets/images/user.jpg'}/>
                                                     </div>
                                                     <p className="name-user">
                                                         {value.user.name}

@@ -7,7 +7,6 @@ const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOO
 // Use redux-thunk as a redux middleware
 const enhancer = composeEnhancers(applyMiddleware(thunkMiddleware));
 
-
 const store = createStore(rootReducer, {}, enhancer);
 
 export default store;

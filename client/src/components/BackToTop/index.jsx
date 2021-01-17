@@ -15,7 +15,7 @@ function BackToTop() {
         } else {
             setShowBackToTop(false);
         }
-        console.log(showBackToTop);
+        // console.log(showBackToTop);
     }
     useEffect(() => {
         // Hiển thị header khi scroll 

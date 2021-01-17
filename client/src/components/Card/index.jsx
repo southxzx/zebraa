@@ -8,7 +8,7 @@ function Card(props) {
     const [seconds, setSeconds] = useState(0);
 
 
-    var countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
+    var countDownDate = new Date("Feb 10, 2021 15:37:25").getTime();
 
     useEffect(()=>{
         // Update the count down every 1 second
@@ -37,7 +37,7 @@ function Card(props) {
         <div className={props.active ? "item-inner active" : "item-inner" }>
             <div className="image">
                 <a>
-                    <img src="/Assets/images/product1.png" />
+                    <img src={props.image} />
                 </a>                
                 <div className={props.active ? "time active-time" : "time"}>
                     <div className="day">

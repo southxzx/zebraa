@@ -5,14 +5,19 @@ const Product = require("../models/product.model");
 module.exports.addSizeProduct = (req,res) => {
     const size = new SizeProduct(req.body);
 
-    Product.updateOne(
-        {"colorProducts._id": req.body.colorProduct},
-        {$push:{"colorProducts.$.sizeProducts":size}},
-        (err,success) => {
-            if (err) return res.json({success: false, err});
-            return res.json({success: true, msg: "New size has been added"});
+    size.save((err,doc) => {
+        if (err) return res.json({success: false, err});
+        if (doc){
+            Product.updateOne(
+                {"colorProducts._id": req.body.colorProduct},
+                {$push:{"colorProducts.$.sizeProducts":size}},
+                (err,success) => {
+                    if (err) return res.json({success: false, err});
+                    return res.json({success: true, msg: "New size has been added"});
+                }
+            );
         }
-    );
+    })
     // Product.findOne({"colorProducts._id": req.body.colorProduct},(err,product) =>{
 
 

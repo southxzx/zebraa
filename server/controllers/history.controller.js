@@ -32,21 +32,31 @@ module.exports.getAllHistories = (req, res) => {
         populate({
             path: 'history',
             populate: {
-                path: 'idProduct',
-                select: {name:1,category:1,colorProducts:1},
+                path: 'idColorProduct',
+                select: {price:1,images:1,color:1},
                 populate: {
-                    path: 'category',
-                    select: {name:1},
+                    path: "color"
                 }
               }
         }).
         populate({
             path: 'history',
             populate: {
-                path: 'idColorProduct',
-                select: {price:1,images:1,color:1},
+                path: 'idProduct',
+                select: {name:1,category:1,colorProducts:1},
                 populate: {
-                    path: "color"
+                    path: 'category',
+                    select: {name:1},
+                },
+                populate: {
+                    path: 'colorProducts',
+                    populate: {
+                        path:'sizeProducts',
+                        populate: {
+                            path:'size',
+                            select: {name:1}
+                        }
+                    }
                 }
               }
         }).

@@ -3,6 +3,9 @@
     margin-top:30px;
     width:100%;
 }
+.cart-content .total{
+    float: right;
+}
 .cart-content .table{
     width: 100%;
 }

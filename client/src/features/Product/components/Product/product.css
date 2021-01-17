@@ -93,9 +93,12 @@
     margin-bottom: 15px;
     border-radius: 50%;
     margin-right: 25px;
-    border: 5px solid;
     cursor: pointer;
     transition: 0.5s;
+    border: 2px solid #f84848;
+}
+.filter-color span.color:hover{
+    
 }
 .item-colors span.color[color="white"]{
     background-color: #efebeb;

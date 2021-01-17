@@ -116,7 +116,7 @@ span.count {
     left: 13px;
     font-size: 11px;
     position: absolute;
-    background-color: red;
+    background-color: black;
     padding: 1px 6px;
     border-radius: 50%;
 }
@@ -202,6 +202,7 @@ header nav.icon .user .user-image{
 .icon .user .popover-user .content .link a{
     padding: 5px 0;
     width: 100%;
+    color: inherit;
 }
 .icon .user .popover-user .content .link a:hover{
     color: rgb(255, 94, 0);

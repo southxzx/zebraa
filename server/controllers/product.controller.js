@@ -19,8 +19,6 @@ module.exports.addProduct = async (req, res) => {
     } catch (error) {
         console.log(err);
     }
-
-
 }
 
 // Get 1 product 
@@ -68,7 +66,7 @@ module.exports.getAllProductsByArrival = (req, res) => {
     // let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
     // let order = req.query.order ? req.query.order : 'asc';
     let limit = req.body.limit ? parseInt(req.body.limit) : 100
-    let skip = parseInt(req.body.skip) - 1;    // vì xài pagination của hook nên mặc định currentPage = 1 nên phải trừ xuống cho skip = 0
+    let skip = parseInt(req.body.skip);    // vì xài pagination của hook nên mặc định currentPage = 1 nên phải trừ xuống cho skip = 0
     let findArgs = {};
 
     //Lấy filters bỏ vào findArgs để get SP theo filters

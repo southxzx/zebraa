@@ -10,6 +10,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import handleContentLoaded from './product_item';
 import cartApi from '../../../../api/cartApi';
+import { useDispatch } from 'react-redux';
+import { AddItem } from '../../../../utils/cart';
 
 function Product_Detail_Item(props) {
 
@@ -21,11 +23,11 @@ function Product_Detail_Item(props) {
 
     // REtrieve user from localStorage
     const user = JSON.parse(localStorage.getItem('user'));
-    console.log(user);
+    // console.log(user);
 
     //count
     const [count,setCount] = useState(1);
-    const [value,setValue] = useState(1);
+    const [productQuantity,setProductQuantity] = useState(1);
     function increase(){
         setCount(count+1);
     }
@@ -36,26 +38,44 @@ function Product_Detail_Item(props) {
     }
 
     let data = {
-        idUser : user._id,
+        idUser : user ? user._id : null,
         idProduct: "",
         idSize: "",
         idColorProduct: "",
         quantity: 0
     }
 
+    const dispatch = useDispatch();
+
     function handleSubmit(event) {
-        data.idProduct = _idProduct;
-        data.idSize = _idSize;
-        data.idColorProduct = _idColorProduct;
-        data.quantity = count;
-
-        console.log(data);
-
-        const addToCart  = async () => {
-            await cartApi.add(data);
-        }
-        addToCart();
         event.preventDefault();
+
+        // Nếu có đăng nhập mới add SP được
+        if (data.idUser){
+
+            // Nếu thêm số lượng nhiều hơn số lượng hiện có của product
+            if (count <= productQuantity){
+                data.idProduct = _idProduct;
+                data.idSize = _idSize;
+                data.idColorProduct = _idColorProduct;
+                data.quantity = count;
+        
+                // console.log(data);
+        
+    
+                const addToCart  = async () => {
+                    await cartApi.add(data);
+                    AddItem(data);
+                }
+                addToCart();
+            }
+            else{
+                toast.error("Sorry, there's not enough stock available");
+            }
+        }
+        else{
+            toast.error("Login is required for add to cart!");
+        }
     }
 
     //color
@@ -77,7 +97,7 @@ function Product_Detail_Item(props) {
     const starAverage = review ?  parseFloat(review.reduce((accumulator, currentValue, currentIndex,array) =>
             accumulator + currentValue.rating/array.length
         ,0)).toFixed(1) : null ;
-    console.log(starAverage);
+    //console.log(starAverage);
     //countReview
     const countReview = review ? review.length : null;
 
@@ -98,6 +118,10 @@ function Product_Detail_Item(props) {
     const ItemClicked = (item,key,type) => {
 
         if (type === 'size'){
+
+            // Lưu state qty của size để check add to cart
+            setProductQuantity(item.quantity);
+
             document.getElementById('quantity').innerHTML = `(${item.quantity} available products in size ${item.size.name})`;
 
             var size = document.getElementsByClassName("size");
@@ -175,6 +199,7 @@ function Product_Detail_Item(props) {
 
                         <div className ="product-price">
                             <span className="price">{price}$</span>
+                            <span className="old-price">299$</span>
                         </div>
 
 
@@ -182,7 +207,7 @@ function Product_Detail_Item(props) {
                         <div className="product-info">
                             <ul className ="list-info">
                                 <li>
-                                    Brands
+                                    <strong>Brands:</strong>
                                     <a href="https://www.youtube.com/">
                                         <span>
                                             {productBrand}
@@ -191,23 +216,23 @@ function Product_Detail_Item(props) {
                                 </li>
 
                                 <li>
-                                    Product Code:
+                                    <strong>Product Code:</strong>
                                     <span className="cate">
-                                        Shoe
+                                        { _idColorProduct}
                                     </span>
                                 </li>
 
                                 <li>
-                                    Availability: 
+                                    <strong>Availability: </strong>
                                     <span className="avail">
-                                        In Stock
+                                        {` In Stock`}
                                     </span>
                                 </li>
                             </ul>
                         </div>
 
                         <div className="product-des">
-                            
+                            <strong>Descriptions: </strong>
                             {productDes}
                         </div>
 
@@ -222,15 +247,20 @@ function Product_Detail_Item(props) {
                                             </div>
 
                                             <div className="item-color">
+                                                <Row>
                                                 {
                                                     color.map((item,key) => (
-                                                        <span onClick={()=>imageListByColor(item)} className="color" color={item} key={key}></span>
+                                                        // <span onClick={()=>imageListByColor(item)} className="color" color={item} key={key}></span>
+                                                        <Col md="3" key={key}>
+                                                            <div onClick={() => imageListByColor(item)} className="img-color">
+                                                                <img src={item} alt="Image Color" />
+                                                            </div>
+                                                        </Col>
                                                     ))
                                                 }
+                                                </Row>
                                             </div>
-
                                         </div>
-
                                     </Col>
 
                                     <Col sm="12" md="6" className="size-item">
@@ -244,9 +274,9 @@ function Product_Detail_Item(props) {
                                                 <Row>
                                                 {
                                                     size ? size.map((item,key) => (
-                                                        <Col md="2">
+                                                        <Col md="2" key={key}>
                                                             <span
-                                                                style={item.quantity <= 0 ? { "pointerEvents": "none", "opacity": 0.5 } : { backgroundColor: "#fff" }}
+                                                                style={item.quantity <= 0 ? { "pointerEvents": "none", "opacity": 0.3 } : { backgroundColor: "#fff" }}
                                                                 className="size"
                                                                 onClick={() => ItemClicked(item, key, "size")}
                                                                 key={key}>{item.size.name}
@@ -269,11 +299,13 @@ function Product_Detail_Item(props) {
                                 <Row>
                                     <Col sm="12" md="6" className="size-item">
                                         <div className="quantity">
+                                            <div className="quantity-name">
+                                                Quantity
+                                            </div>
                                             <div className="number">
-                                                <h4>Qty</h4>
-                                                <div className="btn btn-outline-primary decrease" onClick={()=>decrease()}>-</div>
-                                                <input className= "num" type="text" defaultValue={count} />
-                                                <div className="btn btn-outline-primary increase" onClick={()=>increase()}>+</div>
+                                                <div className="btn btn-quantity decrease" onClick={()=>decrease()}>-</div>
+                                                <input className= "num" readOnly type="text" value={count} />
+                                                <div className="btn btn-quantity increase" onClick={()=>increase()}>+</div>
                                             </div>
                                         </div>
                                     </Col>

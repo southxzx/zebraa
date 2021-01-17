@@ -121,11 +121,6 @@ function Forget(props) {
                             </div>
                         </div>
                     </Col>
-                    <Col class="login-artwork">
-                        <div class="login-artwork">
-                            <img src="Assets/images/register.png"/>
-                        </div>
-                    </Col>
                 </div>
             </Modal>
         </div>

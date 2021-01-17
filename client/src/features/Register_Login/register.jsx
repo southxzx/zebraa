@@ -103,7 +103,7 @@ function Register(props) {
                         <div className="form-group login-modal">
                             <div className="content">
                                 <div className="title">
-                                    <img className="logo" src="Assets/images/nike-logo.png"/>
+                                    <img className="logo" src="/Assets/images/nike-logo.png"/>
                                     <h5>BECOME A NIKE MEMBER</h5>
                                     <p>Create your Nike Member profile and get first access to the very best of Nike products, inspiration and community.</p>
                                 </div>

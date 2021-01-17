@@ -13,12 +13,14 @@ import AdminRoute from './Routes/AdminRoute';
 import AdminHome from './features/Admin/pages/AdminHome';
 import IsAuthorized from './features/Admin/isAuthorized/isAuthorized';
 import Checkout from './features/Checkout';
+import Test from './features/Test/test';
 
 function App() {
   return (
     <BrowserRouter>
     <Switch>
       <Route exact path='/' component={Home} />
+      <Route exact path='/test' component={Test} />
       <Route path='/products' component={Product} />
       <Route path='/cart' exact component={Cart} />
       <Route path='/search' exact component={Search} />

@@ -166,7 +166,7 @@ function Login(props) {
                         <div className="form-group login-modal">
                             <div className="content">
                                 <div className="title">
-                                    <img className="logo" src="Assets/images/nike-logo.png"/>
+                                    <img className="logo" src="/Assets/images/nike-logo.png"/>
                                     <h5>Your account for everything nike</h5>
                                 </div>
                                 <div className="login-with">

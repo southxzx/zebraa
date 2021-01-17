@@ -150,3 +150,10 @@
 .checkout .invoice-box thead{
     background-color: antiquewhite;
 }
+.warning{
+    color: red;
+    margin: 5px 0;
+}
+.superid{
+    background-color: black;
+}

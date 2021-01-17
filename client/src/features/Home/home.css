@@ -33,7 +33,7 @@
 }
 .btn-add-to-cart:hover{
     background-color: rgb(255, 94, 0);
-    color: #fff;
+    color: #fff!important;
 }
 .btn-add-to-cart{
     background-color:#fff;
@@ -49,6 +49,10 @@
     background-color: #fff;
     border: 1px solid rgb(255, 94, 0);
     color: rgb(255, 94, 0)!important;
+}
+.btn-shopnow{
+    background-color: #000;
+    color: #fff;
 }
 .btn-login{
     text-align: center;

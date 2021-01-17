@@ -139,7 +139,8 @@ function Product(props) {
 
     const [params,setParams] = useState({
         limit: pageLimit,
-        skip: currentPage,
+        // VD page = 1 thì skip = 0, page = 2 thì skip = 9
+        skip: 0,
         filters:{
             "category": [],
             "colorProducts.color":[],
@@ -147,9 +148,12 @@ function Product(props) {
         }
     });
 
+
+
     const dispatch = useDispatch();
 
     useEffect(() => {
+
         const fetchProductList = async () =>{
             try {
                 let response;
@@ -193,7 +197,7 @@ function Product(props) {
         }
 
         fetchProductList();
-    }, [currentPage,params]);
+    }, [params]);
 
     useEffect(() => {
         const fetchCategory = async () => {
@@ -217,6 +221,13 @@ function Product(props) {
         fetchCategory();
         fetchColor();
     },[1]);
+
+    useEffect(() => {
+        setParams({
+            ...params,
+            skip: (currentPage-1)*9
+        })
+    },[currentPage])
     //console.log(currentPage);
     // productList ? console.log(productList[0]) : console.log('caccas');;
     //productList ? productList.map(x => console.log( (typeof(x.colorProducts[0]) != 'undefined' ) ? x.colorProducts[0].images[0] : 'kk')) : console.log('nu');
@@ -393,6 +404,9 @@ function Product(props) {
                                                     
                                                 ) 
                                                 : 0}
+
+                                                // Tất cả hình của product
+                                                allProductImages = {data.colorProducts}
                                                 
                                             />
                                         </Col>

@@ -9,6 +9,8 @@ import jwt from 'jsonwebtoken';
 import cookie from 'js-cookie';
 import Forget from '../../features/Register_Login/forget';
 import { signout } from '../../helpers/auth';
+import Count from './Count';
+
 function Header(props) {
 
     // REtrieve user from localStorage
@@ -129,7 +131,7 @@ function Header(props) {
     //console.log(localStorage.getItem('user'));
 
     return (
-        <header className={showHeader ? "dark-bg" : "transparent-bg"}>
+        <header id="header" className={showHeader ? "dark-bg" : "transparent-bg"}>
             <Container>
                 <Row>
                     <Col lg="5">
@@ -139,7 +141,7 @@ function Header(props) {
                                     {/* <a className="layer1" href="/" title="Home">
                                         Home
                                     </a> */}
-                                    <NavLink to='/products' className="layer1" title="Home">
+                                    <NavLink to='/' className="layer1" title="Home">
                                         Home
                                     </NavLink>
                                 </li>
@@ -272,13 +274,15 @@ function Header(props) {
                                         /> 
                                         : null}
                                     </div>
-                                    <span className="count">0</span>
+                                    <span className="count">
+                                        <Count/>
+                                    </span>
                                 </li>
                                 {cookie.get('token') ? 
                                     <li>
                                         <div className="user">
                                             <a  id="user-icon" onClick={toggleUser}>
-                                                <img className="user-image" src={user.avatar ? user.avatar : '"/Assets/images/user.jpg"'}>
+                                                <img className="user-image" src={user.avatar ? user.avatar : '/Assets/images/user.jpg'}>
                                                 </img> 
                                             </a>
                                             {popoverUser ? 
@@ -286,8 +290,8 @@ function Header(props) {
                                                 <div className="content">
                                                     <h6>My account</h6>
                                                     <div className="link">
-                                                        <a href="/profile"><i className="fa fa-cog"></i>Profile</a>
-                                                        <a><i class="fa fa-lock"></i>Change password</a>
+                                                        <Link to="/profile"><i className="fa fa-cog"></i>Profile</Link>
+                                                        <a><i className="fa fa-lock"></i>Change password</a>
                                                         <a onClick={()=>logout()}><i class="fa fa-sign-out"></i>Logout</a>
                                                     </div>
                                                 </div>

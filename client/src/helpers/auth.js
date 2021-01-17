@@ -86,6 +86,7 @@ export const isAuthorized = () =>{
 export const signout = () => {
     removeCookie('token');
     removeLocalStorage('user');
+    removeLocalStorage('cart');
 };
 
 // Update user data in localstorage

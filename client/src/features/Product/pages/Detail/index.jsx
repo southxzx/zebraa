@@ -37,7 +37,7 @@ function DetailPage(props) {
     const handleData = () => {
         if(productItem.data){
             // get all color
-            productItem.data[0].colorProducts.map(item => color.push(item.color.name));
+            productItem.data[0].colorProducts.map(item => color.push(item.images[0]));
 
             // get all images by color
             for(let i = 0 ; i < color.length ; i++){
@@ -50,11 +50,13 @@ function DetailPage(props) {
 
                 // get all id colorProduct
                 colorProductId[`${color[i]}`] = productItem.data[0].colorProducts[i]._id;
+
             }
 
         }
 
     }
+
     handleData();
     //console.log(colorProduct);
     //console.log(price);
@@ -63,7 +65,7 @@ function DetailPage(props) {
     return (
         <div className="">
             <Header/>
-            <Breadcrumbs title="Product" linkBack="Home" active="Nike Boom X"/>
+            <Breadcrumbs title="Product" linkBack="Product" active="Nike Boom X"/>
             <div className="main-product-detail">
         
                 <Product_Detail_Item 
@@ -83,7 +85,7 @@ function DetailPage(props) {
                     productIdColor = {colorProductId}
                     productPrice = {productItem.data ? productItem.data[0].colorProducts[(productItem.data[0].colorProducts.map(item => item._id).indexOf(_idColorProduct) == -1 ? 0: productItem.data[0].colorProducts.map(item => item._id).indexOf(_idColorProduct))].price : null}
                     productPriceColor = {price}
-                    productBrand = "Nike"
+                    productBrand = {productItem.data ? productItem.data[0].category.name : null}
                     productDes = {productItem.data ? productItem.data[0].description : null}
                     productLove = {true}
                     productReview = {productItem.data ? productItem.data[0].review : null}

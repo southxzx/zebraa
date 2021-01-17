@@ -76,17 +76,18 @@ module.exports.getAllItemsInCart = (req, res) => {
             {_id: req.query.idUser},
             {cart:1, _id:0}
         ).
-        populate({
-            path: 'cart',
-            populate: {
-                path: 'idProduct',
-                select: {name:1,category:1,colorProducts:1},
-                populate: {
-                    path: 'category',
-                    select: {name:1},
-                }
-              }
-        }).
+
+        // populate({
+        //     path: 'cart',
+        //     populate: {
+        //         path: 'idSize',
+        //         select: {size:1},
+        //         populate: {
+        //             path: "size",
+        //             select: {name:1},
+        //         }
+        //       }
+        // }).
         populate({
             path: 'cart',
             populate: {
@@ -110,7 +111,8 @@ module.exports.getAllItemsInCart = (req, res) => {
                 path: 'idColorProduct',
                 select: {price:1,images:1,color:1},
                 populate: {
-                    path: "color"
+                    path: "color",
+                    select: {name:1},
                 }
               }
         }).

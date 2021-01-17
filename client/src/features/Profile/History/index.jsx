@@ -61,7 +61,7 @@ function History() {
 
     useEffect(() =>{
         const fetchHistory = async() =>{
-            const response = await historyApi.getAll("5ff32e8742af3c23788f8538");
+            const response = await historyApi.getAll(user._id);
             setHistoryList(response.data);
         }
         fetchHistory();
@@ -97,26 +97,32 @@ function History() {
                                     </div>
                                     <div className="block-detail">
                                         <div>
-                                            <p><b>Name:</b>{item.idProduct.name}</p>
+                                            <p><b>Name: </b>{item.idProduct.name}</p>
                                         </div>
                                         <div>
-                                            <p><b>Category:</b>{item.idProduct.category.name}</p>
-                                        </div>
-                                    </div>
-                                    <div className="block-detail">
-                                        <div>
-                                            <p><b>Color:</b> Red</p>
-                                        </div>
-                                        <div>
-                                            <p><b>Size:</b> 42</p>
+                                            <p><b>Category: </b>{item.idProduct.category.name}</p>
                                         </div>
                                     </div>
                                     <div className="block-detail">
                                         <div>
-                                            <p><b>Quantity:</b>{item.quantity}</p>
+                                            <p><b>Color: </b>{item.idColorProduct.color.name}</p>
                                         </div>
                                         <div>
-                                            <p><b>Price:</b>${item.totalPrice}</p>
+                                            <p><b>Size: </b>{item.idProduct.colorProducts[
+                                                                item.idProduct.colorProducts.findIndex(x => x._id === item.idColorProduct._id)
+                                                            ].sizeProducts[
+                                                                item.idProduct.colorProducts[
+                                                                    item.idProduct.colorProducts.findIndex(x => x._id === item.idColorProduct._id)
+                                                                ].sizeProducts.findIndex(y => y._id === item.idSize)
+                                                            ].size.name}</p>
+                                        </div>
+                                    </div>
+                                    <div className="block-detail">
+                                        <div>
+                                            <p><b>Quantity: </b>{item.quantity}</p>
+                                        </div>
+                                        <div>
+                                            <p><b>Price: </b>${item.totalPrice}</p>
                                         </div>
                                     </div>
                                     <div className="block-detail">

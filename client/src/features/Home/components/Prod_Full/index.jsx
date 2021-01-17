@@ -5,7 +5,7 @@ import { Container, Row, Col } from 'reactstrap';
 
 function Prod(props) {
     return (
-        <div className="product-full" style={{ backgroundImage: "url(" + "/Assets/images/bg_product.jpg"  + ")"}}>
+        <div className="product-full">
             <Container>
                 <Row>
                     <Col sm="12" md="4">

@@ -35,7 +35,7 @@ function Footer() {
                     <Row>
                         <Col>
                             <div className="wrapper">
-                                <img src="Assets/images/bg_icon1.png" alt="Icon"/>
+                                <img src="/Assets/images/bg_icon1.png" alt="Icon"/>
                                 <div className="text">
                                     <h3>Free Delivery</h3>
                                     <p>am liber tempor cum soluta nobis eleifend option congue.</p>
@@ -44,7 +44,7 @@ function Footer() {
                         </Col>
                         <Col>
                             <div className="wrapper">
-                                <img src="Assets/images/bg_icon2.png" alt="Icon"/>
+                                <img src="/Assets/images/bg_icon2.png" alt="Icon"/>
                                 <div className="text">
                                     <h3>Money Guarantee</h3>
                                     <p>am liber tempor cum soluta nobis eleifend option congue.</p>
@@ -53,7 +53,7 @@ function Footer() {
                         </Col>
                         <Col>
                             <div className="wrapper">
-                                <img src="Assets/images/bg_icon3.png" alt="Icon"/>
+                                <img src="/Assets/images/bg_icon3.png" alt="Icon"/>
                                 <div className="text">
                                     <h3>Online Support</h3>
                                     <p>am liber tempor cum soluta nobis eleifend option congue.</p>
@@ -66,7 +66,7 @@ function Footer() {
                 <div className="footer-top">
                     <Row>
                         <Col lg="5">
-                            <a className="logo"><img src="Assets/images/nike-logo.png" alt="Logo"/></a>
+                            <a className="logo"><img src="/Assets/images/nike-logo.png" alt="Logo"/></a>
                             <p className="des">We are a team of designers and developers that create high quality Magento, Prestashop, Opencart.</p>
                             <ul className="contact">
                                 <li className="address">
@@ -118,7 +118,7 @@ function Footer() {
                         <p>Copyright © 2018 PlazaThemes. All Right Reserved.</p>
                     </div>
                     <div className="payment">
-                        <img src="Assets/images/payment.png" alt="Payment"/>
+                        <img src="/Assets/images/payment.png" alt="Payment"/>
                     </div>
                 </div>
             </Container>

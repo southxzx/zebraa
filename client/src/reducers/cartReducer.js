@@ -13,6 +13,11 @@ const cartReducer = (state=InitialState, action) =>{
             return{
                 ...state
             }
+        case 'addItem':
+            return{
+                ...state,
+                cartList: action.payload
+            }
         default: 
             return state
     }
