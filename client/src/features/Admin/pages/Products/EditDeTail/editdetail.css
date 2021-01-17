@@ -1,0 +1,204 @@
+
+.edit_detail_product{
+    padding: 20px 0;
+}
+.edit_detail_product .add-content-step{
+    width: 70%;
+    margin: 0 auto;
+}
+.edit_detail_product .btn-next{
+    float: right;
+    width: 20%;
+    margin-top: 40px;
+}
+
+
+.edit_detail_product .title{
+    text-align: center;
+    padding-bottom: 20px;
+    color: #a37031;
+    font-weight: 500;
+}
+.edit_detail_product .title p{
+    padding: 2px 0;
+    background-color: bisque;
+}
+.cart-calculation .load{
+    text-align: center;
+}
+.edit_detail_product .rs-steps-item-title{
+    color: rgb(255, 94, 0);
+    font-size: 120%;
+    font-weight: 500;
+}
+.edit_detail_product .rs-steps-item-description{
+    font-size: 80%;
+    font-weight: 300;
+}
+.rs-steps-item-status-finish .rs-steps-item-icon-wrapper:not(.rs-steps-item-custom-icon) {
+    border-color: rgb(255, 94, 0)!important;
+    color: #fff;
+}
+.rs-steps-item-status-finish .rs-steps-item-icon-wrapper:not(.rs-steps-item-custom-icon) .rs-steps-item-icon::before {
+    content: '\f00c';
+    color:  rgb(255, 94, 0)!important;
+    border-top-width: 5px!important;
+}
+.rs-steps-item-status-finish .rs-steps-item-tail, .rs-steps-item-status-finish .rs-steps-item-title::after{
+    border-color:rgb(255, 94, 0)!important;
+}
+.edit_detail_product .rs-steps-item-icon-wrapper{
+    border-color: none!important;
+    border: 1px solid rgb(255, 94, 0);
+}
+.rs-steps-item-status-process .rs-steps-item-icon-wrapper:not(.rs-steps-item-custom-icon){
+    background-color: rgb(255, 94, 0) !important;
+    border-color: rgb(255, 94, 0) !important;
+    color: #fff !important;
+}
+
+
+
+
+
+
+/* ///// Choose/?///////////*/
+.choose_color {
+    border-radius: 10px;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 35px;
+}
+
+.choose_color .color h5 {
+    font-family: 'Poppins' !important;
+    text-align: center;
+    font-size: 22px;
+}
+.choose_color .color .choose_text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.choose_color .color .choose_text p {
+    font-family: 'Poppins' !important;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    display: contents;
+}
+
+.choose_color .choose_img {
+    width: 100%;
+    height: 145px;
+    margin-bottom: 10px;
+}
+
+.choose_color .choose_img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    image-rendering: pixelated;
+    border: none;
+}
+
+.choose_color .color[colors="white"]{
+    background-color: #efebeb;
+    border-color: #efebeb;
+}
+
+.choose_color .color[colors="blue"]{
+    background-color: #2175f5;
+    border-color: #2175f5;
+}
+.choose_color .color[colors="red"]{
+    background-color: #f84848;
+    border-color: #f84848;
+}
+
+.choose_color .color[colors="green"]{
+    background-color: #29b864;
+    border-color: #29b864;
+}
+
+.choose_color .color[colors="orange"]{
+    background-color: #ff5521;
+    border-color: #ff5521;
+}
+
+.choose_color .color[colors="black"]{
+    background-color: #444;
+    border-color: #444;
+}
+
+.choose_color .color[colors="yellow"]{
+    background-color: #fbc531;
+    border-color: #fbc531;
+}
+
+.choose_color .color[colors="pink"]{
+    background-color: #ff9ff3;
+    border-color: #ff9ff3;
+}
+
+.choose_color .color[colors="gray"]{
+    background-color: #576574;
+    border-color: #576574;
+}
+
+
+
+
+/* ////////////// EditColorProduct  */
+.edit_color_product .edit_color_showImg .color_showImg {
+    display: flex;
+    justify-content: space-evenly;
+}
+.edit_color_showImg .color_showImg .showImg {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #8080806e;
+}
+.edit_color_showImg .showImg img{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 15px;
+    image-rendering: pixelated;
+    border: none;
+}
+.edit_color_showImg .showImg .input_image_color{
+    height: 100px;
+    display: flex;
+}
+
+.edit_color_showImg .input_image_color {
+    display: flex;
+}
+.edit_color_showImg .input_image_color img{
+    width: 100%;
+    height: 100%;
+}
+
+.edit_color_showImg .showArrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+.edit_color_showImg .showArrow .arrow_down{
+    width: 100px;
+    height: 100px;
+}
+.edit_color_showImg .showArrow .arrow_down img{
+    width: 100%;
+    height: 100%;
+} 
+
+.edit_color_product .ant-upload-list.ant-upload-list-picture-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

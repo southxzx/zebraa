@@ -1,0 +1,15 @@
+.title-common {
+    position: relative;
+    bottom: 15px;
+}
+.title-common span{
+    font-family: 'Poppins';
+    letter-spacing: .125rem;
+    font-size: 13px;
+    color: #818ea3;
+}
+
+.title-common h4 {
+    font-family: 'Poppins' !important;
+    margin-top: 6px;
+}

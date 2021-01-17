@@ -45,7 +45,6 @@ function Checkout() {
       payment: value
     })
   }
-
   // save order
   const addOrder = async() => {
     if (order.payment !== ""){

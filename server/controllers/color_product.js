@@ -50,3 +50,73 @@ module.exports.addColorProduct = async (req, res) => {
 
 
 }
+
+// Get all color product -- find(query, projection)
+module.exports.getAllColorProduct = (req, res) => {
+    ColorProduct.find({},(err,colorProduct) => {
+        if (err) return res.send(err);
+        res.status(200).send(colorProduct);
+    })
+}
+
+module.exports.getLastColorProduct = (req, res) => {
+    ColorProduct.find(
+        {}
+    ).
+    limit(1).
+    sort({_id:-1}).
+    exec((err,colorProduct) => {
+        if (err) return res.send(err);
+        res.status(200).send(colorProduct);
+    })
+}
+
+
+module.exports.updateColorProduct = async (req,res) => {
+    try {
+        const urls = [];
+        const files = req.files;
+        
+        for(const file of files){
+            const {path} = file;
+            const result = await cloudinary.uploader.upload(path);
+            urls.push(result.secure_url);
+        }
+        req.body.images = urls;
+
+        // Create new product
+        //const colorProduct = new ColorProduct(req.body);
+        
+        ColorProduct.findByIdAndUpdate(
+            {_id: req.query.id},
+            { $set : req.body},
+            (err,doc) => {
+                if (err) return res.send(err);
+
+                if(doc){
+                    //Update product by colorProduct
+                    Product.updateOne(
+                        {"colorProducts._id" : req.query.id},
+                        { $set : {'colorProducts.$.price':req.body.price,
+                                  'colorProducts.$.color':req.body.color,
+                                  'colorProducts.$.images':req.body.images,
+                                  'colorProducts.$.avatar':req.body.avatar }},
+                        (errs,docs) => {
+                            if (errs) return res.send(errs);
+            
+                            if(docs) return res.status(200).json({
+                                success: true,
+                                message:'Color Product updated!',
+                                docs
+                            });
+                        }
+                    )
+
+                }
+                
+            }
+        )
+    } catch (error) {
+        console.log(error);
+    }
+}

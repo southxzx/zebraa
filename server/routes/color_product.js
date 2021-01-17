@@ -7,6 +7,13 @@ const colorProductController = require('../controllers/color_product');
 // Add new product
 router.post('/add',upload.array('images'),colorProductController.addColorProduct);
 
+router.get('/get',colorProductController.getAllColorProduct);
+
+router.put('/update',upload.array('images'),colorProductController.updateColorProduct);
+
+// Get last one
+router.get('/getLastOne',colorProductController.getLastColorProduct);
+
 // // Get 1 product
 // router.get('/get',productController.getSingleProduct);
 
