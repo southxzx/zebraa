@@ -19,4 +19,7 @@ router.put('/update',productController.updateProduct);
 // Delete products by ID
 router.put('/delete',productController.deleteProduct);
 
+// DUpdate quantity
+router.put('/updateQty',productController.updateQty);
+
 module.exports = router;

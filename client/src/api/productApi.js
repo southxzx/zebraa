@@ -10,6 +10,10 @@ const productApi = {
     get:(id) => {
         const url = `/product/get?id=${id}`;
         return axiosClient.get(url);
+    },
+    updateQty:(data) => {
+        const url = `/product/updateQty`;
+        return axiosClient.put(url, data);
     }
 }
 

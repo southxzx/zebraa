@@ -145,3 +145,42 @@ module.exports.deleteProduct = (req, res) =>{
         }
     )
 }
+
+// UpdateQty 
+module.exports.updateQty = (req, res) => {
+    Product.find(
+        {"_id" : req.body.idProduct}
+    ).
+    exec((err, data)=>{
+        {
+            if (data){
+                data.forEach(function(doc){
+                    doc.colorProducts.forEach( function(doc2) {
+                        if (doc2._id == req.body.idColorProduct){
+                            doc2.sizeProducts.forEach(function(doc3){
+                                if (doc3._id == req.body.idSize){
+                                    doc3.quantity = doc3.quantity - req.body.quantity;
+                                }
+                                else{
+                                    return;
+                                    // return res.status(200).json({msg:"Can not find size product"})
+                                }
+                            })
+                        }
+                        else{
+                            return;
+                            // return res.status(200).json({msg:"Can not find color product"})
+                        }
+                        doc.save((err,doc)=>{
+                            if (doc) return res.status(200).json({msg: "Updated!", data:doc})
+                            if(err) return res.json({success: false, err})
+                        })
+                    });
+                });
+            
+            }
+            if (err) return res.status(200).json({msg:"Failed"})
+            
+        }
+    })
+}

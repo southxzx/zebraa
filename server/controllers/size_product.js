@@ -52,12 +52,12 @@ module.exports.updateSizeProduct = (req,res) => {
                                     doc3.quantity = req.body.quantity;
                                 }
                                 else{
-                                    return res.status(200).json({msg:"Can not find size product"})
+                                    // return res.status(200).json({msg:"Can not find size product"})
                                 }
                             })
                         }
                         else{
-                            return res.status(200).json({msg:"Can not find color product"})
+                            // return res.status(200).json({msg:"Can not find color product"})
                         }
                         doc.save((err,doc)=>{
                             if (doc) return res.status(200).json({msg: "Updated!", data:doc})

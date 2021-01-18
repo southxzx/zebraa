@@ -14,6 +14,7 @@ import cartApi from '../../api/cartApi';
 import { trackPromise, usePromiseTracker } from 'react-promise-tracker';
 import historyApi from '../../api/historyApi';
 import { RemoveItem } from '../../utils/cart';
+import productApi from '../../api/productApi';
 
 function Checkout() {
 
@@ -80,6 +81,10 @@ function Checkout() {
       await trackPromise(historyApi.add(history))
     };
 
+    const updateQty = async (data) => {
+      await trackPromise(productApi.updateQty(data))
+    }
+
     order.cart.map((item,key)=>{
       history.idProduct = item.idProduct._id;
       history.idColorProduct = item.idColorProduct._id;
@@ -88,6 +93,7 @@ function Checkout() {
       history.totalPrice = item.idColorProduct.price * item.quantity;
       addHistory(history);
       removeItemInCart(item);
+      updateQty(history);
     })
 
   }

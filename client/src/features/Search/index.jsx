@@ -65,6 +65,7 @@ function Search() {
                         </div>
                         <h4>Result of "{keyword}"</h4>
                     </div>
+                    <div className="product-list">
                     <Row>
                         {
                             product.data ? ( product.data.map((data,key) =>(
@@ -99,12 +100,16 @@ function Search() {
                                                     
                                             ) 
                                             : 0}
+
+                                            // Tất cả hình của product
+                                            allProductImages = {data.colorProducts}
                                                 
                                         />
                                     </Col>
                             ))) :null
                         }
                     </Row>
+                    </div>
                 </Container>
             </div>
             <Footer/>
