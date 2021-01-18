@@ -77,6 +77,8 @@ app.use((req, res) => {
     })
 })
 
+app.get('/', (req, res) => { res.send('Hello from Express!')})
+
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
 });
