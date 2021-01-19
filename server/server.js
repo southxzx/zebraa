@@ -44,29 +44,29 @@ const allHistoryRouter = require('./routes/history.route');
 const allOrderRouter = require('./routes/order.route');
 
 // User routes
-app.use('/api/user',allUserRouter);
+app.use('/api/user',cors(),allUserRouter);
 // Color routes
-app.use('/api/color',allColorRouter);
+app.use('/api/color',cors(),allColorRouter);
 // Size routes
-app.use('/api/size',allSizeRouter);
+app.use('/api/size',cors(),allSizeRouter);
 // Category routes
-app.use('/api/category',allCategoryRouter);
+app.use('/api/category',cors(),allCategoryRouter);
 // Product routes
-app.use('/api/product',allProductRouter);
+app.use('/api/product',cors(),allProductRouter);
 // Color product routes
-app.use('/api/colorProduct',allColorProductRouter);
+app.use('/api/colorProduct',cors(),allColorProductRouter);
 // Review routes
-app.use('/api/review',allReviewRouter);
+app.use('/api/review',cors(),allReviewRouter);
 // Size_product routes
-app.use('/api/sizeProduct',allSizeProductRouter);
+app.use('/api/sizeProduct',cors(),allSizeProductRouter);
 // Cart routes
-app.use('/api/cart',allCartRouter);
+app.use('/api/cart',cors(),allCartRouter);
 // Search routes
-app.use('/api/search',allSearchRouter);
+app.use('/api/search',cors(),allSearchRouter);
 // History routes
-app.use('/api/history',allHistoryRouter);
+app.use('/api/history',cors(),allHistoryRouter);
 // Order routes
-app.use('/api/order',allOrderRouter);
+app.use('/api/order',cors(),allOrderRouter);
 
 
 app.use((req, res) => {
