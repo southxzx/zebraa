@@ -18,9 +18,7 @@ connectDB()
 
 // Config for only development
 if (process.env.NODE_ENV === 'development') {
-    app.use(cors({
-        origin: process.env.CLIENT_URL
-    }))
+    app.use(cors())
     
 
     //Morgan give information about each request
