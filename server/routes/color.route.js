@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const cors = require('cors')
 
 const colorController = require('../controllers/color.controller');
 
@@ -7,7 +8,7 @@ const colorController = require('../controllers/color.controller');
 router.post('/add',colorController.addColor);
 
 // Get all colors
-router.get('/get',colorController.getAllColors)
+router.get('/get',cors(),colorController.getAllColors)
 
 //Update color by ID
 router.put('/update',colorController.updateColor);
