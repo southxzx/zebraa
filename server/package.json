@@ -28,9 +28,11 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "nodemon --inspect server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "ng": "ng", 
+    "build": "ng build --prod", 
+    "postinstall": "ng build --prod"
   },
   "keywords": [],
   "author": "",
