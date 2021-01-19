@@ -80,6 +80,6 @@ app.use((req, res) => {
 
 app.get('/', (req, res) => { res.send('Hello from Express!')});
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT, () => {
     console.log(`App listening on port ${PORT}`);
 });
