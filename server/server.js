@@ -18,10 +18,10 @@ connectDB()
 
 // Config for only development
 if (process.env.NODE_ENV === 'development') {
-    // app.use(cors({
-    //     origin: process.env.CLIENT_URL
-    // }))
-    app.use(cors())
+    app.use(cors({
+        origin: process.env.CLIENT_URL
+    }))
+    
 
     //Morgan give information about each request
     //Cors it's allow to deal with react for localhost:3000 without any problem
@@ -77,6 +77,8 @@ app.use((req, res) => {
         msg: "Page not founded"
     })
 })
+
+app.get('/', (req, res) => { res.send('Hello from Express!')});
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
