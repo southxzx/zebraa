@@ -63,7 +63,7 @@ function DetailPage(props) {
     //console.log(productItem.data ? productItem.data[0].review : null);
     //console.log(colorProductId);
     return (
-        <div className="">
+        <div className="main-product-detail">
             <Header/>
             <Breadcrumbs title="Product" linkBack="Product" active="Nike Boom X"/>
             <div className="main-product-detail">

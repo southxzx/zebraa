@@ -9,6 +9,7 @@ import AddProduct from "../../pages/Products/Add";
 import EditProduct from "../../pages/Products/Edit_Remove";
 import EditDetail from "../../pages/Products/EditDeTail/index.jsx";
 import RemoveProduct from "../../pages/Products/Remove";
+import Orders from "../../pages/Orders";
 
 
 
@@ -23,18 +24,16 @@ function Content(props) {
             <div className="admin-main">
                 <div className="admin-side">
                     <Topbar toggleSidebar={toggleSidebar} />
-                    
-
                     <div className="admin-content">
                         <BrowserRouter>
                             <Switch>
                                 <Route exact path="/admin" component={DashBoard} />
                                 <Route path="/admin/about" exact component={() => "About kojkojojo hiohoih"} />
+                                <Route path="/admin/orders" exact component={Orders} />
                                 <Route path="/admin/products/add" exact component={AddProduct} />
                                 <Route path="/admin/products/edit" exact component={EditProduct} />
                                 <Route path="/admin/products/edit/:_idProduct" exact component={EditDetail} />
-                                <Route path="/admin/products/remove_product/:_idProduct" exact component={RemoveProduct} />
-                                
+                                <Route path="/admin/products/remove_product/:_idProduct" exact component={RemoveProduct} />                          
                             </Switch>
                         </BrowserRouter>
                     </div>

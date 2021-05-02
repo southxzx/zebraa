@@ -28,13 +28,6 @@ function Topbar(props) {
             <Button className="move" onClick={toggleSidebar}>
                 <i className="fa fa-bars" aria-hidden="true"></i>
             </Button>
-            <div className="search-bar">
-                <input type="search" placeholder="Search" name="name"/>
-                <a className="search-icon" href="/search">
-                    <img src="/Assets/images/search.png">
-                    </img>
-                </a>
-            </div>
 
             <div className="ring-bar">
                 <a href="https://www.youtube.com/">

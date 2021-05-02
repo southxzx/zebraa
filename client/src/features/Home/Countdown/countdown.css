@@ -124,3 +124,16 @@
     text-decoration: line-through;
     font-size: 20px;
 }
+
+@media (max-width: 480px){
+  .countdown-container .countdown-item{
+    padding-bottom: 15px;
+  }
+  .countdown-container .countdown-item .item-inner .image .time div h2{
+    font-size: 22px;
+  }
+  .countdown .countdown-title:before,
+  .countdown .countdown-title:after {
+    display: none;
+  }
+}

@@ -115,3 +115,9 @@
     font-size: 180%;
     font-weight: 500;
 }
+
+@media (max-width: 480px){
+  .trending .image-card{
+    padding-bottom: 15px;
+  }
+}

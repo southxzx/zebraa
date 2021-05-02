@@ -240,7 +240,7 @@ function Product_Detail_Item(props) {
                             <Container>
                                 <Row>
                                     
-                                    <Col sm="12" md="6" className="color-item">
+                                    <Col sm="3" md="6" className="color-item">
                                         <div className="product-color">
                                             <div className="color-name">
                                                 Color
@@ -251,7 +251,7 @@ function Product_Detail_Item(props) {
                                                 {
                                                     color.map((item,key) => (
                                                         // <span onClick={()=>imageListByColor(item)} className="color" color={item} key={key}></span>
-                                                        <Col md="3" key={key}>
+                                                        <Col md="3" xs="3" key={key}>
                                                             <div onClick={() => imageListByColor(item)} className="img-color">
                                                                 <img src={item} alt="Image Color" />
                                                             </div>
@@ -263,7 +263,7 @@ function Product_Detail_Item(props) {
                                         </div>
                                     </Col>
 
-                                    <Col sm="12" md="6" className="size-item">
+                                    <Col sm="3" md="6" className="size-item">
                                         <div className="product-size">
                                             <div className="size-name">
                                                 Size
@@ -274,7 +274,7 @@ function Product_Detail_Item(props) {
                                                 <Row>
                                                 {
                                                     size ? size.map((item,key) => (
-                                                        <Col md="2" key={key}>
+                                                        <Col md="2" xs="2" key={key}>
                                                             <span
                                                                 style={item.quantity <= 0 ? { "pointerEvents": "none", "opacity": 0.3 } : { backgroundColor: "#fff" }}
                                                                 className="size"

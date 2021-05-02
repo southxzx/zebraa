@@ -371,3 +371,9 @@
     opacity: 1 !important;
     visibility: visible !important;
 }
+
+@media (max-width: 480px){
+  .product-size .item-size {
+    padding: 10px;
+  }
+}

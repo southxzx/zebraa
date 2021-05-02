@@ -1,15 +1,19 @@
+.mobileHeader{
+  display: none;
+}
 .transparent-bg{
-    background-color: transparent;
+    background-color: transparent !important;
     position: absolute;
     z-index: 10;
     left: 0;
     right: 0;
     padding: 40px 0;
+    transform: translateY(-60px);
 }
 
 .dark-bg{
-    background-color: rgb(255, 94, 0);
-    position: fixed;
+    background-color: rgb(255, 94, 0) !important;
+    position: fixed !important;
     z-index: 10;
     left: 0;
     right: 0;
@@ -177,7 +181,7 @@ header nav.icon .user .user-image{
 .icon .user{
     position: relative;
 }
-.icon .user .popover-user{
+.popover-user{
     width: 250px;
     right: -39px;
     top: 42px;
@@ -240,4 +244,62 @@ header nav.icon .user .user-image{
     right: 0px;
     top: 73%;
     transform: translate(-70%, -50%);
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px){
+  #header{
+    display: none;
+  }
+  .blur-content{
+    z-index: 3;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: hsla(0,0%,7%,.36);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+  }
+  .mobileHeader{
+    display: block;
+    position: sticky;
+    width: 100%;
+    top: 0;
+    padding: 15px 0;
+    z-index: 2;
+    background-color: rgb(255, 94, 0);
+    transition: transform .3s ease;
+  }
+  .mobileHeader .menu-left img{
+    width: 70px;
+  }
+  .mobileHeader .menu-right{
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+  }
+  .mobileHeader .menu-right div{
+    margin-left: 25px;
+  }
+  .mobileHeader .menu-right .search-btn img{
+    width: 20px;
+  }
+  .mobileHeader .menu-right .avatar .user-image{
+    border-radius: 50%;
+    width: 20px;
+  }
+  .mobileHeader .menu-right .enter-btn img{
+    width: 20px;
+  }
+  .mobileHeader .menu-right .menu-btn img{
+    width: 25px;
+  }
+  .mobile-section{
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
 }

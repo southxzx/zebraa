@@ -12,10 +12,8 @@ function Home() {
 
     return (
         <div>
-            <div className="header-wrapper">
-                <Header/>
-                <Banner/>
-            </div>
+            <Header/>
+            <Banner/>
             <Cate/>
             <Countdown/>
             {/* <Prod/> */}
