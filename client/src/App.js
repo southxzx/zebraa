@@ -39,6 +39,10 @@ function App() {
       <AdminRoute path='/admin/products/edit' exact component={() => <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen}/>}/>
       <AdminRoute path='/admin/products/edit/:_idProduct' exact component={() => <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen}/>}/>
       <AdminRoute path='/admin/products/remove_product/:_idProduct' exact component={() => <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen}/>}/>
+      <AdminRoute path='/admin/category/add' exact component={() => <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen}/>}/>
+      <AdminRoute path='/admin/category/edit' exact component={() => <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen}/>}/>
+      <AdminRoute path='/admin/category/edit/:_idCategory' exact component={() => <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen}/>}/>
+      <AdminRoute path='/admin/category/remove_category/:_idCategory' exact component={() => <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen}/>}/>
     </Switch>
   </BrowserRouter>
   );

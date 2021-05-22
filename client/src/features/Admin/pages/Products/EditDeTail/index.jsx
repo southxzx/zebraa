@@ -8,7 +8,7 @@ import EditDeTailProduct from './EditDeTailProduct';
 import ChooseColorEdit from './ChooseColorEdit';
 import EditColorProduct from './EditColorProduct';
 
-function EditDetail(props) {
+function EditDetailPro(props) {
     const {_idProduct} = useParams();
 
     const [step,setStep] = useState(0);
@@ -70,7 +70,10 @@ function EditDetail(props) {
             setColorProduct(response.data.data[0].colorProducts);
         }
 
-        fetchColorProduct()
+        // fetchColorProduct();
+        // return() => {
+        //     setColorProduct([]);
+        // }
     },[])
 
 
@@ -115,4 +118,4 @@ function EditDetail(props) {
     );
 }
 
-export default EditDetail;
+export default EditDetailPro;

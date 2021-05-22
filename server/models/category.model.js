@@ -9,7 +9,7 @@ const categorySchema = new mongoose.Schema({
         type: String
     },
     active: {
-        required: true,
+        default : true,
         type: Boolean
     }
 });

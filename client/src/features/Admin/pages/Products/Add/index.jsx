@@ -38,7 +38,7 @@ function AddProduct(props) {
            case 2:
             return(
                 <AddSizeProduct
-                
+                    prevStep={() => onPrevious()}
                 />
             )
 

@@ -138,8 +138,7 @@ SIDEBAR STYLE
 li a.dropdown-toggle::after {
   display: inline-flex;
   position: relative;
-  left: 60%;
-  top: 10%;
+  float: right;
 }
 
 .sidebar-header > span {

@@ -1,0 +1,12 @@
+.add-category-admin input.frm-input.frm-error.form-control {
+    margin: auto;
+    width: 80%;
+}
+
+.add-category-admin form {
+    width: 80%;
+}
+
+.add-category-admin button.btn-default.btn-subscribe.btn-next {
+    margin-left: 80%;
+}

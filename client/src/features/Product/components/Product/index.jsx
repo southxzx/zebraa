@@ -204,6 +204,7 @@ function Product(props) {
             try {
                 const response = await categoryApi.getAll();
                 // Lưu response cate vào state 
+                console.log("cataa ", response.data);
                 response.data.map(item => setCate(oldArray => [...oldArray, item]));
             } catch (error) {
                 console.log('Failed to fetch category list: ', error);
@@ -291,12 +292,14 @@ function Product(props) {
                                         <div className="list-item">
                                 
                                             {
-                                                cate.map((item,key)=>(
-                                                    <div onClick={()=> addAtt(item,'category')} className="filter" key={key}>
+                                                cate.map((item,key)=> (
+                                                    item.active == true ? (
+                                                        <div onClick={()=> addAtt(item,'category')} className="filter" key={key}>
                                                         <span className="item" href="https://www.youtube.com/">
                                                             {item.name}
                                                         </span>
                                                     </div>
+                                                    ) : null
                                                 ))
                                             }
                                         </div>

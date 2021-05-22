@@ -101,9 +101,9 @@ function AddColorProduct(props) {
                     imgFile: []
                 })
             })
-
-        }
         
+        }
+
     }
 
     useEffect(() => {
@@ -125,6 +125,18 @@ function AddColorProduct(props) {
         }
 
         fetchData();
+
+        // return() => {
+        //     setColorList([]);
+        //     setFormData({
+        //         _idProduct : '',
+        //         color: '',
+        //         price: '',
+        //         avatar: false,
+        //         imgFile: []
+        
+        //     });
+        // }
     },[])
 
     const [fileList, setFileList] = useState([]);

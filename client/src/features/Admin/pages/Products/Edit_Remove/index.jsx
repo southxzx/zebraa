@@ -21,6 +21,10 @@ function EditProduct(props) {
             setCategory(responseCategory.data);
         }
         fetchData();
+        // return() => {
+        //     setProduct([]);
+        //     setCategory([]);
+        // }
     },[])
 
 

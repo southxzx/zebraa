@@ -33,6 +33,17 @@ function Sidebar(props) {
             target: "/admin/products/remove",
           },
         ],
+
+        [
+            {
+                title: "Add Category",
+                target: "/admin/category/add",
+            },
+            {
+                title: "Edit Category",
+                target: "/admin/category/edit",
+            }
+        ]
       ];
 
     return (
@@ -63,12 +74,7 @@ function Sidebar(props) {
 
                     <SubMenu className="side-sub" title="Product" icon='fa fa-product-hunt' items={submenus[0]} />
 
-                    <NavItem>
-                        <NavLink className="side-item" tag={Link} to={"/admin/about"}>
-                            {/* <FontAwesomeIcon icon={faBriefcase} className="mr-2" /> */}
-                            <div className="side-text">About</div>
-                        </NavLink>
-                    </NavItem>
+                    <SubMenu className="side-sub" title="Category" icon='fa fa-product-hunt' items={submenus[1]} />
 
                     <NavItem>
                         <NavLink className="side-item" tag={Link} to={"/admin/about"}>

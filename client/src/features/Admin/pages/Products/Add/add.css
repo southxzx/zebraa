@@ -11,6 +11,20 @@
     margin-top: 40px;
 }
 
+.add-products .add-another{
+    float: left;
+    width: 30%;
+    background-color: #4cd137;
+    border: #4cd137;
+    margin-top: 40px;
+}
+
+.add-products .add-another:hover{
+    background-color: #fff;
+    border: 1px solid #4cd137;
+    color: #4cd137!important;
+}
+
 .add-products .title{
     text-align: center;
     padding-bottom: 20px;

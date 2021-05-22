@@ -20,6 +20,7 @@ router.put('/password/forget',forgotPasswordValidator,controller.forgetControlle
 router.put('/password/reset',resetPasswordValidator,controller.resetController);
 router.put('/password/change',controller.changePassword);
 
+
 // Google and Facebook Login
 router.post('/googlelogin', controller.googleController);
 router.post('/facebooklogin',controller.facebookController);

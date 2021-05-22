@@ -94,6 +94,18 @@ function EditDeTailProduct(props) {
         }
 
         fetchData();
+
+        // return() => {
+        //     setCate([]);
+        //     setFormData({
+        //         name: '',
+        //         description: '',
+        //         active: true,
+        //         category: '',
+               
+        
+        //     });
+        // }
     },[])
     console.log(formData);
 

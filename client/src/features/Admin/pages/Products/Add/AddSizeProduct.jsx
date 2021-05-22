@@ -18,6 +18,8 @@ function AddSizeProduct(props) {
 
     });
 
+    const [prev, setPrev] = useState(false);
+
     const promiseInProgress = usePromiseTracker();
 
     const [sizeList, setSizeList] = useState([]);
@@ -45,10 +47,13 @@ function AddSizeProduct(props) {
             })
             .then(res => {
                 toast.success("New size has been added! :)");
+
+                setPrev(true);
             })
             .catch(err => {
                 toast.error("Something went wrong! :(");
             })
+
         }
     }
 
@@ -70,10 +75,23 @@ function AddSizeProduct(props) {
             }
         }
 
-        fetchData()
+        fetchData();
+        // return() => {
+        //     setSizeList([]);
+        //     setFormData({
+        //         _idColorProduct : '',
+        //         quantity: 0,
+        //         _idSize : ''
+        
+        //     });
+        // }
     },[])
 
     console.log(formData);
+
+    function handlePrev(){
+        props.prevStep();
+    }
 
     return (
         <div className="add-product-size">
@@ -105,11 +123,20 @@ function AddSizeProduct(props) {
 
                 </div>
 
+                {
+                    prev && (<button className='btn-default btn-subscribe add-another' onClick={handlePrev}>
+                        Add another Color
+                    </button>)
+                }
+
+            
+
                 <button type="submit" className='btn-default btn-subscribe btn-next'>
-                    Add
+                    Save
                 </button>
 
             </form>
+
         </div>
     );
 }

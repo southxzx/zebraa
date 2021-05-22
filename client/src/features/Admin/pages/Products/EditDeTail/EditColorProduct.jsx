@@ -84,6 +84,17 @@ function EditColorProduct(props) {
         }
 
         fetchData();
+
+        // return() => {
+        //     setColorList([]);
+        //     setFormData({
+        //         color: '',
+        //         price: '',
+        //         avatar: false,
+        //         imgFile: [],
+                
+        //     });
+        // }
     },[])
 
     console.log(formData);
