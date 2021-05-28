@@ -9,13 +9,10 @@ router.post('/add',orderController.addOrder);
 // Get latest order
 router.get('/get',orderController.getLatestOrder);
 
-// // Get all products by Arrival
-// router.post('/getAll',productController.getAllProductsByArrival);
+// Get all order
+router.get('/getAll', orderController.getAllOrders);
 
-// // Update products by ID
-// router.put('/update',productController.updateProduct);
-
-// // Delete products by ID
-// router.put('/delete',productController.deleteProduct);
+// Update order status
+router.put('/update', orderController.updateOrderStatus);
 
 module.exports = router;

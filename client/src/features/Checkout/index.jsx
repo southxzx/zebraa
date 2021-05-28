@@ -21,7 +21,7 @@ function Checkout() {
   const[order,setOrder] = useState({
     idUser: "",
     cart:"",
-    status:"Shipping",
+    status:"Confirming",
     payment:"",
     shipment:"Standard",
     note:"",

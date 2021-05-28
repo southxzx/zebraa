@@ -75,6 +75,12 @@ function Sidebar(props) {
                     <SubMenu className="side-sub" title="Product" icon='fa fa-product-hunt' items={submenus[0]} />
 
                     <SubMenu className="side-sub" title="Category" icon='fa fa-product-hunt' items={submenus[1]} />
+                    <NavItem>
+                        <NavLink className="side-item" tag={Link} to={"/admin/orders"}>
+                            {/* <FontAwesomeIcon icon={faBriefcase} className="mr-2" /> */}
+                            <div className="side-text">Manage orders</div>
+                        </NavLink>
+                    </NavItem>
 
                     <NavItem>
                         <NavLink className="side-item" tag={Link} to={"/admin/about"}>

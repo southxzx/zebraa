@@ -28,7 +28,7 @@ function Cate(props) {
                     </div>
                     <div className="trending">
                         <Row>
-                            <Col>
+                            <Col sm="12" lg="6">
                                 <div className="image-card">
                                     <div className="image-wrapper">
                                         <img src="/Assets/images/trending1.jpg"/>
@@ -41,7 +41,7 @@ function Cate(props) {
                                     </div>
                                 </div>
                             </Col>
-                            <Col>
+                            <Col sm="12" lg="6">
                             <div className="image-card">
                                     <div className="image-wrapper">
                                         <img src="/Assets/images/trending2.jpg"/>

@@ -8,15 +8,14 @@ const orderApi = {
     add : (data) =>{
         const url = '/order/add';
         return axiosClient.post(url, data);
+    },
+    getAll : () => {
+      const url = '/order/getAll';
+      return axiosClient.get(url);
+    },
+    updateStatus : (data) => {
+      return axiosClient.put('/order/update', data)
     }
-    // delete : (idItem)=>{
-    //     const url = `/cart/delete?idItem=${idItem}`;
-    //     return axiosClient.delete(url);
-    // },
-    // update: (data)=>{
-    //     const url = `/cart/update`;
-    //     return axiosClient.put(url, data);
-    // }
 }
 
 export default orderApi;

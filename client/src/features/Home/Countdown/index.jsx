@@ -28,7 +28,7 @@ function Countdown() {
                 </div>
                 <div className="countdown-container">
                 <Row>
-                    <Col>
+                    <Col sm="12" lg="4">
                         <div className="countdown-item" onMouseEnter={handleHover1} onMouseLeave={handleHover1}>
                             <Card
                                 image="/Assets/images/product1.png"
@@ -37,7 +37,7 @@ function Countdown() {
                             />
                         </div>
                     </Col>                   
-                    <Col>
+                    <Col sm="12" lg="4">
                         <div className="countdown-item" onMouseEnter={handleHover3} onMouseLeave={handleHover3}>
                             <Card
                                 image="/Assets/images/product2.png"
@@ -47,7 +47,7 @@ function Countdown() {
                         </div>
                     </Col>
 
-                    <Col>
+                    <Col sm="12" lg="4">
                         <div className="countdown-item" onMouseEnter={handleHover2} onMouseLeave={handleHover2}>
                             <Card
                                 image="/Assets/images/product3.png"

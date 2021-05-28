@@ -97,7 +97,7 @@ function Register(props) {
                 <ToastContainer/>
                 <div className="row-login">
                     <div className="btn-cancel">
-                        <a onClick={toggleRegisterForm}><i class="fa fa-times"></i></a>
+                        <a onClick={toggleRegisterForm}><i className="fa fa-times"></i></a>
                     </div>
                     <Col>
                         <div className="form-group login-modal">

@@ -1,5 +1,5 @@
 .back-to-top-show{
-    z-index: 15;
+    z-index: 1;
     transition: all 0.2s ease;
     position: fixed;
     background-color: #ff6500;
@@ -19,4 +19,10 @@
     bottom: 100px;
     right: 85px;
     color: white;
+}
+
+@media (max-width: 480px){
+  .back-to-top-show{
+    display: none;
+  }
 }

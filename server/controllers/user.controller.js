@@ -559,6 +559,29 @@ module.exports.changePassword = (req,res) => {
   }
 }
 
+module.exports.getInfo = (req,res) =>{
+  //const email = localStorage.getItem("user").email;
 
+  const {email} = req.query;
+
+  User.findOne({ email: email}, (err, data) => {
+    if (err) return res.send(err);
+    res.status(200).send({ data });
+  });
+}
+
+module.exports.updateInfo = (req,res) => {
+  //const {name, address, phone} = req.body;
+  User.findByIdAndUpdate(
+    {_id : req.query._id},
+    { $set : req.body},
+    (err,data) => {
+        if (err) return res.send(err);
+        res.status(200).send({
+          message: `Update Successful`
+        });
+    }
+  )
+}
 
 ////

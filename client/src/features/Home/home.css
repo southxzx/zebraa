@@ -2,6 +2,10 @@
     position: relative;
 }
 
+.container-content{
+  position: relative;
+}
+
 /*-------------- Banner -------------*/
 
 .carousel-item img{
@@ -39,7 +43,8 @@
     background-color:#fff;
     border: 1px solid #e1e1e1!important;
 }
-.btn-subscribe{
+.btn-subscribe,
+.btn-sign-in-nav{
     background-color: rgb(255, 94, 0);
     color: #fff !important;
     border: 1px solid rgb(255, 94, 0);

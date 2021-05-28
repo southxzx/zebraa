@@ -1,0 +1,40 @@
+.order-detail-modal .btn-cancel{
+  position: absolute;
+  color: white;
+  font-size: 20px;
+  right: -8px;
+  top: -8px;
+  background: rgb(255, 94, 0);
+  padding: 6px 13px;
+  border-radius: 2px;
+  box-shadow: 0px 0px 6px 0px rgb(0 0 0 / 30%), inset 0 0 0 1px #ffffff;
+  z-index: 100;
+}
+
+.order-detail-modal .invoice-box{
+  background-color: white;
+  margin: 0 auto;
+  padding: 40px;
+}
+.order-detail-modal .delivery{
+  padding: 10px;
+  background-color: rgb(235, 235, 235)
+}
+.order-detail-modal .invoice-box img{
+  max-width: 120px;
+}
+.order-detail-modal .invoice-box h2{
+  float: right;
+}
+.order-detail-modal .invoice-box .row{
+  padding: 20px 0 20px 0;
+  border-bottom: 1px solid #cecece;
+  border-bottom: 1px solid #cecece;
+}
+.order-detail-modal .invoice-box .last-row{
+  padding-bottom: 0;
+  border: none;
+}
+.order-detail-modal .invoice-box thead{
+  background-color: antiquewhite;
+}
