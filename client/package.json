@@ -13,6 +13,7 @@
     "antd-img-crop": "^3.13.2",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
+    "caniuse-lite": "^1.0.30001239",
     "chart.js": "^2.9.4",
     "html2canvas": "^1.0.0-rc.7",
     "js-cookie": "^2.2.1",

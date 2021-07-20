@@ -210,12 +210,12 @@ function Header() {
                     </div>
                   </li>
                   <li className="itemMenu">
-                    <a className="layer1" href="/" title="Home">
+                    <a className="layer1" href="/blog" title="Home">
                       Blog
                                     </a>
                   </li>
                   <li className="itemMenu">
-                    <a className="layer1" href="/" title="Home">
+                    <a className="layer1" href="/contact" title="Home">
                       Contact
                                     </a>
                   </li>

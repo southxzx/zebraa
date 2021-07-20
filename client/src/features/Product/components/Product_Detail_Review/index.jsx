@@ -54,16 +54,16 @@ function Product_Detail_Review(props) {
                                             <Col>
                                                 <div className="user-info">
                                                     <div className="avatar-user">
-                                                        <img src={value.user.avatar ? value.user.avatar : '/Assets/images/user.jpg'}/>
+                                                        <img src={value.user?.avatar ? value.user.avatar : '/Assets/images/user.jpg'}/>
                                                     </div>
                                                     <p className="name-user">
-                                                        {value.user.name}
+                                                        {value.user?.name ? value.user.name : "No Name"}
                                                     </p>
                                                 </div>
                                             </Col>
                                             <Col>
                                                 <div className="date">
-                                                    {value.createdAt.slice(0,19).replace("T"," / ")}
+                                                    {value.createdAt?.slice(0,19).replace("T"," / ")}
                                                 </div>
                                             </Col>
                                         </Row>

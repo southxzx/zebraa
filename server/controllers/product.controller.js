@@ -115,6 +115,7 @@ module.exports.getAllProductsByArrival = (req, res) => {
     // sort({sortBy: order}).
     limit(limit).
     skip(skip).
+    sort({ createdAt: 'desc'}).
     exec((err, data)=>{
         if (err) return res.send(err);
         res.status(200).send({data});

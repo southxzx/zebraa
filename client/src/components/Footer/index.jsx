@@ -23,11 +23,11 @@ function Footer() {
                 </div>
                 <div className="follow">
                     <ul className="link-follow">
-                        <li><a><i className="fa fa-twitter"></i></a></li>
-                        <li><a><i className="fa fa-google-plus"></i></a></li>
-                        <li><a><i className="fa fa-facebook"></i></a></li>
-                        <li><a><i className="fa fa-youtube"></i></a></li>
-                        <li><a><i className="fa fa-instagram"></i></a></li>
+                        <li><a href="https://zebraa2021.herokuapp.com/"><i className="fa fa-twitter"></i></a></li>
+                        <li><a href="https://zebraa2021.herokuapp.com/"><i className="fa fa-google-plus"></i></a></li>
+                        <li><a href="https://www.facebook.com/Shoes-Sneaker-104050877759752/"><i className="fa fa-facebook"></i></a></li>
+                        <li><a href="https://www.youtube.com/"><i className="fa fa-youtube"></i></a></li>
+                        <li><a href="https://zebraa2021.herokuapp.com/"><i className="fa fa-instagram"></i></a></li>
                     </ul>
                 </div>
                 <div className="corporate-about">

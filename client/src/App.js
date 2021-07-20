@@ -15,6 +15,7 @@ import AdminHome from './features/Admin/pages/AdminHome';
 import Content from './features/Admin/Component/Content/content';
 import Checkout from './features/Checkout';
 import Test from './features/Test/test';
+import PageNotFound from './components/PageNotFound';
 
 function App() {
   const [sidebarIsOpen, setSidebarOpen] = useState(true);
@@ -32,8 +33,9 @@ function App() {
       <Route path='/checkout' exact component={Checkout}/>
       <Route path='/users/activate/:token' exact component={Activate}/>
       <Route path='/users/password/reset/:token' exact component={ResetPassword}/>
+      
 
-      <AdminRoute path='/admin' exact component={AdminHome}/>
+      <AdminRoute exact path='/admin' exact component={AdminHome}/>
       <AdminRoute path='/admin/orders' exact component={() => <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen}/>}/>
       <AdminRoute path='/admin/about' exact component={() => <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen}/>}/>
       <AdminRoute path='/admin/products/add' exact component={() => <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen}/>}/>
@@ -44,6 +46,8 @@ function App() {
       <AdminRoute path='/admin/category/edit' exact component={() => <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen}/>}/>
       <AdminRoute path='/admin/category/edit/:_idCategory' exact component={() => <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen}/>}/>
       <AdminRoute path='/admin/category/remove_category/:_idCategory' exact component={() => <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen}/>}/>
+
+      <Route component={PageNotFound}/>
     </Switch>
   </BrowserRouter>
   );
