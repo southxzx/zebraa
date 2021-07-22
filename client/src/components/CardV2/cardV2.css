@@ -35,11 +35,13 @@
 .product-list .item-inner .caption .product-name{
     color: #202226;
     padding: 0;
-    display: block;
+    display: -webkit-box;
     text-transform: capitalize;
     overflow: hidden;
     font-size: 18px;
     margin-bottom: 35px;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 .product-list .item-inner .caption .price-box{
     font-family: 'Oswald', sans-serif;

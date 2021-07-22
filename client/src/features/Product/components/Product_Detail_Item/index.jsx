@@ -199,7 +199,7 @@ function Product_Detail_Item(props) {
 
                         <div className ="product-price">
                             <span className="price">{price}$</span>
-                            <span className="old-price">299$</span>
+                            <span className="old-price">500$</span>
                         </div>
 
 

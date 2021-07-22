@@ -89,6 +89,7 @@ function AddColorProduct(props) {
                     avatar: false,
                     imgFile: []
                 })
+                console.log("success");
                 //Next step
                 props.nextStep();
             })
@@ -114,9 +115,9 @@ function AddColorProduct(props) {
                 //console.log(responseColor.data);
                 //console.log(responseColor.data[0]._id);
 
-                // console.log(responseProduct.data.data[responseProduct.data.data.length - 1]);
+                console.log(responseProduct.data.data[0]);
                 setColorList(responseColor.data);
-                setFormData({...formData, color: responseColor.data[0]._id ,  _idProduct: responseProduct.data.data[responseProduct.data.data.length - 1]._id});
+                setFormData({...formData, color: responseColor.data[0]._id ,  _idProduct: responseProduct.data.data[0]._id});
                 
                 
             } catch (error) {

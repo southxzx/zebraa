@@ -70,7 +70,7 @@ function EditDetailPro(props) {
             setColorProduct(response.data.data[0].colorProducts);
         }
 
-        // fetchColorProduct();
+         fetchColorProduct();
         // return() => {
         //     setColorProduct([]);
         // }

@@ -69,11 +69,11 @@ function Countdown() {
                             <Col sm="12" lg="4" key={key}>
                                 <div className="countdown-item">
                                     <Card
-                                        image={data.colorProducts[0].images[0]}
-                                        link={"/products/" + chuyenDoiUrl(data.name + '-' + data.category.name) + '/' + data._id + '/' + data.colorProducts[0]._id}
+                                        image={data.colorProducts[0]?.images[0]}
+                                        link={"/products/" + chuyenDoiUrl(data.name + '-' + data.category.name) + '/' + data._id + '/' + data.colorProducts[0]?._id}
                                         name={data.name} 
-                                        price={data.colorProducts[0].price} 
-                                        priceOld={data.colorProducts[0].price - 50} 
+                                        price={data.colorProducts[0]?.price} 
+                                        priceOld={data.colorProducts[0]?.price - 50} 
                                     />
                                 </div>
                             </Col>  

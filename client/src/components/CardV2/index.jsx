@@ -106,7 +106,7 @@ function CardV2(props) {
                         </Link>
                         <div className="price-box">
                             <p className="new">${productPrice}</p>
-                            <p className="old">$345.00</p>
+                            <p className="old">$500.00</p>
                         </div>
                     </div>)}
             </div>
